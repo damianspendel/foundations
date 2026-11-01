@@ -18,6 +18,7 @@
   --sets: #7b4fb0;
   --numbers: #1f7a6c;
   --logic: #b5532c;
+  --algebra: #2f62b5;
   --other: #6b7685;
   --hi: #d4a017;
   --font-display: "Newsreader", Georgia, serif;
@@ -28,13 +29,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #11151b; --surface: #181e26; --ink: #e4e8ee; --muted: #97a1b0; --line: #2b333f;
-    --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --other: #8a95a5; --hi: #f0c040;
+    --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --algebra: #6c9be6; --other: #8a95a5; --hi: #f0c040;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #11151b; --surface: #181e26; --ink: #e4e8ee; --muted: #97a1b0; --line: #2b333f;
-  --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --other: #8a95a5; --hi: #f0c040;
+  --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --algebra: #6c9be6; --other: #8a95a5; --hi: #f0c040;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -99,6 +100,26 @@ button.btn:focus-visible, input:focus-visible { outline: 2px solid var(--hi); ou
 .base { display: grid; gap: 8px; }
 .base ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 75ch; }
 footer { color: var(--muted); font-size: 0.85rem; }
+.tour { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 22px; margin-top: 12px; }
+@media (max-width: 860px) { .tour { grid-template-columns: 1fr; } .toc { max-height: 220px; } }
+.toc { display: grid; gap: 2px; align-content: start; max-height: 640px; overflow: auto; font-size: 0.84rem; border-right: 1px solid var(--line); padding-right: 10px; }
+.toc .ph { font: 600 0.72rem var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 10px 0 4px; }
+.toc button { all: unset; cursor: pointer; padding: 3px 8px; border-radius: 5px; border-left: 3px solid transparent; }
+.toc button:hover, .toc button:focus-visible { background: var(--bg); }
+.toc button[aria-current="true"] { border-left-color: var(--c); background: var(--bg); font-weight: 600; }
+.chapter { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.chapter .meta { font: 600 0.75rem var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--c); }
+.prose { display: grid; gap: 10px; font-size: 1rem; line-height: 1.65; }
+.prose h3 { font-size: 1.15rem; margin-top: 6px; }
+.prose pre { margin: 0; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; padding: 10px 12px; font: 0.85rem/1.5 var(--font-mono); overflow-x: auto; }
+.prose ul, .prose ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; max-width: 68ch; }
+.results { display: grid; gap: 8px; }
+.result { display: grid; gap: 3px; border: 1px solid var(--line); border-left: 4px solid var(--c); border-radius: 7px; padding: 9px 12px; background: var(--surface); }
+.result .rt { font-weight: 600; }
+.result .rd { color: var(--muted); font-size: 0.9rem; }
+.result button { justify-self: start; }
+.pager { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.srcbox pre { max-height: 420px; overflow: auto; white-space: pre; }
 </style>
 </head>
 <body>
@@ -135,6 +156,14 @@ footer { color: var(--muted); font-size: 0.85rem; }
     <div class="legend" id="legend" style="margin-top:10px"></div>
   </section>
 
+  <section class="panel" id="read">
+    <div style="display:grid;gap:4px">
+      <h2>Read it as a book</h2>
+      <p class="lede" style="font-size:0.92rem">Chapter by chapter, in the order the proofs build on each other. Each chapter is one Lean file: its story, then its key results, each one a click away from its place on the map.</p>
+    </div>
+    <div class="tour"><nav class="toc" id="toc" aria-label="Chapters"></nav><article class="chapter" id="chapter"></article></div>
+  </section>
+
   <section class="panel">
     <h2>See it</h2>
     <div class="tabs" role="tablist" id="tabs"></div>
@@ -161,6 +190,7 @@ const PARTS = [
   { key: "Sets", title: "I · Sets", sub: "a model of ZF inside type theory", color: "--sets" },
   { key: "Numbers", title: "II · Numbers", sub: "ℕ → ℤ → ℚ → ℝ", color: "--numbers" },
   { key: "Logic", title: "III · Logic", sub: "proofs as mathematical objects", color: "--logic" },
+  { key: "Algebra", title: "IV · Algebra", sub: "structure: groups, rings, symmetry", color: "--algebra" },
 ];
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
@@ -384,7 +414,17 @@ function renderInspector() {
       <div class="kind">Rests on ${lit.size - 1} declarations in total</div>
       <div class="kind">Uses directly (${n.deps.length})</div><div class="chips">${chips(n.deps)}</div>
       <div class="kind">Used by (${n.users.length})</div><div class="chips">${chips(n.users)}</div>
-      ${REPO && !REPO.startsWith("/*") && n.line ? `<a class="mono" href="${REPO}/blob/main/${n.module.replace(/\./g, "/")}.lean#L${n.line}">source ↗</a>` : ""}`;
+      ${n.line ? `<div class="srcbox"><button type="button" class="btn" id="showsrc">Show the Lean proof</button> ${REPO && !REPO.startsWith("/*") ? `<a class="mono" href="${REPO}/blob/main/${n.module.replace(/\./g, "/")}.lean#L${n.line}">on GitHub ↗</a>` : ""}<div id="srcout"></div></div>` : ""}`;
+    const sb = el.querySelector("#showsrc");
+    if (sb) sb.addEventListener("click", async () => {
+      const out = el.querySelector("#srcout");
+      out.innerHTML = `<p class="mono" style="color:var(--muted)">loading…</p>`;
+      try {
+        const src = await loadSources();
+        const code = src[n.name];
+        out.innerHTML = code ? `<pre>${escapeHtml(code)}</pre>` : `<p class="mono">No source recorded for this declaration.</p>`;
+      } catch (e) { out.innerHTML = `<p class="mono">Could not load the sources (${escapeHtml(String(e))}). They are served next to this page as src.json.</p>`; }
+    });
   }
   el.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => select(c.dataset.name, true)));
 }
@@ -409,8 +449,13 @@ function showDemo(id) {
   tabs.querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.id === d.id));
   area.innerHTML = ""; d.render(area);
 }
-window.addEventListener("hashchange", () => showDemo(location.hash.slice(1)));
-showDemo(location.hash.slice(1));
+function route(initial) {
+  const h = location.hash.slice(1);
+  if (/^ch-\d+$/.test(h)) { showChapter(+h.slice(3), !initial); return; }
+  if (DEMOS.some(d => d.id === h)) { showDemo(h); return; }
+  if (initial) showDemo("");
+}
+window.addEventListener("hashchange", () => route(false));
 
 function setupCanvas(cv) {
   const r = cv.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
@@ -602,6 +647,107 @@ function demoTruth(el) {
   };
   input.addEventListener("input", run); run();
 }
+
+// ---------- sources (lazy) ----------
+let SRC = null;
+async function loadSources() {
+  if (SRC) return SRC;
+  const r = await fetch("src.json");
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  SRC = await r.json();
+  return SRC;
+}
+
+// ---------- tour ----------
+function mdBlock(text) {
+  const lines = text.replace(/\r/g, "").split("\n");
+  const out = []; let i = 0;
+  const inline = t => md(t).replace(/(^|[^*])\*([^*\s][^*]*)\*/g, "$1<em>$2</em>");
+  while (i < lines.length) {
+    const l = lines[i];
+    if (/^```/.test(l)) { const buf = []; i++; while (i < lines.length && !/^```/.test(lines[i])) buf.push(lines[i++]); i++; out.push(`<pre>${escapeHtml(buf.join("\n"))}</pre>`); continue; }
+    if (/^ {4}\S/.test(l)) { const buf = []; while (i < lines.length && (/^ {4}/.test(lines[i]) || lines[i] === "")) buf.push(lines[i++].slice(4)); while (buf.length && buf[buf.length - 1] === "") buf.pop(); out.push(`<pre>${escapeHtml(buf.join("\n"))}</pre>`); continue; }
+    const h = l.match(/^(#{1,4})\s+(.*)/);
+    if (h) { out.push({ h: h[1].length, t: h[2].trim() }); i++; continue; }
+    if (/^\s*([-*]|\d+\.)\s+/.test(l)) {
+      const ordered = /^\s*\d+\./.test(l); const items = [];
+      while (i < lines.length && lines[i].trim() !== "" && !/^#/.test(lines[i])) {
+        if (/^\s*([-*]|\d+\.)\s+/.test(lines[i])) items.push(lines[i].replace(/^\s*([-*]|\d+\.)\s+/, ""));
+        else items[items.length - 1] += " " + lines[i].trim();
+        i++;
+      }
+      out.push(`<${ordered ? "ol" : "ul"}>${items.map(x => `<li>${inline(x)}</li>`).join("")}</${ordered ? "ol" : "ul"}>`); continue;
+    }
+    if (l.trim() === "") { i++; continue; }
+    const buf = []; while (i < lines.length && lines[i].trim() !== "" && !/^(#|```| {4}\S|\s*([-*]|\d+\.)\s)/.test(lines[i])) buf.push(lines[i++].trim());
+    out.push(`<p>${inline(buf.join(" "))}</p>`);
+  }
+  // drop empty section headings (Lean section markers with no text); keep them as a contents list
+  const html = [], sections = [];
+  out.forEach((b, k) => {
+    if (typeof b === "string") { html.push(b); return; }
+    const next = out[k + 1];
+    if (b.h === 1) return; // title handled separately
+    if (next === undefined || typeof next !== "string") sections.push(b.t);
+    else html.push(`<h3>${inline(b.t)}</h3>`);
+  });
+  return { html: html.join(""), sections };
+}
+const chapters = [];
+partKeys.forEach(pk => {
+  const mods = GRAPH.modules.filter(m => m.module.split(".")[1] === pk);
+  const agg = mods.filter(m => m.module === "Foundations." + pk);
+  const files = mods.filter(m => m.module !== "Foundations." + pk);
+  [...agg, ...files].forEach(m => chapters.push({ ...m, part: pk, intro: m.module === "Foundations." + pk }));
+});
+chapters.forEach(c => {
+  const t = c.doc.match(/^#\s+(.+)$/m);
+  c.title = t ? t[1].trim() : short(c.module);
+});
+function renderToc(cur) {
+  let html = "", last = "";
+  chapters.forEach((c, k) => {
+    const P = PARTS.find(p => p.key === c.part) || { title: c.part, color: "--other" };
+    if (c.part !== last) { html += `<div class="ph" style="color:var(${P.color})">${P.title}</div>`; last = c.part; }
+    html += `<button type="button" data-k="${k}" style="--c:var(${P.color})" aria-current="${k === cur}">${c.intro ? "Overview" : escapeHtml(c.title.replace(/`/g, ""))}</button>`;
+  });
+  const toc = document.getElementById("toc");
+  toc.innerHTML = html;
+  toc.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { location.hash = "ch-" + b.dataset.k; }));
+  const curBtn = toc.querySelector(`[aria-current="true"]`);
+  if (curBtn) toc.scrollTop = curBtn.offsetTop - toc.offsetTop - 60;
+}
+function showChapter(k, scroll) {
+  k = Math.max(0, Math.min(chapters.length - 1, k || 0));
+  const c = chapters[k];
+  const P = PARTS.find(p => p.key === c.part) || { title: c.part, color: "--other" };
+  const { html, sections } = mdBlock(c.doc);
+  const results = nodes.filter(n => n.module === c.module && n.headline).sort((a, b) => a.line - b.line);
+  const decls = nodes.filter(n => n.module === c.module).length;
+  const el = document.getElementById("chapter");
+  el.style.setProperty("--c", `var(${P.color})`);
+  el.innerHTML = `
+    <div class="meta">${P.title} · chapter ${k + 1} of ${chapters.length}${decls ? ` · ${decls} declarations` : ""}</div>
+    <h2>${md(c.title)}</h2>
+    <div class="prose">${html || "<p>No narrative for this file.</p>"}</div>
+    ${sections.length ? `<p class="explain" style="color:var(--muted)"><b>Sections:</b> ${sections.map(md).join(" · ")}</p>` : ""}
+    ${results.length ? `<h3>Key results</h3><div class="results">${results.map(n => `
+      <div class="result"><span class="rt">${md(headTitle(n))}</span><span class="rd">${md(headRest(n))}</span>
+      <button type="button" class="btn" data-name="${n.name}">See it on the map</button></div>`).join("")}</div>` : ""}
+    <div class="pager">
+      ${k > 0 ? `<button type="button" class="btn" data-go="${k - 1}">← ${escapeHtml((chapters[k - 1].intro ? "Overview" : chapters[k - 1].title).replace(/`/g, ""))}</button>` : "<span></span>"}
+      ${k < chapters.length - 1 ? `<button type="button" class="btn" data-go="${k + 1}">${escapeHtml((chapters[k + 1].intro ? (PARTS.find(p => p.key === chapters[k + 1].part) || {title:""}).title + " overview" : chapters[k + 1].title).replace(/`/g, ""))} →</button>` : ""}
+    </div>`;
+  el.querySelectorAll("[data-name]").forEach(b => b.addEventListener("click", () => {
+    select(b.dataset.name, true);
+    document.getElementById("wrap").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+  }));
+  el.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { location.hash = "ch-" + b.dataset.go; }));
+  renderToc(k);
+  if (scroll) document.getElementById("read").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+}
+showChapter(0, false);
+route(true);
 </script>
 </body>
 </html>

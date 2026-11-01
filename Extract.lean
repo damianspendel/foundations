@@ -78,8 +78,12 @@ unsafe def main (args : List String) : IO Unit := do
       let modName := match modIdxOf n with
         | some i => env.header.moduleNames[i.toNat]!.toString
         | none => ""
-      let line := match (← findDeclarationRanges? n) with
+      let rng ← findDeclarationRanges? n
+      let line := match rng with
         | some r => r.range.pos.line
+        | none => 0
+      let endLine := match rng with
+        | some r => r.range.endPos.line
         | none => 0
       let axs ← (do let a ← Lean.collectAxioms n; pure a) <|> pure #[]
       let axJson := ",".intercalate (axs.toList.map fun a => escape a.toString)
@@ -87,7 +91,7 @@ unsafe def main (args : List String) : IO Unit := do
       let depsJson := ",".intercalate (deps.map fun d => escape d.toString)
       items := items.push <|
         "{\"name\":" ++ escape n.toString ++ ",\"kind\":" ++ escape (kindOf ci) ++
-        ",\"module\":" ++ escape modName ++ ",\"line\":" ++ toString line ++
+        ",\"module\":" ++ escape modName ++ ",\"line\":" ++ toString line ++ ",\"end\":" ++ toString endLine ++
         ",\"headline\":" ++ toString headline ++
         ",\"doc\":" ++ escape doc ++ ",\"type\":" ++ escape ty ++
         ",\"deps\":[" ++ depsJson ++ "],\"axioms\":[" ++ axJson ++ "]}"
