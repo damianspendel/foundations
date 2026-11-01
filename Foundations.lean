@@ -8,3 +8,4 @@ import Foundations.Categories
 import Foundations.Topology
 import Foundations.Combinatorics
 import Foundations.Probability
+import Foundations.Bridges
