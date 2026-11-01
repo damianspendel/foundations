@@ -12,6 +12,8 @@ import Foundations.Topology.UniformConvergence
 import Foundations.Topology.PicardLindelof
 import Foundations.Topology.Weierstrass
 import Foundations.Topology.ArzelaAscoli
+import Foundations.Topology.Wallis
+import Foundations.Topology.Basel
 
 /-!
 # Part VIII: Topology
@@ -39,4 +41,6 @@ From the analysis of the real line to general spaces:
     theorem; `y' = y` gives `exp`.
 13. `Weierstrass` — polynomials are dense in `C[a, b]` (Bernstein polynomials).
 14. `ArzelaAscoli` — bounded equicontinuous sequences have uniformly convergent subsequences.
+15. `Wallis` — the integrals `∫₀^{π/2} cosⁿ`, their reduction formula, and the Wallis product.
+16. `Basel` — Jordan's inequality and Euler's `Σ 1/n² = π²/6`.
 -/
