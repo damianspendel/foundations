@@ -49,6 +49,13 @@ is defined.
 term of type `⊥`; but closed normal terms are values (`progress`), and no value
 has type `⊥`. Read as logic (`CurryHoward.lean`), this says the calculus cannot
 prove a contradiction.
+**Constructive metatheory.** None of these proofs uses `Classical.choice` (and
+hence none uses excluded middle): strong normalization is an accessibility
+proof, and the passage to a normal form decides at each stage, with the
+function `step?` of `STLC.lean`, whether another step is possible. So the
+consistency of intuitionistic logic, and the unprovability of excluded middle
+in `CurryHoward.lean`, are established by intuitionistically acceptable means —
+as Brouwer and Heyting would have wished.
 -/
 
 namespace Foundations.Types
@@ -354,15 +361,17 @@ theorem strong_normalization {Γ : Ctx} {t : Term} {A : Ty} (h : HasType Γ t A)
   rw [subst_var] at this
   exact (cr A).1 _ this
 
-/-- A strongly normalizing term has a normal form. -/
+/-- A strongly normalizing term has a normal form. The proof is constructive: at
+each stage `step?` decides whether a further step is possible. -/
 theorem SN.normalizes {t : Term} (h : SN t) : ∃ n, Red t n ∧ Normal n := by
   induction h with
   | intro t _ ih =>
-    by_cases hs : ∃ t', Step t t'
-    · obtain ⟨t', ht'⟩ := hs
+    cases hs : step? t with
+    | some t' =>
+      have ht' := step?_sound _ _ hs
       obtain ⟨n, hn, hn'⟩ := ih t' ht'
       exact ⟨n, Star.head ht' hn, hn'⟩
-    · exact ⟨t, Star.refl t, fun t' h => hs ⟨t', h⟩⟩
+    | none => exact ⟨t, Star.refl t, (normal_iff_step?_none t).2 hs⟩
 
 /-- **Weak normalization.** Every well-typed term reduces to a well-typed normal form
 of the same type. -/

@@ -3,6 +3,9 @@ import Foundations.Types.STLC
 import Foundations.Types.Normalization
 import Foundations.Types.CurryHoward
 import Foundations.Types.SystemF
+import Foundations.Types.SystemFSubst
+import Foundations.Types.SystemFNormalization
+import Foundations.Types.SystemFEncodings
 
 /-!
 # Part V: Types — examining the ground floor
@@ -16,5 +19,8 @@ Curry–Howard correspondence between simply typed terms and intuitionistic
 natural deduction proofs, with cut elimination and the unprovability of
 excluded middle, Peirce's law and double-negation elimination; and Girard and
 Reynolds' polymorphic System F, with an account of why `Type : Type` is
-inconsistent.
+inconsistent, Girard's strong normalization theorem for System F by
+reducibility candidates (hence its consistency), and the impredicative Church
+encodings of booleans, numbers and pairs. All metatheory here is constructive:
+normality is decidable, and no use is made of `Classical.choice`.
 -/

@@ -82,6 +82,34 @@ theorem flatten {S : α → α → Prop} (hRS : ∀ a b, R a b → Star S a b) {
 
 end Star
 
+/-! ## Choosing the first available option -/
+
+/-- The first of two optional values that is present (used to search for a redex). -/
+def firstSome {α : Type _} : Option α → Option α → Option α
+  | some a, _ => some a
+  | none, b => b
+
+/-- If `firstSome a b` is present, it came from `a` or from `b`. -/
+theorem firstSome_eq_some {α : Type _} {a b : Option α} {x : α} (h : firstSome a b = some x) :
+    a = some x ∨ b = some x := by
+  cases a with
+  | some a => exact Or.inl h
+  | none => exact Or.inr h
+
+/-- `firstSome a b` is present when `a` is. -/
+theorem firstSome_isSome_left {α : Type _} {a b : Option α} (h : a.isSome) :
+    (firstSome a b).isSome := by
+  cases a with
+  | some a => rfl
+  | none => simp at h
+
+/-- `firstSome a b` is present when `b` is. -/
+theorem firstSome_isSome_right {α : Type _} {a b : Option α} (h : b.isSome) :
+    (firstSome a b).isSome := by
+  cases a with
+  | some a => rfl
+  | none => exact h
+
 namespace Lambda
 
 /-! ## Terms with de Bruijn indices -/

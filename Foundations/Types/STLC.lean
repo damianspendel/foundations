@@ -307,6 +307,147 @@ abbrev Red : Term → Term → Prop := Star Step
 /-- A term is **normal** when no reduction step applies. -/
 def Normal (t : Term) : Prop := ∀ t', ¬ Step t t'
 
+/-! ## Deciding whether a term can step
+
+To normalize terms *constructively* — without appeal to excluded middle — we
+need to be able to tell, effectively, whether a term is normal. The function
+`step?` searches a term for a redex (leftmost-outermost first) and returns the
+contracted term, or `none` if there is no redex. -/
+
+/-- The body of an abstraction, if the term is one. -/
+def lamBody : Term → Option Term
+  | lam s => some s
+  | _ => none
+
+/-- The first component of a pair, if the term is one. -/
+def pairFst : Term → Option Term
+  | pair a _ => some a
+  | _ => none
+
+/-- The second component of a pair, if the term is one. -/
+def pairSnd : Term → Option Term
+  | pair _ b => some b
+  | _ => none
+
+/-- The contractum of a case analysis on an injection, if the scrutinee is one. -/
+def caseRedex (u₁ u₂ : Term) : Term → Option Term
+  | inl a => some (inst u₁ a)
+  | inr b => some (inst u₂ b)
+  | _ => none
+
+/-- **One step of reduction, computed**: some one-step reduct of the term, if it has one. -/
+def step? : Term → Option Term
+  | var _ => none
+  | app t u => firstSome ((lamBody t).map (fun s => inst s u))
+      (firstSome ((step? t).map (fun t' => app t' u)) ((step? u).map (app t)))
+  | lam t => (step? t).map lam
+  | pair a b => firstSome ((step? a).map (fun a' => pair a' b)) ((step? b).map (pair a))
+  | fst t => firstSome (pairFst t) ((step? t).map fst)
+  | snd t => firstSome (pairSnd t) ((step? t).map snd)
+  | inl t => (step? t).map inl
+  | inr t => (step? t).map inr
+  | case t u₁ u₂ => firstSome (caseRedex u₁ u₂ t)
+      (firstSome ((step? t).map (fun t' => case t' u₁ u₂))
+        (firstSome ((step? u₁).map (fun u => case t u u₂)) ((step? u₂).map (case t u₁))))
+  | .absurd t => (step? t).map .absurd
+
+/-- `step?` only returns genuine reducts. -/
+theorem step?_sound : ∀ (t t' : Term), step? t = some t' → Step t t' := by
+  intro t
+  induction t with
+  | var n => intro t' h; simp [step?] at h
+  | app t u iht ihu =>
+    intro x h
+    simp only [step?] at h
+    rcases firstSome_eq_some h with h | h
+    · obtain ⟨s, hs, rfl⟩ := Option.map_eq_some_iff.1 h
+      cases t <;> simp [lamBody] at hs
+      subst hs
+      exact Step.beta _ _
+    rcases firstSome_eq_some h with h | h
+    · obtain ⟨t', ht, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.appL (iht _ ht)
+    · obtain ⟨u', hu, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.appR (ihu _ hu)
+  | lam t ih =>
+    intro x h
+    obtain ⟨t', ht, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.lam (ih _ ht)
+  | pair a b iha ihb =>
+    intro x h
+    simp only [step?] at h
+    rcases firstSome_eq_some h with h | h
+    · obtain ⟨a', ha, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.pairL (iha _ ha)
+    · obtain ⟨b', hb, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.pairR (ihb _ hb)
+  | fst t ih =>
+    intro x h
+    simp only [step?] at h
+    rcases firstSome_eq_some h with h | h
+    · cases t <;> simp [pairFst] at h
+      subst h; exact Step.fstPair _ _
+    · obtain ⟨t', ht, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.fst (ih _ ht)
+  | snd t ih =>
+    intro x h
+    simp only [step?] at h
+    rcases firstSome_eq_some h with h | h
+    · cases t <;> simp [pairSnd] at h
+      subst h; exact Step.sndPair _ _
+    · obtain ⟨t', ht, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.snd (ih _ ht)
+  | inl t ih =>
+    intro x h
+    obtain ⟨t', ht, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.inl (ih _ ht)
+  | inr t ih =>
+    intro x h
+    obtain ⟨t', ht, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.inr (ih _ ht)
+  | case t u₁ u₂ iht ih₁ ih₂ =>
+    intro x h
+    simp only [step?] at h
+    rcases firstSome_eq_some h with h | h
+    · cases t <;> simp [caseRedex] at h
+      · subst h; exact Step.caseInl _ _ _
+      · subst h; exact Step.caseInr _ _ _
+    rcases firstSome_eq_some h with h | h
+    · obtain ⟨t', ht, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.case₀ (iht _ ht)
+    rcases firstSome_eq_some h with h | h
+    · obtain ⟨u, hu, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.case₁ (ih₁ _ hu)
+    · obtain ⟨u, hu, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.case₂ (ih₂ _ hu)
+  | absurd t ih =>
+    intro x h
+    obtain ⟨t', ht, rfl⟩ := Option.map_eq_some_iff.1 h; exact Step.absurd (ih _ ht)
+
+/-- `step?` finds a reduct whenever there is one. -/
+theorem step?_complete {t t' : Term} (h : Step t t') : (step? t).isSome := by
+  induction h with
+  | beta => simp [step?, lamBody, firstSome]
+  | fstPair => simp [step?, pairFst, firstSome]
+  | sndPair => simp [step?, pairSnd, firstSome]
+  | caseInl => simp [step?, caseRedex, firstSome]
+  | caseInr => simp [step?, caseRedex, firstSome]
+  | appL _ ih => exact firstSome_isSome_right (firstSome_isSome_left (by simpa using ih))
+  | appR _ ih => exact firstSome_isSome_right (firstSome_isSome_right (by simpa using ih))
+  | lam _ ih => simpa [step?] using ih
+  | pairL _ ih => exact firstSome_isSome_left (by simpa using ih)
+  | pairR _ ih => exact firstSome_isSome_right (by simpa using ih)
+  | fst _ ih => exact firstSome_isSome_right (by simpa using ih)
+  | snd _ ih => exact firstSome_isSome_right (by simpa using ih)
+  | inl _ ih => simpa [step?] using ih
+  | inr _ ih => simpa [step?] using ih
+  | case₀ _ ih => exact firstSome_isSome_right (firstSome_isSome_left (by simpa using ih))
+  | case₁ _ ih =>
+    exact firstSome_isSome_right (firstSome_isSome_right (firstSome_isSome_left (by simpa using ih)))
+  | case₂ _ ih =>
+    exact firstSome_isSome_right (firstSome_isSome_right (firstSome_isSome_right (by simpa using ih)))
+  | absurd _ ih => simpa [step?] using ih
+
+/-- **Normality is decidable**: `step?` returns `none` exactly on normal terms. -/
+theorem normal_iff_step?_none (t : Term) : Normal t ↔ step? t = none := by
+  constructor
+  · intro hn
+    cases hs : step? t with
+    | none => rfl
+    | some t' => exact absurd (step?_sound _ _ hs) (hn t')
+  · intro hs t' h
+    have := step?_complete h
+    rw [hs] at this
+    exact absurd this (by simp)
+
 /-- Reduction is stable under renaming. -/
 theorem Step.rename {t t' : Term} (h : Step t t') : ∀ ξ, Step (STLC.rename ξ t) (STLC.rename ξ t') := by
   have hinst : ∀ ξ t u, STLC.rename ξ (STLC.inst t u) =
