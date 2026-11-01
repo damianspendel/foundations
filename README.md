@@ -1,6 +1,6 @@
 # Foundations of mathematics, from scratch
 
-Sets, numbers, logic, algebra, type theory, geometry, category theory, topology and combinatorics, built in Lean 4 on nothing but the kernel and its three
+Sets, numbers, logic, algebra, type theory, geometry, category theory, topology, combinatorics and probability, built in Lean 4 on nothing but the kernel and its three
 standard axioms (propositional extensionality, quotient soundness, classical choice).
 No Mathlib. Every theorem is machine-checked, and CI rejects any declaration that depends
 on anything else (including `sorry`).
@@ -20,6 +20,7 @@ mode, and demos — built from the compiled Lean environment (`site/`).
 | VII · Categories | categories, functors, natural transformations; the category of groups; **Yoneda lemma** and embedding; terminal objects, products, equalisers, pullbacks (unique up to unique iso); adjunctions, free monoid ⊣ forgetful, types are cartesian closed; **Lawvere's fixed-point theorem**, with Cantor and Russell as corollaries |
 | VIII · Topology | metric and topological spaces; continuity three ways; Hausdorff; **Heine–Borel**; compact ⇔ sequentially compact; extreme value and intermediate value theorems re-derived from compactness and connectedness; ℝ ≇ ℝ∖{0}; ℚ totally disconnected; **Banach fixed-point theorem**; Brouwer in dimension 1; Tychonoff for two factors; **Vitali: no translation-invariant countably additive measure on all subsets of [0,1)**; Baire category theorem; the Cantor set (compact, empty interior, uncountable); Lebesgue outer measure of [a,b] is b − a; uniform convergence and completeness of C[a,b]; **Picard–Lindelöf** (existence and uniqueness for ODEs, via Banach); **Weierstrass approximation** (Bernstein polynomials); Arzelà–Ascoli |
 | IX · Combinatorics | finite and infinite pigeonhole; Erdős–Szekeres; **Ramsey's theorem** (finite with the recursive bound, R(3,3) = 6, infinite); **Kőnig's lemma**; **Hall's marriage theorem**; finite Ramsey derived from infinite Ramsey by compactness |
+| X · Probability | finite probability spaces; inclusion–exclusion; conditional probability, total probability, **Bayes' theorem**; independence; expectation, variance, covariance, Bienaymé; Markov and Chebyshev; **the weak law of large numbers**; binomial mean and variance; Monty Hall |
 | V · Types | untyped λ-calculus and Church–Rosser; simply typed λ-calculus: subject reduction, progress, strong normalization (Tait); Curry–Howard; cut elimination; excluded middle, Peirce and double-negation elimination unprovable intuitionistically; System F preservation, progress and strong normalization (Girard); Church encodings; the metatheory is constructive (no choice) |
 
 ## What it stands on
