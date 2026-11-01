@@ -4,6 +4,10 @@ import Foundations.Topology.Compact
 import Foundations.Topology.Connected
 import Foundations.Topology.FixedPoint
 import Foundations.Topology.Tychonoff
+import Foundations.Topology.Vitali
+import Foundations.Topology.Baire
+import Foundations.Topology.CantorSet
+import Foundations.Topology.OuterMeasure
 
 /-!
 # Part VIII: Topology
@@ -21,4 +25,8 @@ From the analysis of the real line to general spaces:
 5. `FixedPoint` — complete metric spaces; Banach's fixed-point theorem; Brouwer's fixed-point
    theorem in dimension one.
 6. `Tychonoff` — the product of two compact sets is compact (tube lemma).
+7. `Vitali` — no countably additive, translation-invariant measure on all subsets of `[0, 1)`.
+8. `Baire` — the Baire category theorem; ℝ is not meagre; ℝ is uncountable (third proof).
+9. `CantorSet` — the Cantor set: closed, compact, empty interior, uncountable.
+10. `OuterMeasure` — Lebesgue outer measure; `m*([a, b]) = b − a`.
 -/
