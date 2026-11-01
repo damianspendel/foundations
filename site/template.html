@@ -302,10 +302,10 @@ function md(s) { return escapeHtml(s).replace(/`([^`]+)`/g, "<code>$1</code>").r
 
 // ---------- map rendering ----------
 const canvas = document.getElementById("map"), wrap = document.getElementById("wrap"), tip = document.getElementById("tip");
-let view = { s: 1, x: 0, y: 0 }, selected = null, lit = null;
+let view = { s: 1, x: 0, y: 0 }, selected = null, lit = null, baseScale = 1;
 function fit() {
   const r = wrap.getBoundingClientRect();
-  view.s = Math.min(r.width / W0, r.height / H0); view.x = (r.width - W0 * view.s) / 2; view.y = (r.height - H0 * view.s) / 2;
+  view.s = Math.min(r.width / W0, r.height / H0); baseScale = view.s; view.x = (r.width - W0 * view.s) / 2; view.y = (r.height - H0 * view.s) / 2;
 }
 function draw() {
   const r = wrap.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
@@ -346,11 +346,20 @@ function draw() {
   ctx.font = `500 ${11 / view.s}px ${css("--font-body")}`;
   const boxes = [];
   const order = [...heads].sort((a, b) => (b.name === selected) - (a.name === selected) || b.depth - a.depth);
+  const perPart = {}, budget = lit ? 40 : Math.max(4, Math.round(5 * Math.pow(view.s / baseScale, 1.6)));
   for (const n of order) {
     if (lit && !lit.has(n.name)) continue;
-    const label = headTitle(n), w = ctx.measureText(label).width, h = 12 / view.s;
-    const colR = (partKeys.indexOf(n.part) + 1) * W0 / partKeys.length;
-    const bx = n.x + 7 / view.s + w > colR ? n.x - 7 / view.s - w : n.x + 7 / view.s, by = n.y - h / 2;
+    if ((perPart[n.part] || 0) >= budget && n.name !== selected) continue;
+    const colL = partKeys.indexOf(n.part) * W0 / partKeys.length, colR = colL + W0 / partKeys.length;
+    const pad = 7 / view.s, h = 12 / view.s;
+    const roomR = colR - (n.x + pad), roomL = (n.x - pad) - colL;
+    let label = headTitle(n);
+    const room = n.name === selected ? Infinity : Math.max(roomR, roomL);
+    while (label.length > 6 && ctx.measureText(label).width > room) label = label.slice(0, -2).trimEnd() + "…";
+    const w = ctx.measureText(label).width;
+    if (w > room) continue;
+    const bx = (w <= roomR || roomR >= roomL) ? n.x + pad : n.x - pad - w, by = n.y - h / 2;
+    perPart[n.part] = (perPart[n.part] || 0) + 1;
     if (boxes.some(b => bx < b[0] + b[2] && b[0] < bx + w && by < b[1] + b[3] && b[1] < by + h)) continue;
     boxes.push([bx, by, w, h]);
     ctx.fillText(label, bx, n.y + 3.5 / view.s);
