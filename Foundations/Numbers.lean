@@ -26,6 +26,10 @@ import Foundations.Numbers.Trig
 import Foundations.Numbers.TrigIdentities
 import Foundations.Numbers.ComplexExp
 import Foundations.Numbers.PiIrrational
+import Foundations.Numbers.ComplexModulus
+import Foundations.Numbers.Compactness2D
+import Foundations.Numbers.FTA
+import Foundations.Numbers.InverseTrig
 
 /-!
 # Part II: Number systems
@@ -69,4 +73,11 @@ The number systems built from scratch, each from the previous by a quotient cons
 21. `ComplexExp` — the complex exponential as a power series; `exp (z + w) = exp z · exp w` via the
     Cauchy product; Euler's formula `exp (iθ) = cos θ + i sin θ`; Euler's identity `e^{iπ} + 1 = 0`.
 22. `PiIrrational` — π is irrational (Niven's proof, via the fundamental theorem of calculus).
+23. `ComplexModulus` — square roots; the modulus `|z|` (multiplicative, triangle inequality);
+    parity of sine and cosine; arguments; de Moivre; polar form and `k`-th roots in ℂ.
+24. `Compactness2D` — a continuous function attains its minimum on a closed square
+    (Bolzano–Weierstrass on pairs).
+25. `FTA` — the fundamental theorem of algebra: every non-constant complex polynomial has a root
+    (d'Alembert–Argand minimum-modulus proof).
+26. `InverseTrig` — cosine is strictly decreasing on `[0, π]`; the arc cosine.
 -/
