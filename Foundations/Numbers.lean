@@ -16,6 +16,13 @@ import Foundations.Numbers.DedekindField
 import Foundations.Numbers.Analysis
 import Foundations.Numbers.Continuity
 import Foundations.Numbers.Complex
+import Foundations.Numbers.Derivative
+import Foundations.Numbers.Series
+import Foundations.Numbers.Exp
+import Foundations.Numbers.Log
+import Foundations.Numbers.Integral
+import Foundations.Numbers.FTC
+import Foundations.Numbers.Trig
 
 /-!
 # Part II: Number systems
@@ -42,4 +49,16 @@ The number systems built from scratch, each from the previous by a quotient cons
 11. `Analysis`, `Continuity` — limits, monotone convergence, Bolzano–Weierstrass, Cauchy
     completeness, continuity, intermediate and extreme value theorems, `n`-th roots.
 12. `Complex` — ℂ as pairs of reals; a field with `i² = −1`; conjugation; ℂ is not orderable.
+13. `Derivative` — the derivative; sum, product and chain rules; polynomials; Fermat, Rolle,
+    the mean value theorem and its consequences (monotonicity, constancy).
+14. `Series` — infinite series; geometric series, comparison test, absolute convergence, ratio test.
+15. `Exp` — the exponential function as a power series; `exp' = exp`, `exp (x + y) = exp x · exp y`,
+    positivity and monotonicity; Euler's number `e` is irrational.
+16. `Log` — the natural logarithm as the inverse of `exp`; `log (x y) = log x + log y`;
+    `log' = 1/y`.
+17. `Integral` — the Riemann integral; linearity, monotonicity, additivity; Heine–Cantor;
+    continuous functions are integrable.
+18. `FTC` — the fundamental theorem of calculus, both parts; `∫ tⁿ` and `∫ exp`.
+19. `Trig` — power series with bounded coefficients and termwise differentiation; sine and
+    cosine; `sin² + cos² = 1`; `π` as twice the first positive zero of cosine.
 -/

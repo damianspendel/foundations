@@ -3,14 +3,14 @@
 set -e
 cd "$(dirname "$0")/.."
 imports=""
-for p in ${PARTS:-Sets Numbers Logic Algebra}; do
+for p in ${PARTS:-Sets Numbers Logic Algebra Types}; do
   src=/home/claude/work/${p,,}/Foundations
   if [ -f "$src/$p.lean" ]; then
     rm -rf Foundations/$p && cp -r "$src/$p" Foundations/ && cp "$src/$p.lean" Foundations/
     imports+="import Foundations.$p"$'\n'
   fi
 done
-: > Foundations.lean; for q in Sets Numbers Logic Algebra; do if [ -f Foundations/$q.lean ]; then echo "import Foundations.$q" >> Foundations.lean; fi; done
+: > Foundations.lean; for q in Sets Numbers Logic Algebra Types; do if [ -f Foundations/$q.lean ]; then echo "import Foundations.$q" >> Foundations.lean; fi; done
 grep -q 'name = "extract"' lakefile.toml || cat >> lakefile.toml <<'T'
 
 [[lean_exe]]
