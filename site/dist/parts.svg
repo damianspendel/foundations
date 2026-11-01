@@ -88,8 +88,8 @@
 <g id="edge2" class="edge">
 <title>Numbers&#45;&gt;Geometry</title>
 <g id="a_edge2"><a xlink:title="3189 uses of Numbers in Geometry">
-<path fill="none" stroke="#8a94a3" stroke-width="3.14" d="M614,-162.23C614,-177.7 614,-197.79 614,-214.47"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.14" points="611.55,-214.86 614,-221.86 616.45,-214.86 611.55,-214.86"/>
+<path fill="none" stroke="#8a94a3" stroke-width="2.87" d="M614,-162.23C614,-177.7 614,-197.79 614,-214.47"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.87" points="611.55,-214.86 614,-221.86 616.45,-214.86 611.55,-214.86"/>
 </a>
 </g>
 </g>
@@ -99,12 +99,12 @@
 <path fill="#6a4c93" stroke="black" stroke-width="0" d="M873,-273C873,-273 731,-273 731,-273 725,-273 719,-267 719,-261 719,-261 719,-234 719,-234 719,-228 725,-222 731,-222 731,-222 873,-222 873,-222 879,-222 885,-228 885,-234 885,-234 885,-261 885,-261 885,-267 879,-273 873,-273"/>
 <text text-anchor="start" x="750.5" y="-254.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="13.00" fill="white">VIII · Topology</text>
 <text text-anchor="start" x="737" y="-244" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">compactness, ODEs, Basel</text>
-<text text-anchor="start" x="761" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">268 declarations</text>
+<text text-anchor="start" x="761" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">326 declarations</text>
 </g>
 <!-- Numbers&#45;&gt;Topology -->
 <g id="edge4" class="edge">
 <title>Numbers&#45;&gt;Topology</title>
-<g id="a_edge4"><a xlink:title="9279 uses of Numbers in Topology">
+<g id="a_edge4"><a xlink:title="11945 uses of Numbers in Topology">
 <path fill="none" stroke="#8a94a3" stroke-width="4.8" d="M656.66,-162.23C685.38,-178.89 723.33,-200.89 753.25,-218.24"/>
 <polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="4.8" points="751.98,-220.9 759.51,-221.86 754.93,-215.81 751.98,-220.9"/>
 </a>
@@ -137,8 +137,8 @@
 <g id="edge3" class="edge">
 <title>Numbers&#45;&gt;Probability</title>
 <g id="a_edge3"><a xlink:title="3662 uses of Numbers in Probability">
-<path fill="none" stroke="#8a94a3" stroke-width="3.31" d="M703.03,-150.04C802.51,-164.68 968.11,-190.87 1109,-222 1112.76,-222.83 1116.59,-223.72 1120.45,-224.64"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.31" points="1120.05,-227.07 1127.43,-226.35 1121.21,-222.31 1120.05,-227.07"/>
+<path fill="none" stroke="#8a94a3" stroke-width="3.01" d="M703.03,-150.04C802.51,-164.68 968.11,-190.87 1109,-222 1112.76,-222.83 1116.59,-223.72 1120.45,-224.64"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.01" points="1120.05,-227.07 1127.43,-226.35 1121.21,-222.31 1120.05,-227.07"/>
 </a>
 </g>
 </g>
@@ -154,8 +154,8 @@
 <g id="edge1" class="edge">
 <title>Algebra&#45;&gt;Categories</title>
 <g id="a_edge1"><a xlink:title="23 uses of Algebra in Categories">
-<path fill="none" stroke="#8a94a3" d="M246,-273.22C246,-286.32 246,-302.56 246,-316.61"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" points="243.55,-316.72 246,-323.72 248.45,-316.72 243.55,-316.72"/>
+<path fill="none" stroke="#8a94a3" stroke-width="0.98" d="M246,-273.22C246,-286.32 246,-302.56 246,-316.61"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.98" points="243.55,-316.72 246,-323.72 248.45,-316.72 243.55,-316.72"/>
 </a>
 </g>
 </g>
