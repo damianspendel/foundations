@@ -22,6 +22,7 @@
   --types: #8a6d1d;
   --geometry: #a1356f;
   --categories: #3d7a2a;
+  --topology: #6a4c93;
   --other: #6b7685;
   --hi: #d4a017;
   --font-display: "Newsreader", Georgia, serif;
@@ -32,13 +33,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #11151b; --surface: #181e26; --ink: #e4e8ee; --muted: #97a1b0; --line: #2b333f;
-    --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --algebra: #6c9be6; --types: #d1b25a; --geometry: #e07aae; --categories: #7cc466; --other: #8a95a5; --hi: #f0c040;
+    --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --algebra: #6c9be6; --types: #d1b25a; --geometry: #e07aae; --categories: #7cc466; --topology: #a58bd0; --other: #8a95a5; --hi: #f0c040;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #11151b; --surface: #181e26; --ink: #e4e8ee; --muted: #97a1b0; --line: #2b333f;
-  --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --algebra: #6c9be6; --types: #d1b25a; --geometry: #e07aae; --categories: #7cc466; --other: #8a95a5; --hi: #f0c040;
+  --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --algebra: #6c9be6; --types: #d1b25a; --geometry: #e07aae; --categories: #7cc466; --topology: #a58bd0; --other: #8a95a5; --hi: #f0c040;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -197,6 +198,7 @@ const PARTS = [
   { key: "Types", title: "V · Types", sub: "the ground floor examined", color: "--types" },
   { key: "Geometry", title: "VI · Geometry", sub: "Euclid, Tarski, Descartes", color: "--geometry" },
   { key: "Categories", title: "VII · Categories", sub: "structure itself", color: "--categories" },
+  { key: "Topology", title: "VIII · Topology", sub: "nearness without numbers", color: "--topology" },
 ];
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
@@ -455,6 +457,8 @@ const DEMOS = [
   { id: "rationals", label: "Rationals as rays", part: "Numbers", render: demoRationals },
   { id: "reals", label: "√2 as a Cauchy sequence", part: "Numbers", render: demoReals },
   { id: "truth", label: "Truth tables", part: "Logic", render: demoTruth },
+  { id: "euclid", label: "Euclid I.1: ℝ² vs ℚ²", part: "Geometry", render: demoEuclid },
+  { id: "fta", label: "Every polynomial has a root", part: "Numbers", render: demoFTA },
 ];
 const tabs = document.getElementById("tabs"), area = document.getElementById("demo-area");
 tabs.innerHTML = DEMOS.map(d => `<button type="button" role="tab" data-id="${d.id}" aria-selected="false">${d.label}</button>`).join("");
@@ -763,6 +767,86 @@ function showChapter(k, scroll) {
 }
 showChapter(0, false);
 route(true);
+
+function demoEuclid(el) {
+  const [cv, side] = demoShell(el, `
+    <label for="eu-zoom">zoom into the apex: ×<b id="eu-zv">1</b><input type="range" id="eu-zoom" min="0" max="6" value="0"></label>
+    <p>Euclid's very first proposition: draw circles of radius AB around A and around B; where they meet is C, and ABC is equilateral. With A = (0,0) and B = (1,0), the apex is C = (1/2, √3/2).</p>
+    <p>In the rational plane ℚ², √3 does not exist, so <b>the circles pass through each other without meeting</b>. Zoom in: the rational points (dots) crowd around the apex, but none lies on both circles. The Lean files prove this (<code>no_equilateral_rat</code>) and that Euclid silently assumed a continuity principle.</p>
+    <p class="mono" id="eu-near"></p>`);
+  const draw = () => {
+    const z = +side.querySelector("#eu-zoom").value, k = 10 ** z;
+    side.querySelector("#eu-zv").textContent = k.toLocaleString();
+    const [ctx, W, H] = setupCanvas(cv); ctx.clearRect(0, 0, W, H);
+    const cx = 0.5, cy = Math.sqrt(3) / 2;
+    const span = 1.6 / k, sc = Math.min(W, H) / span, ox = W / 2 - cx * sc, oy = H / 2 + cy * sc;
+    const X = x => ox + x * sc, Y = y => oy - y * sc;
+    ctx.lineWidth = 1.6;
+    ctx.strokeStyle = css("--geometry"); ctx.beginPath(); ctx.arc(X(0), Y(0), sc, 0, Math.PI * 2); ctx.stroke();
+    ctx.strokeStyle = css("--numbers"); ctx.beginPath(); ctx.arc(X(1), Y(0), sc, 0, Math.PI * 2); ctx.stroke();
+    if (z === 0) {
+      ctx.strokeStyle = css("--ink"); ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(1), Y(0)); ctx.lineTo(X(cx), Y(cy)); ctx.closePath(); ctx.stroke();
+      ctx.fillStyle = css("--ink"); ctx.font = `600 13px ${css("--font-body")}`;
+      ctx.fillText("A", X(0) - 14, Y(0) + 16); ctx.fillText("B", X(1) + 6, Y(0) + 16); ctx.fillText("C", X(cx) + 6, Y(cy) - 6);
+    }
+    // rational points p/q with small q in view
+    const qmax = Math.min(400, 12 * k);
+    ctx.fillStyle = css("--muted");
+    let best = null;
+    for (let q = 1; q <= qmax; q++) {
+      const x0 = Math.ceil((cx - span / 2) * q), x1 = Math.floor((cx + span / 2) * q);
+      const y0 = Math.ceil((cy - span / 2) * q), y1 = Math.floor((cy + span / 2) * q);
+      if ((x1 - x0) * (y1 - y0) > 4000) continue;
+      for (let a = x0; a <= x1; a++) for (let b = y0; b <= y1; b++) {
+        if (gcd(gcd(a, b), q) !== 1) continue;
+        const x = a / q, y = b / q;
+        ctx.beginPath(); ctx.arc(X(x), Y(y), 1.6, 0, Math.PI * 2); ctx.fill();
+        const err = Math.abs(x * x + y * y - 1) + Math.abs((x - 1) ** 2 + y * y - 1);
+        if (!best || err < best.err) best = { a, b, q, err };
+      }
+    }
+    ctx.strokeStyle = css("--hi"); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(X(cx), Y(cy), 6, 0, Math.PI * 2); ctx.stroke();
+    if (best) {
+      const { a, b, q } = best;
+      side.querySelector("#eu-near").textContent = `closest rational point in view: (${a}/${q}, ${b}/${q}); its squared distances to A and B are ${(a*a+b*b)}/${q*q} and ${((a-q)**2+b*b)}/${q*q}, never both 1.`;
+    }
+  };
+  side.querySelector("#eu-zoom").addEventListener("input", draw); draw();
+}
+
+function demoFTA(el) {
+  const [cv, side] = demoShell(el, `
+    <label for="fta-in">polynomial coefficients c₀, c₁, …, cₙ (complex numbers like 1, -2, 0.5i, 1+2i)</label>
+    <input type="text" id="fta-in" value="1, 0, 0, 0, 0, 1">
+    <p>Every non-constant polynomial over ℂ has a root. Colour shows the <em>argument</em> of p(z), brightness its size. A root is where every colour meets at a dark point. The Lean proof (<code>C.fta</code>, after d'Alembert and Argand) finds the global minimum of |p| on a large square and shows it cannot be positive.</p>
+    <p class="mono" id="fta-out"></p>`);
+  const parse = s => s.split(",").map(t => t.trim().replace(/\s+/g, "")).filter(Boolean).map(t => {
+    const m = t.match(/^([+-]?[\d.]+)?(?:([+-][\d.]*)i)?$/) || [];
+    if (/^[+-]?[\d.]*i$/.test(t)) { const v = t.slice(0, -1); return [0, v === "" || v === "+" ? 1 : v === "-" ? -1 : +v]; }
+    return [+(m[1] || 0), m[2] === undefined ? 0 : (m[2] === "+" ? 1 : m[2] === "-" ? -1 : +m[2])];
+  });
+  const draw = () => {
+    let co; try { co = parse(side.querySelector("#fta-in").value); } catch { co = []; }
+    while (co.length && co[co.length - 1][0] === 0 && co[co.length - 1][1] === 0) co.pop();
+    const [ctx, W, H] = setupCanvas(cv);
+    if (co.length < 2 || co.some(c => c.some(Number.isNaN))) { side.querySelector("#fta-out").textContent = "Enter at least two coefficients, the last one non-zero."; return; }
+    const R = 2.2, img = ctx.createImageData(Math.floor(W), Math.floor(H));
+    const iw = img.width, ih = img.height;
+    for (let py = 0; py < ih; py++) for (let px = 0; px < iw; px++) {
+      const zr = (px / iw - 0.5) * 2 * R * (iw / ih), zi = (0.5 - py / ih) * 2 * R;
+      let pr = 0, pi = 0;
+      for (let k = co.length - 1; k >= 0; k--) { const nr = pr * zr - pi * zi + co[k][0], ni = pr * zi + pi * zr + co[k][1]; pr = nr; pi = ni; }
+      const arg = Math.atan2(pi, pr), mod = Math.hypot(pr, pi);
+      const h = (arg / (2 * Math.PI) + 1) % 1, l = 1 - 1 / (1 + Math.pow(mod, 0.35));
+      const f = (n, kk = (n + h * 12) % 12) => l - 0.55 * Math.min(l, 1 - l) * Math.max(-1, Math.min(kk - 3, 9 - kk, 1));
+      const i4 = (py * iw + px) * 4;
+      img.data[i4] = f(0) * 255; img.data[i4 + 1] = f(8) * 255; img.data[i4 + 2] = f(4) * 255; img.data[i4 + 3] = 255;
+    }
+    ctx.putImageData(img, 0, 0);
+    side.querySelector("#fta-out").textContent = `degree ${co.length - 1}: so exactly ${co.length - 1} dark points, counted with multiplicity.`;
+  };
+  side.querySelector("#fta-in").addEventListener("input", draw); draw();
+}
 </script>
 </body>
 </html>
