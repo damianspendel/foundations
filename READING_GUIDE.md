@@ -1,6 +1,6 @@
 # Reading guide: where to start
 
-About 5,600 checked definitions and theorems is too many to browse, so start here. The list
+About 6,200 checked definitions and theorems is too many to browse, so start here. The list
 comes from an independent project-wide audit. Each entry gives the theorem name, the file, and
 its meaning in plain words. On the site, type the name into the map's search box to see its
 statement, its proof and everything it rests on.
@@ -26,7 +26,7 @@ statement, its proof and everything it rests on.
 Also worth a look: `El_summary` (`Bridges/ETCSvsZF.lean`: ZF sets sit fully and faithfully inside
 the structural, categorical world), `reals_in_sets` (`Bridges/RealsInSets.lean`: ℝ built from pure
 sets), `yoneda`, `lawvere_fixed_point` (one diagonal argument behind Cantor, Russell and Gödel),
-`bertrand`, `A5_simple`, `sylow_first`, `dominated_convergence`, `pi1_circle_iso_int` and `brouwer_disc` (π₁(S¹) ≅ ℤ and Brouwer's fixed-point theorem in 2D).
+`bertrand`, `dirichlet` (`NumberTheory/Dirichlet.lean`: infinitely many primes ≡ a mod q whenever gcd(a, q) = 1), `selberg_symmetry` (the last step before the prime number theorem, which is not proved here), `A5_simple`, `sylow_first`, `dominated_convergence`, `pi1_circle_iso_int` and `brouwer_disc` (π₁(S¹) ≅ ℤ and Brouwer's fixed-point theorem in 2D).
 
 ## Honest caveats the audit raised
 

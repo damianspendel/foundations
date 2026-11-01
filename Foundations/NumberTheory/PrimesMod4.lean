@@ -24,7 +24,8 @@ These are the two simplest cases of **Dirichlet's theorem on primes in arithmeti
 (1837): whenever `gcd(a, m) = 1`, there are infinitely many primes `≡ a (mod m)`. Dirichlet's
 proof introduced characters and L-functions, i.e. analysis, into number theory; a Euclid-style
 argument exists only for special progressions (those with `a² ≡ 1 mod m`, by a theorem of
-Murty). We stop at the two progressions modulo 4.
+Murty). Here we stop at the two progressions modulo 4; the general theorem is proved later in
+this part, in `Dirichlet`, by Dirichlet's analytic method.
 -/
 
 namespace Foundations.NumberTheory
