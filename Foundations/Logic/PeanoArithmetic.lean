@@ -79,7 +79,16 @@ open Arith Formula
 /-- **The axioms of Peano Arithmetic.** Six closed axioms for successor, addition and
 multiplication, plus the induction schema
 `φ(0) ∧ ∀x (φ(x) → φ(Sx)) → ∀x φ(x)` for *every* formula `φ` (whose other free
-variables act as parameters). -/
+variables act as parameters).
+
+*Remark on the parameters.* The induction instances are kept as *open* formulas, their
+parameters being free variables, rather than as universal closures. Since a model of a
+theory must satisfy its axioms under every assignment (`IsModel`), and free premises can
+be generalised in derivations only through `∀`-introduction with shifted premises, this
+is equivalent, for the derivability of sentences, to the textbook formulation with
+closed axioms: the closed instances are among our axioms, and conversely the
+parameter-free (closed) schema already yields every parametric instance, by applying it
+to `ψ(x) := ∀ȳ [φ(0, ȳ) ∧ ∀z (φ(z, ȳ) → φ(Sz, ȳ)) → φ(x, ȳ)]`. -/
 inductive PA : Theory Arith where
   /-- `∀x. S x ≠ 0`: zero is not a successor. -/
   | succ_ne_zero : PA (all (neg (eq (succ (v 0)) zero)))

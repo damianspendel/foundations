@@ -29,6 +29,12 @@ import Foundations.Logic.ArithWellFormed
 import Foundations.Logic.PARules
 import Foundations.Logic.PAProofs
 import Foundations.Logic.Incompleteness
+import Foundations.Logic.RobinsonQ
+import Foundations.Logic.Delta0
+import Foundations.Logic.BoundedGraphs
+import Foundations.Logic.Representability
+import Foundations.Logic.DiagonalLemma
+import Foundations.Logic.Rosser
 
 /-!
 # Part III: Logic
@@ -46,6 +52,10 @@ theorem, and an abstract (computational) form of Gödel's incompleteness theorem
 then a library of primitive recursive constructions, the universal code (Kleene's
 normal form, s-m-n, the classical recursion theorem), Gödel's β-function and the
 arithmetical definability of computation, the arithmetisation of syntax with the
-computable enumerability of PA's theorems, and finally Gödel's first
-incompleteness theorem for Peano arithmetic.
+computable enumerability of PA's theorems, and Gödel's first incompleteness
+theorem for Peano arithmetic. The final files treat Robinson's arithmetic `Q`:
+Δ₀-absoluteness and Σ₁-completeness, representability of decidable sets and total
+computable functions (via Rosser's witness comparison), the diagonal lemma,
+Tarski's undefinability of truth, and the Gödel–Rosser theorem: every consistent,
+computably enumerable extension of `Q` is incomplete.
 -/

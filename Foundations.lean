@@ -5,3 +5,4 @@ import Foundations.Algebra
 import Foundations.Types
 import Foundations.Geometry
 import Foundations.Categories
+import Foundations.Topology
