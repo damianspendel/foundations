@@ -17,6 +17,13 @@ import Foundations.Topology.Basel
 import Foundations.Topology.Zeta4
 import Foundations.Topology.Stirling
 import Foundations.Topology.Leibniz
+import Foundations.Topology.SigmaAlgebra
+import Foundations.Topology.Caratheodory
+import Foundations.Topology.LebesgueMeasure
+import Foundations.Topology.SimpleFunctions
+import Foundations.Topology.LebesgueIntegral
+import Foundations.Topology.DominatedConvergence
+import Foundations.Topology.LebesgueRiemann
 
 /-!
 # Part VIII: Topology
@@ -49,4 +56,20 @@ From the analysis of the real line to general spaces:
 17. `Zeta4` — Euler's `Σ 1/n⁴ = π⁴/90` by the same integral method.
 18. `Stirling` — Stirling's formula `n! ~ √(2πn) (n/e)ⁿ`, the constant from the Wallis product.
 19. `Leibniz` — `∫₀¹ dt/(1+t²) = π/4` and the Leibniz series `1 − 1/3 + 1/5 − ⋯ = π/4`.
+
+Lebesgue's theory of measure and integration (finite measures, real values):
+
+20. `SigmaAlgebra` — the measure problem; σ-algebras, measurable functions (closed under sums and
+    pointwise limits), finite measures, continuity from below and above.
+21. `Caratheodory` — outer measures; Carathéodory's criterion: the measurable sets form a
+    σ-algebra carrying a countably additive measure; countable subadditivity of Lebesgue outer
+    measure.
+22. `LebesgueMeasure` — Lebesgue measure `λ_{a,b}`; intervals are measurable with
+    `λ([c, d]) = d − c`; translation invariance; the Vitali set is not Lebesgue measurable.
+23. `SimpleFunctions` — simple functions; the integral of non-negative functions as a supremum;
+    monotonicity, constants, homogeneity.
+24. `LebesgueIntegral` — additivity of the integral; the monotone convergence theorem.
+25. `DominatedConvergence` — integrable functions and linearity; Fatou's lemma; the dominated
+    convergence theorem.
+26. `LebesgueRiemann` — for continuous `f` on `[a, b]` the Lebesgue and Riemann integrals agree.
 -/

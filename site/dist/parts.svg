@@ -43,8 +43,8 @@
 <g id="edge13" class="edge">
 <title>Sets&#45;&gt;Bridges</title>
 <g id="a_edge13"><a xlink:title="738 uses of Sets in Bridges">
-<path fill="none" stroke="#8a94a3" stroke-width="1.79" d="M48.17,-51.08C39.58,-72.83 29,-105.67 29,-135.5 29,-135.5 29,-135.5 29,-400.5 29,-451.58 182.17,-480.13 274.21,-492.68"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.79" points="274.02,-495.12 281.28,-493.62 274.67,-490.27 274.02,-495.12"/>
+<path fill="none" stroke="#8a94a3" stroke-width="1.6" d="M48.17,-51.08C39.58,-72.83 29,-105.67 29,-135.5 29,-135.5 29,-135.5 29,-400.5 29,-451.58 182.17,-480.13 274.21,-492.68"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.6" points="274.02,-495.12 281.28,-493.62 274.67,-490.27 274.02,-495.12"/>
 </a>
 </g>
 </g>
@@ -75,8 +75,8 @@
 <g id="edge6" class="edge">
 <title>Numbers&#45;&gt;Algebra</title>
 <g id="a_edge6"><a xlink:title="3114 uses of Numbers in Algebra">
-<path fill="none" stroke="#8a94a3" stroke-width="2.84" d="M675.21,-162.1C621.28,-180.07 548.51,-204.33 494.82,-222.23"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.84" points="493.9,-219.95 488.03,-224.49 495.45,-224.6 493.9,-219.95"/>
+<path fill="none" stroke="#8a94a3" stroke-width="2.45" d="M675.21,-162.1C621.28,-180.07 548.51,-204.33 494.82,-222.23"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.45" points="493.9,-219.95 488.03,-224.49 495.45,-224.6 493.9,-219.95"/>
 </a>
 </g>
 </g>
@@ -107,8 +107,8 @@
 <g id="edge9" class="edge">
 <title>Numbers&#45;&gt;Geometry</title>
 <g id="a_edge9"><a xlink:title="3189 uses of Numbers in Geometry">
-<path fill="none" stroke="#8a94a3" stroke-width="2.87" d="M777.14,-162.23C795.69,-178.54 820.07,-199.97 839.6,-217.14"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.87" points="838.1,-219.08 844.97,-221.86 841.33,-215.4 838.1,-219.08"/>
+<path fill="none" stroke="#8a94a3" stroke-width="2.47" d="M777.14,-162.23C795.69,-178.54 820.07,-199.97 839.6,-217.14"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.47" points="838.1,-219.08 844.97,-221.86 841.33,-215.4 838.1,-219.08"/>
 </a>
 </g>
 </g>
@@ -124,8 +124,8 @@
 <g id="edge8" class="edge">
 <title>Numbers&#45;&gt;Categories</title>
 <g id="a_edge8"><a xlink:title="5 uses of Numbers in Categories">
-<path fill="none" stroke="#8a94a3" stroke-width="0.88" d="M659.96,-142.99C551.52,-151.74 377.82,-173.16 338,-222 304.72,-262.81 317.91,-328.34 330.19,-367.03"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.88" points="327.94,-368.04 332.46,-373.93 332.6,-366.51 327.94,-368.04"/>
+<path fill="none" stroke="#8a94a3" stroke-width="0.87" d="M659.96,-142.99C551.52,-151.74 377.82,-173.16 338,-222 304.72,-262.81 317.91,-328.34 330.19,-367.03"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.87" points="327.94,-368.04 332.46,-373.93 332.6,-366.51 327.94,-368.04"/>
 </a>
 </g>
 </g>
@@ -135,12 +135,12 @@
 <path fill="#6a4c93" stroke="black" stroke-width="0" d="M1132,-273C1132,-273 990,-273 990,-273 984,-273 978,-267 978,-261 978,-261 978,-234 978,-234 978,-228 984,-222 990,-222 990,-222 1132,-222 1132,-222 1138,-222 1144,-228 1144,-234 1144,-234 1144,-261 1144,-261 1144,-267 1138,-273 1132,-273"/>
 <text text-anchor="start" x="1009.5" y="-254.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="13.00" fill="white">VIII · Topology</text>
 <text text-anchor="start" x="996" y="-244" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">compactness, ODEs, Basel</text>
-<text text-anchor="start" x="1020" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">326 declarations</text>
+<text text-anchor="start" x="1020" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">541 declarations</text>
 </g>
 <!-- Numbers&#45;&gt;Topology -->
 <g id="edge12" class="edge">
 <title>Numbers&#45;&gt;Topology</title>
-<g id="a_edge12"><a xlink:title="11945 uses of Numbers in Topology">
+<g id="a_edge12"><a xlink:title="18380 uses of Numbers in Topology">
 <path fill="none" stroke="#8a94a3" stroke-width="4.8" d="M819.41,-162.1C868.43,-179.22 933.78,-202.06 984.16,-219.65"/>
 <polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="4.8" points="983.27,-222.46 990.85,-221.99 985.21,-216.91 983.27,-222.46"/>
 </a>
@@ -173,8 +173,8 @@
 <g id="edge11" class="edge">
 <title>Numbers&#45;&gt;Probability</title>
 <g id="a_edge11"><a xlink:title="3662 uses of Numbers in Probability">
-<path fill="none" stroke="#8a94a3" stroke-width="3.01" d="M838.39,-154.08C922.28,-170.04 1051.11,-195.59 1162,-222 1165.74,-222.89 1169.56,-223.83 1173.42,-224.79"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.01" points="1173,-227.21 1180.38,-226.56 1174.2,-222.46 1173,-227.21"/>
+<path fill="none" stroke="#8a94a3" stroke-width="2.59" d="M838.39,-154.08C922.28,-170.04 1051.11,-195.59 1162,-222 1165.74,-222.89 1169.56,-223.83 1173.42,-224.79"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.59" points="1173,-227.21 1180.38,-226.56 1174.2,-222.46 1173,-227.21"/>
 </a>
 </g>
 </g>
@@ -182,8 +182,8 @@
 <g id="edge7" class="edge">
 <title>Numbers&#45;&gt;Bridges</title>
 <g id="a_edge7"><a xlink:title="267 uses of Numbers in Bridges">
-<path fill="none" stroke="#8a94a3" stroke-width="1.4" d="M838.14,-136.59C987.39,-137.17 1277.85,-148.07 1342,-222 1356.85,-239.12 1355.68,-254.93 1342,-273 1227.96,-423.64 615.71,-480.87 409.69,-496.03"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.4" points="409.34,-493.6 402.54,-496.56 409.7,-498.49 409.34,-493.6"/>
+<path fill="none" stroke="#8a94a3" stroke-width="1.28" d="M838.14,-136.59C987.39,-137.17 1277.85,-148.07 1342,-222 1356.85,-239.12 1355.68,-254.93 1342,-273 1227.96,-423.64 615.71,-480.87 409.69,-496.03"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.28" points="409.34,-493.6 402.54,-496.56 409.7,-498.49 409.34,-493.6"/>
 </a>
 </g>
 </g>
@@ -199,8 +199,8 @@
 <g id="edge10" class="edge">
 <title>Numbers&#45;&gt;NumberTheory</title>
 <g id="a_edge10"><a xlink:title="358 uses of Numbers in NumberTheory">
-<path fill="none" stroke="#8a94a3" stroke-width="1.49" d="M744.01,-162.05C734.37,-209.56 713.15,-314.02 702.45,-366.74"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.49" points="700,-366.47 701.01,-373.82 704.81,-367.45 700,-366.47"/>
+<path fill="none" stroke="#8a94a3" stroke-width="1.36" d="M744.01,-162.05C734.37,-209.56 713.15,-314.02 702.45,-366.74"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.36" points="700,-366.47 701.01,-373.82 704.81,-367.45 700,-366.47"/>
 </a>
 </g>
 </g>
@@ -208,8 +208,8 @@
 <g id="edge5" class="edge">
 <title>Logic&#45;&gt;Bridges</title>
 <g id="a_edge5"><a xlink:title="42 uses of Logic in Bridges">
-<path fill="none" stroke="#8a94a3" stroke-width="1.04" d="M1469.56,-349.04C1461.51,-378.9 1443.29,-428.15 1407,-451 1364.78,-477.59 637.9,-494.51 409.86,-499.18"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.04" points="409.56,-496.74 402.61,-499.33 409.66,-501.64 409.56,-496.74"/>
+<path fill="none" stroke="#8a94a3" stroke-width="0.99" d="M1469.56,-349.04C1461.51,-378.9 1443.29,-428.15 1407,-451 1364.78,-477.59 637.9,-494.51 409.86,-499.18"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.99" points="409.56,-496.74 402.61,-499.33 409.66,-501.64 409.56,-496.74"/>
 </a>
 </g>
 </g>
@@ -217,8 +217,8 @@
 <g id="edge1" class="edge">
 <title>Algebra&#45;&gt;Categories</title>
 <g id="a_edge1"><a xlink:title="23 uses of Algebra in Categories">
-<path fill="none" stroke="#8a94a3" stroke-width="0.98" d="M408.79,-273.27C395.03,-299.08 373.43,-339.57 358.54,-367.49"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.98" points="356.23,-366.61 355.1,-373.94 360.55,-368.92 356.23,-366.61"/>
+<path fill="none" stroke="#8a94a3" stroke-width="0.94" d="M408.79,-273.27C395.03,-299.08 373.43,-339.57 358.54,-367.49"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.94" points="356.23,-366.61 355.1,-373.94 360.55,-368.92 356.23,-366.61"/>
 </a>
 </g>
 </g>
@@ -226,8 +226,8 @@
 <g id="edge2" class="edge">
 <title>Algebra&#45;&gt;NumberTheory</title>
 <g id="a_edge2"><a xlink:title="3 uses of Algebra in NumberTheory">
-<path fill="none" stroke="#8a94a3" stroke-width="0.86" d="M466.94,-273.1C515.71,-299.8 593.46,-342.37 644.62,-370.37"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.86" points="643.72,-372.67 651.04,-373.89 646.07,-368.37 643.72,-372.67"/>
+<path fill="none" stroke="#8a94a3" stroke-width="0.85" d="M466.94,-273.1C515.71,-299.8 593.46,-342.37 644.62,-370.37"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.85" points="643.72,-372.67 651.04,-373.89 646.07,-368.37 643.72,-372.67"/>
 </a>
 </g>
 </g>
@@ -235,8 +235,8 @@
 <g id="edge15" class="edge">
 <title>Types&#45;&gt;Categories</title>
 <g id="a_edge15"><a xlink:title="21 uses of Types in Categories">
-<path fill="none" stroke="#8a94a3" stroke-width="0.97" d="M189.92,-273.41C211.3,-294.35 243.27,-324.67 273,-349 281.52,-355.97 290.93,-363.08 300,-369.67"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.97" points="298.78,-371.81 305.9,-373.91 301.65,-367.83 298.78,-371.81"/>
+<path fill="none" stroke="#8a94a3" stroke-width="0.94" d="M189.92,-273.41C211.3,-294.35 243.27,-324.67 273,-349 281.52,-355.97 290.93,-363.08 300,-369.67"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.94" points="298.78,-371.81 305.9,-373.91 301.65,-367.83 298.78,-371.81"/>
 </a>
 </g>
 </g>
@@ -244,8 +244,8 @@
 <g id="edge14" class="edge">
 <title>Types&#45;&gt;Bridges</title>
 <g id="a_edge14"><a xlink:title="73 uses of Types in Bridges">
-<path fill="none" stroke="#8a94a3" stroke-width="1.11" d="M172.35,-273.24C184.05,-309.55 209.69,-378.03 249,-425 263.51,-442.34 282.47,-458.56 299.48,-471.5"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.11" points="298.09,-473.52 305.16,-475.76 301.03,-469.6 298.09,-473.52"/>
+<path fill="none" stroke="#8a94a3" stroke-width="1.05" d="M172.35,-273.24C184.05,-309.55 209.69,-378.03 249,-425 263.51,-442.34 282.47,-458.56 299.48,-471.5"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.05" points="298.09,-473.52 305.16,-475.76 301.03,-469.6 298.09,-473.52"/>
 </a>
 </g>
 </g>
@@ -253,8 +253,8 @@
 <g id="edge3" class="edge">
 <title>Categories&#45;&gt;Bridges</title>
 <g id="a_edge3"><a xlink:title="82 uses of Categories in Bridges">
-<path fill="none" stroke="#8a94a3" stroke-width="1.13" d="M342,-425.22C342,-438.32 342,-454.56 342,-468.61"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.13" points="339.55,-468.72 342,-475.72 344.45,-468.72 339.55,-468.72"/>
+<path fill="none" stroke="#8a94a3" stroke-width="1.07" d="M342,-425.22C342,-438.32 342,-454.56 342,-468.61"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.07" points="339.55,-468.72 342,-475.72 344.45,-468.72 339.55,-468.72"/>
 </a>
 </g>
 </g>
@@ -262,8 +262,8 @@
 <g id="edge4" class="edge">
 <title>Combinatorics&#45;&gt;Categories</title>
 <g id="a_edge4"><a xlink:title="1 uses of Combinatorics in Categories">
-<path fill="none" stroke="#8a94a3" stroke-width="0.84" d="M565.21,-273.1C517.68,-299.8 441.92,-342.37 392.06,-370.37"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.84" points="390.72,-368.32 385.81,-373.89 393.12,-372.59 390.72,-368.32"/>
+<path fill="none" stroke="#8a94a3" stroke-width="0.83" d="M565.21,-273.1C517.68,-299.8 441.92,-342.37 392.06,-370.37"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.83" points="390.72,-368.32 385.81,-373.89 393.12,-372.59 390.72,-368.32"/>
 </a>
 </g>
 </g>
