@@ -39,7 +39,7 @@ residues of Part IV.
    infinitely many primes `≡ 1 (mod 4)` (via `(2·N!)² + 1` and the first supplement to quadratic
    reciprocity). These are the simplest cases of **Dirichlet's theorem** (1837) on primes in
    arithmetic progressions, whose general proof needs analysis (L-functions) and is given in
-   items 6–19 below.
+   the files `Characters` … `Dirichlet` (theorem `dirichlet`).
 2. `Binomial` — binomial coefficients via Pascal's rule; the central binomial coefficient
    `C(2n, n)` with `4ⁿ/(2n+1) ≤ C(2n, n) ≤ 4ⁿ`; the `p`-adic valuation and **Legendre's
    formula** `vₚ(n!) = Σ ⌊n/pᵏ⌋`; prime powers dividing `C(2n, n)` are at most `2n`, and primes

@@ -12,8 +12,9 @@ progressions such as `4k + 1` and `4k + 3`, but no purely algebraic trick is kno
 every progression. Dirichlet's proof was the first to bring analysis — infinite series, limits,
 and the group characters of `(ℤ/qℤ)ˣ` — to bear on a question about whole numbers, and it is
 usually counted as the birth of **analytic number theory**. He was inspired by Euler's proof
-(1737) that `Σ 1/p` diverges, which is the case `q = 1`: our `mertens_lower`,
-`Σ_{n ≤ N} Λ(n)/n ≥ log N − 1`, is its quantitative form.
+(1737) that `Σ 1/p` diverges, which is the case `q = 1`. Our `mertens_lower`,
+`Σ_{n ≤ N} Λ(n)/n ≥ log N − 1`, is the case `q = 1` of Dirichlet's theorem in Mertens' form;
+it gives the divergence of `Σ log p / p`, which is weaker than Euler's `Σ 1/p = ∞`.
 
 The proof formalised in this part follows the elementary route through the values `L(1, χ)`:
 
