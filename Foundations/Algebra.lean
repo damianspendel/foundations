@@ -14,6 +14,11 @@ import Foundations.Algebra.PID
 import Foundations.Algebra.UFD
 import Foundations.Algebra.GaussianInt
 import Foundations.Algebra.TwoSquares
+import Foundations.Algebra.VectorSpace
+import Foundations.Algebra.FieldExt
+import Foundations.Algebra.Algebraic
+import Foundations.Algebra.Constructible
+import Foundations.Algebra.FiniteField
 
 /-!
 # Part IV: Algebra
@@ -24,6 +29,8 @@ the isomorphism theorems, rings, ideals and quotient rings, group actions with t
 orbit–stabiliser theorem, Cauchy's theorem and Sylow's first theorem; ring homomorphisms,
 the first isomorphism theorem for rings and the Chinese remainder theorem; polynomial rings,
 the division algorithm, the factor theorem and the root bound; Euclidean domains, PIDs and
-unique factorisation (for ℤ and F[x]); the Gaussian integers; and Fermat's two-squares
-theorem.
+unique factorisation (for ℤ and F[x]); the Gaussian integers; Fermat's two-squares
+theorem; vector spaces and dimension, field extensions and the tower law, quadratic and
+cubic extensions, the impossibility of doubling the cube and trisecting the angle; and
+the prime-power order of finite fields.
 -/
