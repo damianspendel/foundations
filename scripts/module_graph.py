@@ -8,13 +8,13 @@ import networkx as nx
 root = pathlib.Path(__file__).resolve().parent.parent
 g = json.loads(pathlib.Path(sys.argv[1]).read_text())
 PARTS = ["Sets", "Numbers", "Logic", "Algebra", "Types", "Geometry", "Categories", "Topology",
-         "Combinatorics", "Probability", "Bridges", "NumberTheory"]
-ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
+         "Combinatorics", "Probability", "Bridges", "NumberTheory", "Forcing"]
+ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"]
 COLORS = ["#7b4fb0", "#1f7a6c", "#b5532c", "#2f62b5", "#8a6d1d", "#a1356f", "#3d7a2a", "#6a4c93",
-          "#b06a00", "#00798c", "#5a5a5a", "#9c2f2f"]
+          "#b06a00", "#00798c", "#5a5a5a", "#9c2f2f", "#2b5f8a"]
 SUB = ["a model of ZF", "ℕ → ℤ → ℚ → ℝ → ℂ, analysis", "proofs, models, Gödel", "groups, rings, fields",
        "λ-calculus, Curry–Howard", "Euclid, Tarski, Klein", "Yoneda, Lawvere", "compactness, ODEs, Basel",
-       "Ramsey, Kőnig, Hall", "Bayes, large numbers", "the parts joined", "the primes"]
+       "Ramsey, Kőnig, Hall", "Bayes, large numbers", "the parts joined", "the primes", "Boolean-valued models"]
 
 mod_of = {n["name"]: n["module"] for n in g["nodes"]}
 part_of_mod = lambda m: m.split(".")[1] if m.count(".") >= 1 else m

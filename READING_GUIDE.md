@@ -1,6 +1,6 @@
 # Reading guide: where to start
 
-About 6,300 checked definitions and theorems is too many to browse, so start here. The list
+About 6,500 checked definitions and theorems is too many to browse, so start here. The list
 comes from an independent project-wide audit. Each entry gives the theorem name, the file, and
 its meaning in plain words. On the site, type the name into the map's search box to see its
 statement, its proof and everything it rests on.
@@ -27,7 +27,7 @@ statement, its proof and everything it rests on.
 Also worth a look: `El_summary` (`Bridges/ETCSvsZF.lean`: ZF sets sit fully and faithfully inside
 the structural, categorical world), `reals_in_sets` (`Bridges/RealsInSets.lean`: ℝ built from pure
 sets), `yoneda`, `lawvere_fixed_point` (one diagonal argument behind Cantor, Russell and Gödel),
-`bertrand`, `dirichlet` (`NumberTheory/Dirichlet.lean`: infinitely many primes ≡ a mod q whenever gcd(a, q) = 1), `A5_simple`, `sylow_first`, `dominated_convergence`, `pi1_circle_iso_int` and `brouwer_disc` (π₁(S¹) ≅ ℤ and Brouwer's fixed-point theorem in 2D).
+`bertrand`, `VB_models_ZF` (`Forcing/BSetZF.lean`: every ZF axiom is true in any Boolean-valued universe — the first half of Cohen-style independence proofs; the independence of CH itself is not reached), `euler_sum_reciprocal_primes` (Σ 1/p = ∞), `dirichlet` (`NumberTheory/Dirichlet.lean`: infinitely many primes ≡ a mod q whenever gcd(a, q) = 1), `A5_simple`, `sylow_first`, `dominated_convergence`, `pi1_circle_iso_int` and `brouwer_disc` (π₁(S¹) ≅ ℤ and Brouwer's fixed-point theorem in 2D).
 
 ## Honest caveats the audit raised
 
