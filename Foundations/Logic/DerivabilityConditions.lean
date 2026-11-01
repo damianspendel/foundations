@@ -158,8 +158,14 @@ theorem lob_PA {φ : Formula Arith} (h : PA ⊢₁ imp (box provH φ) φ) : PA �
   lob (fun _ h => PA_proves_Q h) provH_derivability h
 
 /-- **Gödel's second incompleteness theorem for PA.** Unconditionally, PA does not prove
-its own consistency statement `¬provH(⌜⊥⌝)`, where `provH` is a provability formula
-defining PA-provability in the standard model and satisfying (D1)–(D3). -/
+the consistency statement `¬provH(⌜⊥⌝)` for the provability formula `provH`, which defines
+PA-provability in the standard model and satisfies (D1)–(D3) provably in PA.
+
+Caveat (Gödel II is intensional, Feferman 1960): `provH` is not the textbook "there is a
+PA-derivation of x"; its proofs are modus-ponens/necessitation closures of a Σ₁ listing of
+PA's theorems, and PA-provable equivalence of `conF provH` with the canonical Con(PA) is not
+established here. `provH` contains no consistency filter, so this is a genuine instance of
+the Hilbert–Bernays–Löb form of the theorem, not a Feferman-style artefact. -/
 theorem godel_second_PA_unconditional : ¬ PA ⊢₁ conF provH :=
   godel_second (fun _ h => PA_proves_Q h) provH_derivability PA_consistent
 

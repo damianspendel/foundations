@@ -31,7 +31,8 @@ ponens and satisfies (D1). The point of the design is that the closure propertie
 which (D2) and (D3) assert are now visible in the *shape* of the definition, so that
 they can be verified in an arbitrary model of PA by manipulating coded sequences
 (next file). The formula is built by the uniform definability calculus and is a
-concrete formula of arithmetic.
+definite formula of arithmetic (a well-defined mathematical object, though not written
+out explicitly: its two program parameters are obtained by `Classical.choose`).
 
 This file proves the standard characterisation and condition (D1) for `provH`.
 -/
