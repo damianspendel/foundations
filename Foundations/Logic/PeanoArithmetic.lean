@@ -134,6 +134,7 @@ end Arith
 every instance of the induction schema — is true in `(ℕ, 0, S, +, ×)` under every
 assignment of the free variables. -/
 theorem stdModel_isModel : IsModel stdModel PA := by
+  refine ⟨⟨(0 : Nat)⟩, ?_⟩
   intro φ hφ e
   cases hφ with
   | succ_ne_zero => intro (x : Nat) (h : x + 1 = 0); exact Nat.succ_ne_zero x h
@@ -165,7 +166,7 @@ theorem PA_consistent : ¬ (PA ⊢₁ bot) :=
 /-- **Every theorem of PA is true in ℕ.** If PA derives `φ`, then `φ` holds in the
 standard model under every assignment. -/
 theorem PA_sound {φ : Formula Arith} (h : PA ⊢₁ φ) (e : Nat → Nat) : Sat stdModel e φ :=
-  Proves.soundness h stdModel e (fun ψ hψ => stdModel_isModel ψ hψ e)
+  Proves.soundness h stdModel e (fun ψ hψ => stdModel_isModel.2 ψ hψ e)
 
 /-- `0` is unchanged by any substitution (it has no variables). -/
 theorem Arith.zero_subst (σ : Nat → Term Arith) : zero.subst σ = zero := by

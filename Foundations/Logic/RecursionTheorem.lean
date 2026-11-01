@@ -19,7 +19,8 @@ and `q = selfApp ⌜G⌝`. Then `q(y) = G(⌜G⌝, y) = F(⌜selfApp ⌜G⌝⌝,
 *Scope.* We prove the theorem in the form "`q(y) ≃ F(⌜q⌝, y)` for every code `F`",
 which is the heart of the matter. The textbook corollary "`φ_e = φ_{f(e)}` for every
 total computable `f`" additionally needs a *universal* code (an interpreter
-`U(e, y) ≃ φ_e(y)` written as a code), which we have not constructed.
+`U(e, y) ≃ φ_e(y)` written as a code); it is derived in `Universal`
+(`recursion_theorem_fixed_point`).
 -/
 
 namespace Foundations.Logic.Computability

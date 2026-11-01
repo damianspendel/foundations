@@ -19,6 +19,16 @@ import Foundations.Logic.Computability
 import Foundations.Logic.GodelNumbering
 import Foundations.Logic.Undecidability
 import Foundations.Logic.RecursionTheorem
+import Foundations.Logic.PrimRec
+import Foundations.Logic.Derivations
+import Foundations.Logic.Universal
+import Foundations.Logic.BetaFunction
+import Foundations.Logic.Definability
+import Foundations.Logic.ArithCoding
+import Foundations.Logic.ArithWellFormed
+import Foundations.Logic.PARules
+import Foundations.Logic.PAProofs
+import Foundations.Logic.Incompleteness
 
 /-!
 # Part III: Logic
@@ -32,5 +42,10 @@ completeness theorem via Henkin's term-model construction, with compactness,
 downward Löwenheim–Skolem and a non-standard model of arithmetic as corollaries.
 The last files turn to the limits of formal systems: partial recursive functions,
 Gödel numbering, the undecidability of halting, Rice's theorem, Kleene's recursion
-theorem, and an abstract (computational) form of Gödel's incompleteness theorem.
+theorem, and an abstract (computational) form of Gödel's incompleteness theorem;
+then a library of primitive recursive constructions, the universal code (Kleene's
+normal form, s-m-n, the classical recursion theorem), Gödel's β-function and the
+arithmetical definability of computation, the arithmetisation of syntax with the
+computable enumerability of PA's theorems, and finally Gödel's first
+incompleteness theorem for Peano arithmetic.
 -/

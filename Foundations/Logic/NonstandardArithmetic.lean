@@ -155,12 +155,13 @@ def PAClosure : Theory Arith := fun χ => ∃ ψ k, PA ψ ∧ χ = allN k ψ
 /-- The standard model satisfies all universal closures of PA axioms. -/
 theorem stdModel_PAClosure : ∀ χ, PAClosure χ → ∀ e, Sat stdModel e χ := by
   rintro _ ⟨ψ, k, hψ, rfl⟩ e
-  exact (sat_allN ψ k e).2 fun e' _ => stdModel_isModel ψ hψ e'
+  exact (sat_allN ψ k e).2 fun e' _ => stdModel_isModel.2 ψ hψ e'
 
 /-- A structure satisfying all universal closures of PA axioms under a single
 environment is a model of PA (under every environment), by the coincidence lemma. -/
 theorem isModel_of_PAClosure {M : Structure Arith} {e₀ : Nat → M.Dom}
     (h : ∀ χ, PAClosure χ → Sat M e₀ χ) : IsModel M PA := by
+  refine ⟨⟨e₀ 0⟩, ?_⟩
   intro ψ hψ e
   obtain ⟨B, hB⟩ := eventually_fresh ψ
   let e' : Nat → M.Dom := fun n => if n < B then e n else e₀ (n - B)

@@ -1,6 +1,6 @@
 # Foundations of mathematics, from scratch
 
-Sets, numbers, logic, algebra and type theory, built in Lean 4 on nothing but the kernel and its three
+Sets, numbers, logic, algebra, type theory and geometry, built in Lean 4 on nothing but the kernel and its three
 standard axioms (propositional extensionality, quotient soundness, classical choice).
 No Mathlib. Every theorem is machine-checked, and CI rejects any declaration that depends
 on anything else (including `sorry`).
@@ -14,8 +14,9 @@ mode, and demos — built from the compiled Lean environment (`site/`).
 |------|-----------|
 | I · Sets | Aczel's model of ZF inside type theory; all ZF axioms as theorems; Russell; Cantor; ω ≅ ℕ with the Peano axioms; Dedekind's recursion theorem and ω-arithmetic; Schröder–Bernstein; ordinals and Burali-Forti; Zorn's lemma and the well-ordering theorem; transfinite induction; comparability of cardinals; κ·κ = κ; infinite ⇔ Dedekind-infinite; Hartogs; Kőnig |
 | II · Numbers | Peano ℕ → ℤ → ℚ → ℝ (Cauchy) as quotients, each bridged to the previous; FTA (existence and uniqueness); √2 irrational; ℝ a complete ordered field; uncountability; categoricity of complete ordered fields; Dedekind cuts ≅ Cauchy reals; Bolzano–Weierstrass, IVT, EVT; ℂ not orderable; derivatives, Rolle, mean value theorem; series, exp, log, e irrational; Riemann integral, Heine–Cantor, fundamental theorem of calculus; sin, cos, π; addition formulas and periodicity; complex exponential and Euler's identity e^{iπ} + 1 = 0; π irrational (Niven) |
-| III · Logic | Propositional soundness, completeness (Lindenbaum and Kalmár) and compactness; Hilbert ≡ natural deduction; first-order logic with de Bruijn indices; Gödel's completeness theorem (Henkin); compactness; Löwenheim–Skolem; PA and its standard model; a non-standard model of PA; partial recursive functions, halting, Rice, Kleene's recursion theorem |
+| III · Logic | Propositional soundness, completeness (Lindenbaum and Kalmár) and compactness; Hilbert ≡ natural deduction; first-order logic with de Bruijn indices; Gödel's completeness theorem (Henkin); compactness; Löwenheim–Skolem; PA and its standard model; a non-standard model of PA; partial recursive functions, halting, Rice, Kleene's recursion theorem; universal function, Kleene normal form, s-m-n; Gödel's β-function; **Gödel's first incompleteness theorem for PA** (via soundness: a true sentence PA neither proves nor refutes) |
 | IV · Algebra | groups, subgroups, homomorphisms; Lagrange; Fermat and Euler; Cayley; the three isomorphism theorems; rings, ideals, ℤ/nℤ a field iff n prime; group actions, orbit–stabiliser; Cauchy (McKay); Sylow I; ring first isomorphism theorem; Chinese remainder theorem; polynomial rings, division algorithm, factor theorem, root bound; Euclidean ⇒ PID; unique factorisation in ℤ and F[x]; Gaussian integers; Fermat's two-squares theorem (Zagier) |
+| VI · Geometry | Tarski's axioms; ℝ² is a model of all eleven; Euclid I.1 (equilateral triangle) holds in ℝ² but fails in ℚ² (√3 irrational), so Euclid needs a continuity principle; Pythagoras and its converse; Thales; law of cosines; Heron; triangle inequality |
 | V · Types | untyped λ-calculus and Church–Rosser; simply typed λ-calculus: subject reduction, progress, strong normalization (Tait); Curry–Howard; cut elimination; excluded middle, Peirce and double-negation elimination unprovable intuitionistically; System F preservation, progress and strong normalization (Girard); Church encodings; the metatheory is constructive (no choice) |
 
 ## What it stands on

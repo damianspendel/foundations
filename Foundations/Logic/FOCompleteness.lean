@@ -125,9 +125,10 @@ theorem compactness_entails {Γ : Theory L} {φ : Formula L} (h : Entails Γ φ)
   · exact h.elim
   · exact he ψ h
 
-/-- **Downward Löwenheim–Skolem theorem.** If a theory in a countable language has
-any model at all (of whatever size), then it has a countable model: one admitting a
-surjection from `ℕ` onto its domain. -/
+/-- **Downward Löwenheim–Skolem theorem.** If a theory in a countable language is
+satisfied in any structure at all (with domain in `Type`, under some environment),
+then it is satisfied in a countable one: a structure admitting a surjection from `ℕ`
+onto its domain. -/
 theorem lowenheim_skolem {Γ : Theory L} {M : Structure L} {e : Nat → M.Dom}
     (h : ∀ ψ, Γ ψ → Sat M e ψ) :
     ∃ (N : Structure L) (e' : Nat → N.Dom), (∀ ψ, Γ ψ → Sat N e' ψ) ∧

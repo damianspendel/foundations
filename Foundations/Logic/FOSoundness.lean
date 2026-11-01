@@ -150,7 +150,7 @@ theorem soundness {Γ : Theory L} {φ : Formula L} (h : Γ ⊢₁ φ) : Entails 
 derive `⊥`. (Soundness turns the existence of a model into a syntactic fact.) -/
 theorem consistent_of_model {Γ : Theory L} (M : Structure L) (e : Nat → M.Dom)
     (hM : IsModel M Γ) : ¬ (Γ ⊢₁ bot) :=
-  fun h => soundness h M e (fun ψ hψ => hM ψ hψ e)
+  fun h => soundness h M e (fun ψ hψ => hM.2 ψ hψ e)
 
 /-- Example derivation: `∀x φ(x) → ∃x φ(x)` is derivable for any `φ` (reflecting the
 convention that domains are non-empty): instantiate the universal at the variable

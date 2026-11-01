@@ -29,8 +29,10 @@ namespace Foundations.Logic.FO
 variable {L : Signature}
 
 /-- **First-order structure** for a signature `L`: a domain together with
-interpretations of the function and relation symbols. (Non-emptiness of the domain
-is implicit: we always evaluate under an environment, which supplies elements.) -/
+interpretations of the function and relation symbols. (The domain is not required
+to be non-empty here. Satisfaction and semantic consequence are always relative to an
+environment, which supplies elements; the notion of being a *model* (`IsModel`)
+explicitly demands a non-empty domain.) -/
 structure Structure (L : Signature) where
   /-- The domain of individuals. -/
   Dom : Type
@@ -131,10 +133,12 @@ theorem sat_neg (φ : Formula L) (e : Nat → M.Dom) : Sat M e φ.neg ↔ ¬ Sat
 
 end Formula
 
-/-- A structure `M` is a *model* of a theory `Γ` if it satisfies every formula of `Γ`
-under every environment (free variables are read universally). -/
+/-- A structure `M` is a *model* of a theory `Γ` if its domain is non-empty and it
+satisfies every formula of `Γ` under every environment (free variables are read
+universally). Non-emptiness is the usual convention of first-order logic; without it
+the empty structure would vacuously "model" every theory, even `{⊥}`. -/
 def IsModel (M : Structure L) (Γ : Theory L) : Prop :=
-  ∀ φ, Γ φ → ∀ e : Nat → M.Dom, Formula.Sat M e φ
+  Nonempty M.Dom ∧ ∀ φ, Γ φ → ∀ e : Nat → M.Dom, Formula.Sat M e φ
 
 /-- **First-order semantic consequence** `Γ ⊨ φ`: in every structure, every
 environment satisfying all formulas of `Γ` also satisfies `φ`. -/

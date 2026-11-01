@@ -25,15 +25,14 @@ true statements of the form "`c` does not halt on `x`", can prove *all* true
 statements of this form. The diagonal construction even produces an explicit true
 but unprovable statement — a "Gödel sentence".
 
-*What remains abstract.* The incompleteness theorem below is stated for an
+*What remains abstract here.* The incompleteness theorem below is stated for an
 arbitrary "proof system" given by a predicate `Provable c x` ("the system proves
 that `c` does not halt on `x`"). Its hypotheses are exactly: (1) **soundness** for
 these statements, and (2) **computable enumerability**: some code halts on
-`(⌜c⌝, x)` exactly when `Provable c x`. To obtain Gödel's theorem for Peano
-arithmetic itself one would additionally have to *arithmetise* evaluation —
-express "`c` does not halt on `x`" by a PA sentence (representability of `Eval`) —
-and show that PA's set of theorems is enumerated by a code (a proof checker
-written as a partial recursive function). Neither step is carried out here.
+`(⌜c⌝, x)` exactly when `Provable c x`. For Peano arithmetic both hypotheses are
+discharged later: `Definability` expresses "`c` does not halt on `x`" by an
+arithmetical sentence, `PAProofs` shows that PA's theorems are enumerated by a code,
+and `Incompleteness` combines them into Gödel's first incompleteness theorem for PA.
 -/
 
 namespace Foundations.Logic.Computability
