@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundations from Scratch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: header + milestones, then the building (dependency map, foundations at the bottom), then per-chapter demos */
+  --bg: #f1f2f4;
+  --surface: #ffffff;
+  --ink: #18202b;
+  --muted: #5b6676;
+  --line: #d4d9e0;
+  --sets: #7b4fb0;
+  --numbers: #1f7a6c;
+  --logic: #b5532c;
+  --other: #6b7685;
+  --hi: #d4a017;
+  --font-display: "Newsreader", Georgia, serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11151b; --surface: #181e26; --ink: #e4e8ee; --muted: #97a1b0; --line: #2b333f;
+    --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --other: #8a95a5; --hi: #f0c040;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11151b; --surface: #181e26; --ink: #e4e8ee; --muted: #97a1b0; --line: #2b333f;
+  --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --other: #8a95a5; --hi: #f0c040;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font-body); }
+main { max-width: 1240px; margin: 0 auto; padding: 28px 20px 56px; display: grid; gap: 22px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; text-wrap: balance; }
+h1 { font-size: 2.4rem; line-height: 1.1; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.12rem; }
+p { margin: 0; max-width: 68ch; }
+code, .mono { font-family: var(--font-mono); font-size: 0.86em; }
+a { color: inherit; }
+.lede { color: var(--muted); font-size: 1.06rem; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+.stats { display: flex; gap: 26px; flex-wrap: wrap; font-variant-numeric: tabular-nums; }
+.stat b { font-family: var(--font-display); font-size: 1.7rem; display: block; line-height: 1.1; }
+.stat span { color: var(--muted); font-size: 0.85rem; }
+.parts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.part { border-top: 4px solid var(--c); display: grid; gap: 10px; align-content: start; }
+.part h2 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.part h2 small { font: 500 0.8rem var(--font-body); color: var(--muted); }
+.milestones { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.milestones button { all: unset; cursor: pointer; display: grid; gap: 1px; padding: 6px 8px; border-radius: 6px; width: 100%; box-sizing: border-box; }
+.milestones button:hover, .milestones button:focus-visible { background: var(--bg); outline: none; }
+.milestones .t { font-weight: 600; font-size: 0.93rem; }
+.milestones .s { color: var(--muted); font-size: 0.82rem; }
+.map-head { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+input[type="search"] { font: 0.92rem var(--font-body); padding: 7px 10px; border-radius: 7px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); width: 240px; }
+button.btn { font: 500 0.88rem var(--font-body); padding: 7px 12px; border-radius: 7px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+button.btn:focus-visible, input:focus-visible { outline: 2px solid var(--hi); outline-offset: 1px; }
+.map-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 16px; margin-top: 12px; }
+@media (max-width: 960px) { .map-grid { grid-template-columns: 1fr; } }
+.canvas-wrap { position: relative; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); height: 620px; overflow: hidden; touch-action: none; }
+#map { width: 100%; height: 100%; display: block; cursor: grab; }
+.axis-note { position: absolute; left: 10px; bottom: 8px; font-size: 0.75rem; color: var(--muted); pointer-events: none; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; font: 0.78rem var(--font-mono); display: none; max-width: 320px; }
+.inspector { display: grid; gap: 10px; align-content: start; max-height: 620px; overflow: auto; }
+.inspector .kind { font: 600 0.72rem var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.inspector pre { margin: 0; white-space: pre-wrap; word-break: break-word; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; padding: 10px; font: 0.8rem/1.45 var(--font-mono); }
+.inspector .doc { font-size: 0.92rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip { font: 0.74rem var(--font-mono); border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; cursor: pointer; background: var(--surface); color: var(--ink); }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.82rem; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tabs button { font: 500 0.88rem var(--font-body); padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.demo { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 18px; margin-top: 14px; align-items: start; }
+@media (max-width: 860px) { .demo { grid-template-columns: 1fr; } }
+.demo canvas { width: 100%; aspect-ratio: 16 / 10; display: block; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+.demo .side { display: grid; gap: 10px; font-size: 0.92rem; }
+.demo .side label { display: grid; gap: 4px; font-size: 0.85rem; color: var(--muted); }
+.demo input[type="range"] { width: 100%; }
+.demo input[type="text"] { font: 0.9rem var(--font-mono); padding: 7px 9px; border-radius: 7px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; }
+.tt { border-collapse: collapse; font: 0.82rem var(--font-mono); font-variant-numeric: tabular-nums; }
+.tt th, .tt td { border: 1px solid var(--line); padding: 3px 8px; text-align: center; }
+.tt td.T { color: var(--numbers); font-weight: 600; }
+.tt td.F { color: var(--logic); }
+.tt-wrap { overflow-x: auto; max-height: 360px; }
+.base { display: grid; gap: 8px; }
+.base ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 75ch; }
+footer { color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<main>
+  <header style="display:grid;gap:12px">
+    <h1>Foundations of mathematics, from scratch</h1>
+    <p class="lede">Sets, then numbers, then logic, built in Lean 4 with nothing but the kernel and its three standard axioms. No Mathlib. Every theorem below is checked by machine.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section class="parts" id="parts" aria-label="Parts and milestones"></section>
+
+  <section class="panel">
+    <div class="map-head">
+      <div style="display:grid;gap:4px">
+        <h2>The building</h2>
+        <p class="lede" style="font-size:0.92rem">Every definition and theorem is a dot, and each sits one floor above the highest thing it uses, so the foundations are at the bottom. Click a dot to light up everything it rests on.</p>
+      </div>
+      <div class="controls">
+        <label for="search" class="mono" style="color:var(--muted)">find</label>
+        <input type="search" id="search" placeholder="e.g. cantor, sqrt, sound" list="names">
+        <datalist id="names"></datalist>
+        <button type="button" class="btn" id="reset">Reset view</button>
+      </div>
+    </div>
+    <div class="map-grid">
+      <div class="canvas-wrap" id="wrap">
+        <canvas id="map" aria-label="Dependency map of all declarations"></canvas>
+        <div class="tip" id="tip"></div>
+        <div class="axis-note">↑ higher floors use more · drag to pan · scroll to zoom</div>
+      </div>
+      <aside class="inspector" id="inspector"></aside>
+    </div>
+    <div class="legend" id="legend" style="margin-top:10px"></div>
+  </section>
+
+  <section class="panel">
+    <h2>See it</h2>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="demo-area"></div>
+  </section>
+
+  <section class="panel base">
+    <h2>What the building stands on</h2>
+    <ul>
+      <li><strong>Lean's type theory</strong> (the calculus of inductive constructions) is the ground floor. It is not ZF set theory; Part I builds a <em>model</em> of ZF sets inside it and proves the axioms of ZF as theorems.</li>
+      <li><strong>Three axioms</strong>: propositional extensionality, soundness of quotients, and classical choice. Each headline theorem lists exactly which of them it uses.</li>
+      <li><strong>Built-in numbers are earned, not assumed.</strong> ℕ and ℤ are first constructed from scratch and proved isomorphic to Lean's built-in versions; only then are the fast built-ins used.</li>
+      <li><strong>One trusted shortcut</strong>: Lean's kernel evaluates natural-number arithmetic natively (via GMP) for speed. The from-scratch Peano construction does not rely on it.</li>
+    </ul>
+  </section>
+
+  <footer>Map extracted from the compiled Lean environment by <code>lake exe extract</code>: names, statements, docstrings and dependencies are read directly from the checked proofs. Lean 4.35.0. <span id="repo"></span></footer>
+</main>
+
+<script>
+const GRAPH = /*GRAPH*/null;
+const REPO = "/*REPO*/";
+const PARTS = [
+  { key: "Sets", title: "I · Sets", sub: "a model of ZF inside type theory", color: "--sets" },
+  { key: "Numbers", title: "II · Numbers", sub: "ℕ → ℤ → ℚ → ℝ", color: "--numbers" },
+  { key: "Logic", title: "III · Logic", sub: "proofs as mathematical objects", color: "--logic" },
+];
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+// ---------- graph preparation ----------
+const nodes = GRAPH.nodes;
+const byName = new Map(nodes.map(n => [n.name, n]));
+nodes.forEach(n => { n.deps = n.deps.filter(d => byName.has(d)); n.users = []; });
+nodes.forEach(n => n.deps.forEach(d => byName.get(d).users.push(n.name)));
+function partOf(n) {
+  const seg = n.module.split(".")[1] || "";
+  return PARTS.find(p => p.key === seg) ? seg : (seg || "Other");
+}
+nodes.forEach(n => n.part = partOf(n));
+const partKeys = [...new Set(nodes.map(n => n.part))].sort((a, b) => {
+  const ia = PARTS.findIndex(p => p.key === a), ib = PARTS.findIndex(p => p.key === b);
+  return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b);
+});
+const short = s => s.replace(/^Foundations\.(Sets|Numbers|Logic)\./, "").replace(/^Foundations\./, "");
+const shortType = s => s.replace(/Foundations\.(Sets|Numbers|Logic)\.([A-Za-z_]+\.)*/g, m => "").replace(/\s+/g, " ");
+const colorOf = n => css((PARTS.find(p => p.key === n.part) || { color: "--other" }).color);
+
+// floor = 1 + max floor of deps (memoised, cycle-safe)
+const floor = new Map();
+function getFloor(name, stack = new Set()) {
+  if (floor.has(name)) return floor.get(name);
+  if (stack.has(name)) return 0;
+  stack.add(name);
+  const n = byName.get(name);
+  const f = n.deps.length ? 1 + Math.max(...n.deps.map(d => getFloor(d, stack))) : 0;
+  stack.delete(name);
+  floor.set(name, f);
+  return f;
+}
+nodes.forEach(n => n.floor = getFloor(n.name));
+const maxFloor = Math.max(...nodes.map(n => n.floor));
+
+function ancestors(name) {
+  const seen = new Set([name]), st = [name];
+  while (st.length) for (const d of byName.get(st.pop()).deps) if (!seen.has(d)) { seen.add(d); st.push(d); }
+  return seen;
+}
+nodes.forEach(n => n.depth = n.headline ? ancestors(n.name).size - 1 : 0);
+
+// layout: columns per part, rows per floor, modules ordered left→right inside each part
+const moduleOrder = GRAPH.modules.map(m => m.module);
+const W0 = 1000, H0 = 620;
+partKeys.forEach((pk, pi) => {
+  const colX0 = (pi / partKeys.length) * W0 + 18, colW = W0 / partKeys.length - 36;
+  const inPart = nodes.filter(n => n.part === pk);
+  const rows = new Map();
+  inPart.forEach(n => { if (!rows.has(n.floor)) rows.set(n.floor, []); rows.get(n.floor).push(n); });
+  for (const [f, row] of rows) {
+    row.sort((a, b) => moduleOrder.indexOf(a.module) - moduleOrder.indexOf(b.module) || a.line - b.line);
+    row.forEach((n, i) => {
+      n.x = colX0 + (row.length === 1 ? colW / 2 : (i / (row.length - 1)) * colW);
+      n.y = H0 - 30 - (f / Math.max(1, maxFloor)) * (H0 - 70);
+    });
+  }
+});
+
+// ---------- header ----------
+const thms = nodes.filter(n => n.kind === "theorem").length;
+const heads = nodes.filter(n => n.headline);
+document.getElementById("stats").innerHTML = [
+  [nodes.length, "declarations"], [thms, "theorems"], [heads.length, "headline results"],
+  [maxFloor, "floors, ground to top"], [GRAPH.modules.length, "files"],
+].map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+
+const headTitle = n => {
+  const m = n.doc.match(/^\s*\*\*(.+?)\*\*/);
+  return m ? m[1].replace(/\.$/, "") : short(n.name);
+};
+const headRest = n => n.doc.replace(/^\s*\*\*(.+?)\*\*\s*/, "").split(/\n\n/)[0];
+
+const LIMIT = 14;
+document.getElementById("parts").innerHTML = partKeys.map(pk => {
+  const P = PARTS.find(p => p.key === pk) || { title: pk, sub: "", color: "--other" };
+  const all = heads.filter(n => n.part === pk);
+  const keep = new Set([...all].sort((a, b) => b.depth - a.depth).slice(0, LIMIT).map(n => n.name));
+  const hs = all.filter(n => keep.has(n.name)).sort((a, b) =>
+    moduleOrder.indexOf(a.module) - moduleOrder.indexOf(b.module) || a.line - b.line).concat(all.filter(n => !keep.has(n.name)));
+  const count = nodes.filter(n => n.part === pk).length;
+  return `<div class="panel part" style="--c:var(${P.color})">
+    <h2>${P.title} <small>${count} declarations</small></h2>
+    <p class="lede" style="font-size:0.9rem">${P.sub}</p>
+    <ul class="milestones">${hs.slice(0, LIMIT).map(n => `<li><button type="button" data-name="${n.name}">
+      <span class="t">${headTitle(n)}</span><span class="s">${md(headRest(n).length > 150 ? headRest(n).slice(0, 150).replace(/\s\S*$/, "") + " …" : headRest(n))}</span></button></li>`).join("") || `<li class="s" style="color:var(--muted)">In progress</li>`}</ul>
+    ${hs.length > LIMIT ? `<p class="s" style="color:var(--muted);font-size:0.82rem">+ ${hs.length - LIMIT} more headline results, all on the map</p>` : ""}
+  </div>`;
+}).join("");
+document.querySelectorAll(".milestones button").forEach(b => b.addEventListener("click", () => {
+  select(b.dataset.name, true);
+  document.getElementById("wrap").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+}));
+
+document.getElementById("legend").innerHTML = partKeys.map(pk => {
+  const P = PARTS.find(p => p.key === pk) || { title: pk, color: "--other" };
+  return `<span><i style="background:var(${P.color})"></i>${P.title}</span>`;
+}).join("") + `<span><i style="background:var(--hi)"></i>selected and everything it rests on</span><span>larger dot = headline result</span>`;
+
+document.getElementById("names").innerHTML = nodes.map(n => `<option value="${short(n.name)}">`).join("");
+
+function escapeHtml(s) { return s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+function md(s) { return escapeHtml(s).replace(/`([^`]+)`/g, "<code>$1</code>").replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>"); }
+
+// ---------- map rendering ----------
+const canvas = document.getElementById("map"), wrap = document.getElementById("wrap"), tip = document.getElementById("tip");
+let view = { s: 1, x: 0, y: 0 }, selected = null, lit = null;
+function fit() {
+  const r = wrap.getBoundingClientRect();
+  view.s = Math.min(r.width / W0, r.height / H0); view.x = (r.width - W0 * view.s) / 2; view.y = (r.height - H0 * view.s) / 2;
+}
+function draw() {
+  const r = wrap.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+  canvas.width = r.width * dpr; canvas.height = r.height * dpr;
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr * view.s, 0, 0, dpr * view.s, dpr * view.x, dpr * view.y);
+  const line = css("--line"), hi = css("--hi"), ink = css("--ink"), muted = css("--muted");
+  // floor guides
+  ctx.lineWidth = 1 / view.s; ctx.strokeStyle = line;
+  ctx.beginPath(); ctx.moveTo(0, H0 - 22); ctx.lineTo(W0, H0 - 22); ctx.stroke();
+  // part labels
+  ctx.fillStyle = muted; ctx.font = `600 ${12 / Math.max(view.s, 0.6)}px ${css("--font-body")}`; ctx.textAlign = "center";
+  partKeys.forEach((pk, pi) => {
+    const P = PARTS.find(p => p.key === pk) || { title: pk };
+    ctx.fillText(P.title, (pi + 0.5) * W0 / partKeys.length, H0 - 6);
+  });
+  // edges
+  ctx.globalAlpha = lit ? 0.06 : 0.12; ctx.strokeStyle = muted; ctx.lineWidth = 0.6 / view.s;
+  ctx.beginPath();
+  for (const n of nodes) for (const d of n.deps) { const m = byName.get(d); ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y); }
+  ctx.stroke();
+  if (lit) {
+    ctx.globalAlpha = 0.55; ctx.strokeStyle = hi; ctx.lineWidth = 1 / view.s; ctx.beginPath();
+    for (const name of lit) { const n = byName.get(name); for (const d of n.deps) if (lit.has(d)) { const m = byName.get(d); ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y); } }
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+  // nodes
+  for (const n of nodes) {
+    const rad = (n.headline ? 5 : 2.4) / Math.sqrt(view.s);
+    ctx.globalAlpha = lit && !lit.has(n.name) ? 0.18 : 1;
+    ctx.fillStyle = lit && lit.has(n.name) && n.name !== selected ? hi : colorOf(n);
+    ctx.beginPath(); ctx.arc(n.x, n.y, rad, 0, Math.PI * 2); ctx.fill();
+    if (n.name === selected) { ctx.strokeStyle = ink; ctx.lineWidth = 2 / view.s; ctx.stroke(); }
+  }
+  // headline labels
+  ctx.globalAlpha = 1; ctx.fillStyle = ink; ctx.textAlign = "left";
+  ctx.font = `500 ${11 / view.s}px ${css("--font-body")}`;
+  const boxes = [];
+  const order = [...heads].sort((a, b) => (b.name === selected) - (a.name === selected) || b.depth - a.depth);
+  for (const n of order) {
+    if (lit && !lit.has(n.name)) continue;
+    const label = headTitle(n), w = ctx.measureText(label).width, h = 12 / view.s;
+    const colR = (partKeys.indexOf(n.part) + 1) * W0 / partKeys.length;
+    const bx = n.x + 7 / view.s + w > colR ? n.x - 7 / view.s - w : n.x + 7 / view.s, by = n.y - h / 2;
+    if (boxes.some(b => bx < b[0] + b[2] && b[0] < bx + w && by < b[1] + b[3] && b[1] < by + h)) continue;
+    boxes.push([bx, by, w, h]);
+    ctx.fillText(label, bx, n.y + 3.5 / view.s);
+  }
+}
+function toWorld(px, py) { return [(px - view.x) / view.s, (py - view.y) / view.s]; }
+function nearest(px, py) {
+  const [wx, wy] = toWorld(px, py); let best = null, bd = (10 / view.s) ** 2;
+  for (const n of nodes) { const d = (n.x - wx) ** 2 + (n.y - wy) ** 2; if (d < bd) { bd = d; best = n; } }
+  return best;
+}
+let drag = null;
+canvas.addEventListener("pointerdown", e => { drag = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y, moved: false }; canvas.setPointerCapture(e.pointerId); });
+canvas.addEventListener("pointermove", e => {
+  const r = canvas.getBoundingClientRect();
+  if (drag) {
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (Math.abs(dx) + Math.abs(dy) > 3) drag.moved = true;
+    view.x = drag.vx + dx; view.y = drag.vy + dy; draw(); return;
+  }
+  const n = nearest(e.clientX - r.left, e.clientY - r.top);
+  if (n) { tip.style.display = "block"; tip.textContent = short(n.name); tip.style.left = (e.clientX - r.left + 12) + "px"; tip.style.top = (e.clientY - r.top + 12) + "px"; }
+  else tip.style.display = "none";
+});
+canvas.addEventListener("pointerup", e => {
+  const r = canvas.getBoundingClientRect();
+  if (drag && !drag.moved) { const n = nearest(e.clientX - r.left, e.clientY - r.top); if (n) select(n.name); else { selected = null; lit = null; renderInspector(); draw(); } }
+  drag = null;
+});
+canvas.addEventListener("wheel", e => {
+  e.preventDefault();
+  const r = canvas.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top;
+  const k = Math.exp(-e.deltaY * 0.0015), [wx, wy] = toWorld(px, py);
+  view.s = Math.min(12, Math.max(0.3, view.s * k)); view.x = px - wx * view.s; view.y = py - wy * view.s; draw();
+}, { passive: false });
+document.getElementById("reset").addEventListener("click", () => { fit(); selected = null; lit = null; renderInspector(); draw(); });
+document.getElementById("search").addEventListener("change", e => {
+  const q = e.target.value.trim().toLowerCase(); if (!q) return;
+  const n = nodes.find(n => short(n.name).toLowerCase() === q) || nodes.find(n => n.name.toLowerCase().includes(q) || n.doc.toLowerCase().includes(q));
+  if (n) select(n.name, true);
+});
+window.addEventListener("resize", () => { fit(); draw(); });
+
+function select(name, center) {
+  selected = name; lit = ancestors(name);
+  if (center) { const n = byName.get(name), r = wrap.getBoundingClientRect(); view.s = Math.max(view.s, 1.6); view.x = r.width / 2 - n.x * view.s; view.y = r.height / 2 - n.y * view.s; }
+  renderInspector(); draw();
+}
+function renderInspector() {
+  const el = document.getElementById("inspector");
+  if (!selected) {
+    const top = [...heads].sort((a, b) => b.depth - a.depth).slice(0, 8);
+    el.innerHTML = `<div class="kind">Deepest results</div>
+      <p class="doc">Number of declarations each headline result rests on, all the way down.</p>
+      <div class="chips" style="display:grid;gap:6px">${top.map(n => `<button type="button" class="chip" data-name="${n.name}" style="text-align:left">${headTitle(n)} · ${n.depth}</button>`).join("")}</div>`;
+  } else {
+    const n = byName.get(selected);
+    const chips = arr => arr.slice(0, 40).map(d => `<button type="button" class="chip" data-name="${d}">${short(d)}</button>`).join("") + (arr.length > 40 ? ` <span class="mono">+${arr.length - 40}</span>` : "");
+    el.innerHTML = `<div class="kind">${n.kind} · floor ${n.floor} · ${short(n.module)}${n.line ? ":" + n.line : ""}</div>
+      <h3>${n.headline ? headTitle(n) : short(n.name)}</h3>
+      ${n.headline ? `<div class="mono" style="color:var(--muted)">${short(n.name)}</div>` : ""}
+      ${n.doc ? `<p class="doc">${md(n.headline ? n.doc.replace(/^\s*\*\*(.+?)\*\*\s*/, "") : n.doc)}</p>` : ""}
+      <pre>${escapeHtml(shortType(n.type))}</pre>
+      <div class="kind">Axioms used: ${n.axioms && n.axioms.length ? n.axioms.map(a => a.replace("Classical.choice", "choice").replace("Quot.sound", "quotients").replace("propext", "prop. extensionality")).join(", ") : "none"}</div>
+      <div class="kind">Rests on ${lit.size - 1} declarations in total</div>
+      <div class="kind">Uses directly (${n.deps.length})</div><div class="chips">${chips(n.deps)}</div>
+      <div class="kind">Used by (${n.users.length})</div><div class="chips">${chips(n.users)}</div>
+      ${REPO && !REPO.startsWith("/*") && n.line ? `<a class="mono" href="${REPO}/blob/main/${n.module.replace(/\./g, "/")}.lean#L${n.line}">source ↗</a>` : ""}`;
+  }
+  el.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => select(c.dataset.name, true)));
+}
+
+fit(); draw(); renderInspector();
+if (REPO && !REPO.startsWith("/*")) document.getElementById("repo").innerHTML = `Source: <a href="${REPO}">${REPO.replace("https://", "")}</a>`;
+
+// ---------- demos ----------
+const DEMOS = [
+  { id: "ordinals", label: "Von Neumann numbers", part: "Sets", render: demoOrdinals },
+  { id: "cantor", label: "Cantor's diagonal", part: "Sets", render: demoCantor },
+  { id: "integers", label: "Integers as pairs", part: "Numbers", render: demoIntegers },
+  { id: "rationals", label: "Rationals as rays", part: "Numbers", render: demoRationals },
+  { id: "reals", label: "√2 as a Cauchy sequence", part: "Numbers", render: demoReals },
+  { id: "truth", label: "Truth tables", part: "Logic", render: demoTruth },
+];
+const tabs = document.getElementById("tabs"), area = document.getElementById("demo-area");
+tabs.innerHTML = DEMOS.map(d => `<button type="button" role="tab" data-id="${d.id}" aria-selected="false">${d.label}</button>`).join("");
+tabs.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { location.hash = b.dataset.id; }));
+function showDemo(id) {
+  const d = DEMOS.find(x => x.id === id) || DEMOS[0];
+  tabs.querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.id === d.id));
+  area.innerHTML = ""; d.render(area);
+}
+window.addEventListener("hashchange", () => showDemo(location.hash.slice(1)));
+showDemo(location.hash.slice(1));
+
+function setupCanvas(cv) {
+  const r = cv.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+  cv.width = r.width * dpr; cv.height = r.height * dpr;
+  const ctx = cv.getContext("2d"); ctx.scale(dpr, dpr); return [ctx, r.width, r.height];
+}
+function demoShell(el, sideHtml) {
+  el.innerHTML = `<div class="demo"><canvas></canvas><div class="side">${sideHtml}</div></div>`;
+  return [el.querySelector("canvas"), el.querySelector(".side")];
+}
+
+function vnString(n) { if (n === 0) return "∅"; const parts = []; for (let i = 0; i < n; i++) parts.push(vnString(i)); return "{" + parts.join(", ") + "}"; }
+function demoOrdinals(el) {
+  const [cv, side] = demoShell(el, `
+    <label for="vn-n">n = <b id="vn-val">3</b><input type="range" id="vn-n" min="0" max="5" value="3"></label>
+    <p>Each natural number is the set of all smaller ones: 0 = ∅ and n + 1 = n ∪ {n}. Then <b>m &lt; n</b> means <b>m ∈ n</b>, and n has exactly n elements.</p>
+    <pre class="mono" id="vn-str" style="white-space:pre-wrap;word-break:break-all;margin:0;font-size:0.78rem"></pre>`);
+  const draw = () => {
+    const n = +side.querySelector("#vn-n").value; side.querySelector("#vn-val").textContent = n;
+    const s = vnString(n); side.querySelector("#vn-str").textContent = s.length > 400 ? s.slice(0, 400) + " …" : s;
+    const [ctx, W, H] = setupCanvas(cv); ctx.clearRect(0, 0, W, H);
+    const colors = [css("--sets"), css("--numbers"), css("--logic"), css("--hi"), css("--muted")];
+    function box(k, x, y, w, h, depth) {
+      ctx.strokeStyle = colors[depth % colors.length]; ctx.lineWidth = 1.5;
+      ctx.strokeRect(x, y, w, h);
+      ctx.fillStyle = css("--ink"); ctx.font = `600 ${Math.max(9, Math.min(14, h / 5))}px ${css("--font-mono")}`;
+      ctx.fillText(k === 0 ? "∅" : String(k), x + 4, y + Math.max(11, Math.min(16, h / 4.5)));
+      if (k === 0 || w < 10 || h < 18) return;
+      const pad = Math.max(3, Math.min(8, w / 40)), top = Math.max(14, Math.min(20, h / 4));
+      const cw = (w - pad * (k + 1)) / k;
+      for (let i = 0; i < k; i++) box(i, x + pad + i * (cw + pad), y + top, cw, h - top - pad, depth + 1);
+    }
+    box(n, 10, 10, W - 20, H - 20, 0);
+  };
+  side.querySelector("#vn-n").addEventListener("input", draw); draw();
+}
+
+function demoCantor(el) {
+  const N = 8;
+  const [cv, side] = demoShell(el, `
+    <p>Pick any map f from {0,…,7} to its subsets (rows). The diagonal set D = { i : i ∉ f(i) } flips each diagonal cell, so it differs from every row f(i) at position i. No f hits D: there are strictly more subsets than elements.</p>
+    <button type="button" class="btn" id="cantor-shuffle">New random f</button>
+    <p class="mono" id="cantor-d"></p>`);
+  let M;
+  const shuffle = () => { M = Array.from({ length: N }, () => Array.from({ length: N }, () => Math.random() < 0.5)); draw(); };
+  const draw = () => {
+    const [ctx, W, H] = setupCanvas(cv); ctx.clearRect(0, 0, W, H);
+    const cell = Math.min((W - 120) / N, (H - 60) / (N + 1.6)), x0 = 70, y0 = 24;
+    ctx.font = `500 12px ${css("--font-mono")}`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    for (let j = 0; j < N; j++) { ctx.fillStyle = css("--muted"); ctx.fillText(j, x0 + j * cell + cell / 2, y0 - 10); }
+    for (let i = 0; i < N; i++) {
+      ctx.fillStyle = css("--muted"); ctx.textAlign = "right"; ctx.fillText(`f(${i})`, x0 - 8, y0 + i * cell + cell / 2); ctx.textAlign = "center";
+      for (let j = 0; j < N; j++) {
+        ctx.fillStyle = M[i][j] ? css("--sets") : css("--surface");
+        ctx.fillRect(x0 + j * cell + 1, y0 + i * cell + 1, cell - 2, cell - 2);
+        if (i === j) { ctx.strokeStyle = css("--hi"); ctx.lineWidth = 2.5; ctx.strokeRect(x0 + j * cell + 2, y0 + i * cell + 2, cell - 4, cell - 4); }
+      }
+    }
+    const yD = y0 + N * cell + cell * 0.6;
+    ctx.fillStyle = css("--ink"); ctx.textAlign = "right"; ctx.fillText("D", x0 - 8, yD + cell / 2); ctx.textAlign = "center";
+    for (let j = 0; j < N; j++) {
+      ctx.fillStyle = !M[j][j] ? css("--logic") : css("--surface");
+      ctx.fillRect(x0 + j * cell + 1, yD + 1, cell - 2, cell - 2);
+      ctx.strokeStyle = css("--hi"); ctx.lineWidth = 2.5; ctx.strokeRect(x0 + j * cell + 2, yD + 2, cell - 4, cell - 4);
+    }
+    const D = []; for (let j = 0; j < N; j++) if (!M[j][j]) D.push(j);
+    side.querySelector("#cantor-d").textContent = `D = {${D.join(", ")}}`;
+  };
+  side.querySelector("#cantor-shuffle").addEventListener("click", shuffle); shuffle();
+}
+
+function demoIntegers(el) {
+  const [cv, side] = demoShell(el, `
+    <label for="int-k">integer k = <b id="int-val">−2</b><input type="range" id="int-k" min="-7" max="7" value="-2"></label>
+    <p>An integer is not given in advance. It <em>is</em> the class of all pairs (a, b) of natural numbers with the same difference a − b. The highlighted diagonal is the integer k: every pair on it has a − b = k, and the construction only ever writes this as a = b + k, so no subtraction is needed.</p>
+    <p class="mono" id="int-pairs"></p>`);
+  const draw = () => {
+    const k = +side.querySelector("#int-k").value; side.querySelector("#int-val").textContent = (k < 0 ? "−" : "") + Math.abs(k);
+    const [ctx, W, H] = setupCanvas(cv); ctx.clearRect(0, 0, W, H);
+    const M = 10, step = Math.min((W - 60) / M, (H - 50) / M), x0 = 40, y0 = H - 30;
+    ctx.font = `11px ${css("--font-mono")}`; ctx.textAlign = "center"; ctx.fillStyle = css("--muted");
+    for (let i = 0; i < M; i++) { ctx.fillText(i, x0 + i * step, y0 + 16); ctx.fillText(i, x0 - 16, y0 - i * step + 4); }
+    ctx.fillText("a →", x0 + M * step - 10, y0 + 16); ctx.save(); ctx.translate(x0 - 30, y0 - M * step + 20); ctx.fillText("b", 0, 0); ctx.restore();
+    const pairs = [];
+    for (let a = 0; a < M; a++) for (let b = 0; b < M; b++) {
+      const on = a - b === k; if (on) pairs.push(`(${a},${b})`);
+      ctx.fillStyle = on ? css("--numbers") : css("--line");
+      ctx.beginPath(); ctx.arc(x0 + a * step, y0 - b * step, on ? 5.5 : 3, 0, Math.PI * 2); ctx.fill();
+    }
+    side.querySelector("#int-pairs").textContent = pairs.slice(0, 6).join(" ~ ") + (pairs.length ? " ~ …" : "");
+  };
+  side.querySelector("#int-k").addEventListener("input", draw); draw();
+}
+
+function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; }
+function demoRationals(el) {
+  const [cv, side] = demoShell(el, `
+    <label for="q-p">numerator p = <b id="q-pv">2</b><input type="range" id="q-p" min="0" max="9" value="2"></label>
+    <label for="q-q">denominator q = <b id="q-qv">3</b><input type="range" id="q-q" min="1" max="9" value="3"></label>
+    <p>A rational number is the class of pairs (p, q) with p·q′ = p′·q: all lattice points on one ray from the origin. The ray through (q, p) is the rational p/q, and its first lattice point is the fraction in lowest terms.</p>
+    <p class="mono" id="q-out"></p>`);
+  const draw = () => {
+    const p = +side.querySelector("#q-p").value, q = +side.querySelector("#q-q").value;
+    side.querySelector("#q-pv").textContent = p; side.querySelector("#q-qv").textContent = q;
+    const [ctx, W, H] = setupCanvas(cv); ctx.clearRect(0, 0, W, H);
+    const M = 10, step = Math.min((W - 60) / M, (H - 50) / M), x0 = 40, y0 = H - 30;
+    ctx.font = `11px ${css("--font-mono")}`; ctx.textAlign = "center"; ctx.fillStyle = css("--muted");
+    for (let i = 0; i < M; i++) { ctx.fillText(i, x0 + i * step, y0 + 16); ctx.fillText(i, x0 - 16, y0 - i * step + 4); }
+    ctx.fillText("q →", x0 + (M - 1) * step, y0 + 16);
+    ctx.strokeStyle = css("--numbers"); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(x0, y0);
+    const t = Math.min((M - 1) / q, p ? (M - 1) / p : 99); ctx.lineTo(x0 + q * t * step, y0 - p * t * step); ctx.stroke();
+    const same = [];
+    for (let a = 1; a < M; a++) for (let b = 0; b < M; b++) {
+      const on = b * q === p * a; if (on) same.push(`${b}/${a}`);
+      ctx.fillStyle = on ? css("--numbers") : css("--line");
+      ctx.beginPath(); ctx.arc(x0 + a * step, y0 - b * step, on ? 5.5 : 3, 0, Math.PI * 2); ctx.fill();
+    }
+    const g = gcd(p, q) || 1;
+    side.querySelector("#q-out").textContent = `${same.join(" = ")}   (lowest terms ${p / g}/${q / g})`;
+  };
+  side.querySelectorAll("input").forEach(i => i.addEventListener("input", draw)); draw();
+}
+
+function demoReals(el) {
+  const [cv, side] = demoShell(el, `
+    <label for="r-eps"><span>ε = 10<sup id="r-ev">−2</sup></span><input type="range" id="r-eps" min="1" max="8" value="2"></label>
+    <p>No rational squares to 2, yet the rationals x₀ = 1, x<sub>n+1</sub> = (x<sub>n</sub> + 2/x<sub>n</sub>)/2 crowd together: after some N, all terms lie within ε of each other (a <b>Cauchy sequence</b>). A real number <em>is</em> such a sequence, up to sequences whose difference tends to 0. This one is √2.</p>
+    <div class="mono" id="r-list" style="display:grid;gap:3px;font-size:0.76rem;word-break:break-all"></div>`);
+  // exact rationals with BigInt
+  const terms = [[1n, 1n]];
+  for (let i = 0; i < 6; i++) { const [p, q] = terms[terms.length - 1]; terms.push([p * p + 2n * q * q, 2n * p * q]); }
+  const val = ([p, q]) => Number(p * 10n ** 15n / q) / 1e15;
+  const draw = () => {
+    const e = +side.querySelector("#r-eps").value; side.querySelector("#r-ev").textContent = "−" + e;
+    const eps = 10 ** -e;
+    let N = terms.findIndex((t, i) => terms.slice(i).every(u => Math.abs(val(u) - val(t)) < eps));
+    if (N < 0) N = terms.length - 1;
+    const [ctx, W, H] = setupCanvas(cv); ctx.clearRect(0, 0, W, H);
+    const lo = 1.38, hi = 1.52, X = i => 50 + i * (W - 90) / (terms.length - 1), Y = v => H - 30 - (v - lo) / (hi - lo) * (H - 60);
+    const s2 = Math.SQRT2;
+    ctx.fillStyle = css("--hi"); ctx.globalAlpha = 0.25;
+    const bandTop = Y(Math.min(hi, s2 + eps)), bandBot = Y(Math.max(lo, s2 - eps));
+    ctx.fillRect(X(N) - 10, bandTop, W - X(N) - 20, Math.max(2, bandBot - bandTop)); ctx.globalAlpha = 1;
+    ctx.strokeStyle = css("--muted"); ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(40, Y(s2)); ctx.lineTo(W - 20, Y(s2)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = css("--muted"); ctx.font = `11px ${css("--font-mono")}`; ctx.textAlign = "left"; ctx.fillText("√2 (not a rational)", 44, Y(s2) - 6);
+    [1.4, 1.45, 1.5].forEach(v => { ctx.fillText(v.toFixed(2), 4, Y(v) + 4); });
+    ctx.strokeStyle = css("--numbers"); ctx.lineWidth = 1.5; ctx.beginPath();
+    terms.forEach((t, i) => { const y = Y(Math.min(hi, Math.max(lo, val(t)))); i ? ctx.lineTo(X(i), y) : ctx.moveTo(X(i), y); }); ctx.stroke();
+    terms.forEach((t, i) => { ctx.fillStyle = i >= N ? css("--numbers") : css("--muted"); ctx.beginPath(); ctx.arc(X(i), Y(Math.min(hi, Math.max(lo, val(t)))), 4.5, 0, Math.PI * 2); ctx.fill(); ctx.fillText("x" + i, X(i) - 6, H - 10); });
+    ctx.fillStyle = css("--ink"); ctx.fillText(`N = ${N}`, X(N) - 8, bandTop - 8);
+    side.querySelector("#r-list").innerHTML = terms.slice(0, 5).map(([p, q], i) => {
+      const ps = p.toString(), qs = q.toString();
+      return `<span>x${i} = ${ps.length > 26 ? ps.slice(0, 24) + "…" : ps} / ${qs.length > 26 ? qs.slice(0, 24) + "…" : qs}</span>`;
+    }).join("");
+  };
+  side.querySelector("#r-eps").addEventListener("input", draw); draw();
+}
+
+function demoTruth(el) {
+  el.innerHTML = `<div class="demo" style="grid-template-columns:minmax(0,1fr) 320px"><div class="tt-wrap" id="tt"></div><div class="side">
+    <label for="tt-in">formula (letters, ¬ ~ !, ∧ &amp;, ∨ |, → -&gt;, ↔ &lt;-&gt;)</label>
+    <input type="text" id="tt-in" value="((p -> q) & (q -> r)) -> (p -> r)">
+    <p id="tt-verdict"></p>
+    <p>The Lean development proves this procedure correct: a formula is a <b>tautology</b> exactly when every row is true. Completeness then says every tautology also has a formal proof, so the table and the proof system agree.</p>
+  </div></div>`;
+  const input = el.querySelector("#tt-in");
+  const run = () => {
+    let src = input.value.replace(/<->|↔/g, "≡").replace(/->|→/g, ">").replace(/[&∧]/g, "&").replace(/[|∨]/g, "|").replace(/[~!¬]/g, "~");
+    let i = 0; const vars = new Set();
+    const peek = () => { while (src[i] === " ") i++; return src[i]; };
+    function atom() { const c = peek(); if (c === "~") { i++; const a = atom(); return v => !a(v); } if (c === "(") { i++; const e = iff(); if (peek() !== ")") throw "missing )"; i++; return e; }
+      if (/[a-z]/i.test(c || "")) { i++; vars.add(c); return v => v[c]; } throw "unexpected " + (c || "end"); }
+    function and() { let a = atom(); while (peek() === "&") { i++; const b = atom(), x = a; a = v => x(v) && b(v); } return a; }
+    function or() { let a = and(); while (peek() === "|") { i++; const b = and(), x = a; a = v => x(v) || b(v); } return a; }
+    function imp() { const a = or(); if (peek() === ">") { i++; const b = imp(); return v => !a(v) || b(v); } return a; }
+    function iff() { let a = imp(); while (peek() === "≡") { i++; const b = imp(), x = a; a = v => x(v) === b(v); } return a; }
+    try {
+      const f = iff(); if (peek() !== undefined) throw "unexpected " + peek();
+      const vs = [...vars].sort(); if (vs.length > 6) throw "at most 6 letters";
+      let rows = "", all = true, some = false;
+      for (let m = 0; m < 1 << vs.length; m++) {
+        const v = {}; vs.forEach((x, k) => v[x] = !!(m >> (vs.length - 1 - k) & 1));
+        const r = f(v); all = all && r; some = some || r;
+        rows += `<tr>${vs.map(x => `<td class="${v[x] ? "T" : "F"}">${v[x] ? "T" : "F"}</td>`).join("")}<td class="${r ? "T" : "F"}"><b>${r ? "T" : "F"}</b></td></tr>`;
+      }
+      el.querySelector("#tt").innerHTML = `<table class="tt"><tr>${vs.map(x => `<th>${x}</th>`).join("")}<th>formula</th></tr>${rows}</table>`;
+      el.querySelector("#tt-verdict").innerHTML = all ? "<b>Tautology</b>: true in every row." : some ? "<b>Satisfiable</b> but not a tautology." : "<b>Contradiction</b>: false in every row.";
+    } catch (err) { el.querySelector("#tt-verdict").textContent = "Cannot read the formula: " + err; }
+  };
+  input.addEventListener("input", run); run();
+}
+</script>
+</body>
+</html>

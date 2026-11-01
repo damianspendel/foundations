@@ -1,0 +1,36 @@
+import Foundations.Logic.PropSyntax
+import Foundations.Logic.PropSemantics
+import Foundations.Logic.NaturalDeduction
+import Foundations.Logic.Hilbert
+import Foundations.Logic.PropCompleteness
+import Foundations.Logic.Kalmar
+import Foundations.Logic.FOSyntax
+import Foundations.Logic.FOSemantics
+import Foundations.Logic.FOSoundness
+import Foundations.Logic.PeanoArithmetic
+import Foundations.Logic.FOSubstitution
+import Foundations.Logic.FOProofTheory
+import Foundations.Logic.FOEnumeration
+import Foundations.Logic.Henkin
+import Foundations.Logic.TermModel
+import Foundations.Logic.FOCompleteness
+import Foundations.Logic.NonstandardArithmetic
+import Foundations.Logic.Computability
+import Foundations.Logic.GodelNumbering
+import Foundations.Logic.Undecidability
+import Foundations.Logic.RecursionTheorem
+
+/-!
+# Part III: Logic
+
+Logic as a mathematical object: syntax as inductive types, semantics as functions,
+proofs as inductively defined derivability. Propositional logic (truth tables,
+natural deduction, Hilbert systems, soundness, completeness, compactness), then
+first-order logic with de Bruijn indices (substitution lemma, natural deduction,
+soundness), Peano arithmetic with its standard model, and finally Gödel's
+completeness theorem via Henkin's term-model construction, with compactness,
+downward Löwenheim–Skolem and a non-standard model of arithmetic as corollaries.
+The last files turn to the limits of formal systems: partial recursive functions,
+Gödel numbering, the undecidability of halting, Rice's theorem, Kleene's recursion
+theorem, and an abstract (computational) form of Gödel's incompleteness theorem.
+-/

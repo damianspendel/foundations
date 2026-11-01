@@ -1,0 +1,11 @@
+name = "Foundations"
+version = "0.1.0"
+defaultTargets = ["Foundations"]
+
+[[lean_lib]]
+name = "Foundations"
+
+[[lean_exe]]
+name = "extract"
+root = "Extract"
+supportInterpreter = true
