@@ -23,3 +23,4 @@ lake build extract >/dev/null
 lake exe extract Foundations Foundations > site/graph.json
 python3 scripts/check_axioms.py site/graph.json
 python3 scripts/build_site.py site/graph.json https://github.com/damianspendel/foundations
+python3 scripts/module_graph.py site/graph.json && python3 scripts/refresh_buildup.py site/graph.json
