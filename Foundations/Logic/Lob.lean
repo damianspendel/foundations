@@ -26,6 +26,9 @@ provability formula of PA (`provPA`, "the PA-proof-search program halts on `x`")
 correctness of the proof checker and Σ₁-completeness itself — formal derivations by
 induction about our arithmetisation, which the semantic methods of these files do not
 supply. Consequently `godel_second_PA` is stated *conditionally* on (D2) and (D3).
+(The files `PAModels` … `DerivabilityConditions` remove the condition: they verify
+(D1)–(D3) for a provability formula `provH` whose shape is under our control, by
+reasoning inside arbitrary models of PA, and prove `godel_second_PA_unconditional`.)
 -/
 
 set_option linter.unusedSimpArgs false

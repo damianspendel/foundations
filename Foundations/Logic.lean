@@ -36,6 +36,12 @@ import Foundations.Logic.Representability
 import Foundations.Logic.DiagonalLemma
 import Foundations.Logic.Rosser
 import Foundations.Logic.Lob
+import Foundations.Logic.PAModels
+import Foundations.Logic.PASequences
+import Foundations.Logic.PACompleteness
+import Foundations.Logic.UniformDefinability
+import Foundations.Logic.HilbertProvability
+import Foundations.Logic.DerivabilityConditions
 import Foundations.Logic.Ordinals
 import Foundations.Logic.Goodstein
 
@@ -62,7 +68,11 @@ computable functions (via Rosser's witness comparison), the diagonal lemma,
 Tarski's undefinability of truth, and the Gödel–Rosser theorem: every consistent,
 computably enumerable extension of `Q` is incomplete. Löb's theorem and Gödel's
 second incompleteness theorem are derived from the Hilbert–Bernays–Löb derivability
-conditions (taken as hypotheses; (D1) is proved for PA). Finally, ordinals below ε₀
+conditions; then, reasoning inside arbitrary (possibly non-standard) models of PA —
+internal arithmetic, induction for definable properties, β-coding and concatenation
+of sequences of non-standard length — and using completeness, the conditions (D1)–(D3)
+are verified for a Hilbert-style provability formula of PA, which yields Löb's theorem
+and Gödel's second incompleteness theorem for PA unconditionally. Finally, ordinals below ε₀
 in Cantor normal form are shown to be well-ordered, which yields Goodstein's theorem —
 a true arithmetical statement unprovable in PA (Kirby–Paris).
 -/
