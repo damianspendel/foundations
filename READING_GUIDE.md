@@ -1,6 +1,6 @@
 # Reading guide: where to start
 
-About 6,200 checked definitions and theorems is too many to browse, so start here. The list
+About 6,300 checked definitions and theorems is too many to browse, so start here. The list
 comes from an independent project-wide audit. Each entry gives the theorem name, the file, and
 its meaning in plain words. On the site, type the name into the map's search box to see its
 statement, its proof and everything it rests on.
@@ -22,11 +22,12 @@ statement, its proof and everything it rests on.
 | 13 | `parallel_postulate_independent` | `Geometry/Independence.lean` | Euclid's parallel postulate does not follow from the other axioms: the Klein model satisfies them but not Euclid's axiom. |
 | 14 | `zorn`, `hartogs_theorem`, `schroeder_bernstein` | `Sets/Choice.lean`, `Sets/Hartogs.lean`, `Sets/SchroederBernstein.lean` | The core of set theory and cardinal arithmetic. |
 | 15 | `basel`, `stirling`, `vitali` | `Topology/Basel.lean`, `Topology/Stirling.lean`, `Topology/Vitali.lean` | Σ 1/n² = π²/6; n! ≈ √(2πn)(n/e)ⁿ; there is no way to measure the length of *every* subset of [0, 1). |
+| 16 | `prime_number_theorem`, `dirichlet` | `NumberTheory/PNTTheorem.lean`, `NumberTheory/Dirichlet.lean` | The number of primes up to N is asymptotically N / log N (proved by the elementary Erdős–Selberg route), and every progression a, a+q, a+2q, … with gcd(a, q) = 1 contains infinitely many primes. |
 
 Also worth a look: `El_summary` (`Bridges/ETCSvsZF.lean`: ZF sets sit fully and faithfully inside
 the structural, categorical world), `reals_in_sets` (`Bridges/RealsInSets.lean`: ℝ built from pure
 sets), `yoneda`, `lawvere_fixed_point` (one diagonal argument behind Cantor, Russell and Gödel),
-`bertrand`, `dirichlet` (`NumberTheory/Dirichlet.lean`: infinitely many primes ≡ a mod q whenever gcd(a, q) = 1), `selberg_symmetry` (the last step before the prime number theorem, which is not proved here), `A5_simple`, `sylow_first`, `dominated_convergence`, `pi1_circle_iso_int` and `brouwer_disc` (π₁(S¹) ≅ ℤ and Brouwer's fixed-point theorem in 2D).
+`bertrand`, `dirichlet` (`NumberTheory/Dirichlet.lean`: infinitely many primes ≡ a mod q whenever gcd(a, q) = 1), `A5_simple`, `sylow_first`, `dominated_convergence`, `pi1_circle_iso_int` and `brouwer_disc` (π₁(S¹) ≅ ℤ and Brouwer's fixed-point theorem in 2D).
 
 ## Honest caveats the audit raised
 

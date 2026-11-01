@@ -16,24 +16,15 @@ from the `ψ`-form of the previous file. Two small steps are needed:
 * `0 ≤ ψ(N) log N − Σ_{n ≤ N} Λ(n) log n ≤ N log 1024` — by Abel summation the difference is
   `Σ_{j < N} ψ(j) (log(j+1) − log j)`, and each term is at most `j log 1024 · (1/j)`.
 
-This is where our formalisation stops (see the closing remarks below).
-
-## What remains for the prime number theorem
+## From here to the prime number theorem
 
 The prime number theorem `ψ(N)/N → 1` follows from Selberg's formula by the Erdős–Selberg
-*tauberian* argument, which is not formalised here. In outline (following e.g. Levinson's
-"motivated account", 1969): put `R(x) = ψ(x) − x`. Selberg's formula and Mertens' theorem give
-`R(x) log x = −Σ_{n ≤ x} Λ(n) R(x/n) + O(x)`; iterating once and passing from sums to integrals
-yields `|R(x)| log² x ≤ 2 ∫₁ˣ |R(x/t)| log t dt + O(x log x)`. One then shows that the averages
-`(1/log x) ∫ |R(t)|/t² dt` cannot stay above a positive level `α`: Selberg's formula forces `R`
-to change sign in every long multiplicative interval and limits how fast `R(t)/t` can vary, so
-`|R|` is markedly below `α t` on a positive proportion of each such interval, which feeds back
-into the integral inequality to lower `α` to some `α' < α`. Iterating gives `R(x) = o(x)`. In
-Lean this would require, beyond the present files, the integral of `|R(t)|/t²` (a step function
-against a continuous weight), estimates such as `Σ_{n ≤ x} Λ(n)/n · log n = ½ log² x + O(log x)`,
-and the limsup/liminf bookkeeping of the iteration — a development of several thousand lines
-(the Isabelle formalisation of this proof by Avigad, Donnelly, Gray and Raff, 2007, ran to about
-30 000 lines).
+*tauberian* argument (in outline after Levinson's "motivated account", 1969). It is formalised in
+the files that follow, using finite sums in place of integrals: `PNTRemainder` (Selberg's formula
+for `R(N) = ψ(N) − N`), `PNTIterated` (`|R(N)| log² N ≤ Σ a(k) |R(N/k)| + O(N log N)`),
+`PNTTauberianA`–`C` (sign changes, averaging, and the improvement lemma), and `PNTTheorem`
+(`prime_number_theorem`). For comparison, the Isabelle formalisation of this proof by Avigad,
+Donnelly, Gray and Raff (2007) ran to about 30 000 lines.
 -/
 
 namespace Foundations.NumberTheory.PNT

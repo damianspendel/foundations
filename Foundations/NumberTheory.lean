@@ -26,6 +26,12 @@ import Foundations.NumberTheory.PNTTatuzawaIseki
 import Foundations.NumberTheory.PNTSelbergEstimates
 import Foundations.NumberTheory.PNTSelberg
 import Foundations.NumberTheory.PNTSelbergForms
+import Foundations.NumberTheory.PNTRemainder
+import Foundations.NumberTheory.PNTIterated
+import Foundations.NumberTheory.PNTTauberianA
+import Foundations.NumberTheory.PNTTauberianB
+import Foundations.NumberTheory.PNTTauberianC
+import Foundations.NumberTheory.PNTTheorem
 
 /-!
 # Part XII: Number theory — the distribution of the primes
@@ -52,13 +58,25 @@ residues of Part IV.
 5. `Chebyshev` — **Chebyshev's bounds**: `⌊m/2⌋ · log 2 ≤ π(m) · log m ≤ m · log 1024` for
    `m ≥ 6`, so `π(m)` is of order `m / log m`.
 
-The **prime number theorem**, `π(x) ∼ x / log x` (Hadamard and de la Vallée Poussin, 1896), is
-**not proved here**. The `PNT*` files (namespace `Foundations.NumberTheory.PNT`) build the
-elementary Erdős–Selberg route up to its last step: the Chebyshev functions θ and ψ, the
-equivalence `PNT ⇔ θ(N)/N → 1 ⇔ ψ(N)/N → 1` (`pnt_iff_theta`, `pnt_iff_psi`), Mertens' theorems,
-the Möbius function, the Tatuzawa–Iseki identity, and **Selberg's symmetry formula** with explicit
-constants (`selberg_symmetry`). The missing piece is the tauberian argument from Selberg's formula
-to `ψ(x) ∼ x` (about 30k lines in the Isabelle formalisation of Avigad et al., 2007). Nor is Fermat's Last Theorem: even its
+The **prime number theorem**, `π(x) ∼ x / log x`, is **proved** here
+(`prime_number_theorem` in `PNTTheorem`, namespace `Foundations.NumberTheory.PNT`), by the
+elementary method of Selberg and Erdős (1948/49) rather than the complex analysis of Hadamard and
+de la Vallée Poussin (1896). The `PNT*` files run as follows:
+* the Chebyshev functions θ and ψ, and the equivalence `PNT ⇔ θ(N)/N → 1 ⇔ ψ(N)/N → 1`
+  (`pnt_iff_theta`, `pnt_iff_psi`);
+* Mertens' theorems, the Möbius function, the Tatuzawa–Iseki identity, Euler's constant and
+  Stirling's formula;
+* **Selberg's symmetry formula** with explicit constants (`selberg_symmetry`,
+  `selberg_symmetry_conv`);
+* the tauberian argument: Selberg's formula for the remainder `R(N) = ψ(N) − N` and its
+  iteration `|R(N)| log² N ≤ Σ a(k) |R(N/k)| + O(N log N)` (`PNTRemainder`, `PNTIterated`);
+  good intervals where `ψ(n)/n − 1` is small, because it changes sign with small steps
+  (`PNTTauberianA`); the averaging machinery (`PNTTauberianB`); and the improvement lemma that
+  lowers any eventual bound on `|ψ(n)/n − 1|` by a fixed amount (`PNTTauberianC`);
+* `PNTTheorem`: iterating that lemma gives `ψ(N)/N → 1`, hence `θ(N)/N → 1` and
+  `π(N) log N / N → 1`.
+
+Fermat's Last Theorem is out of scope: even its
 case `n = 4` (Fermat's infinite descent) is not attempted here, while the full theorem was
 formalised in Lean in 2026 (Anthropic, September 2026: about 13 million lines, built on Mathlib) — far outside the scope of a
 from-scratch development.
