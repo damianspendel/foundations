@@ -1,0 +1,24 @@
+digraph parts {
+rankdir=BT; bgcolor="transparent"; nodesep=0.5; ranksep=0.7;
+node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=13, penwidth=0, margin="0.25,0.12"];
+edge [color="#8a94a3", arrowsize=0.7];
+"Sets" [label=<<b>I · Sets</b><br/><font point-size="10">a model of ZF<br/>358 declarations</font>>, fillcolor="#7b4fb0", fontcolor="white"];
+"Numbers" [label=<<b>II · Numbers</b><br/><font point-size="10">ℕ → ℤ → ℚ → ℝ → ℂ, analysis<br/>938 declarations</font>>, fillcolor="#1f7a6c", fontcolor="white"];
+"Logic" [label=<<b>III · Logic</b><br/><font point-size="10">proofs, models, Gödel<br/>991 declarations</font>>, fillcolor="#b5532c", fontcolor="white"];
+"Algebra" [label=<<b>IV · Algebra</b><br/><font point-size="10">groups, rings, fields<br/>826 declarations</font>>, fillcolor="#2f62b5", fontcolor="white"];
+"Types" [label=<<b>V · Types</b><br/><font point-size="10">λ-calculus, Curry–Howard<br/>342 declarations</font>>, fillcolor="#8a6d1d", fontcolor="white"];
+"Geometry" [label=<<b>VI · Geometry</b><br/><font point-size="10">Euclid, Tarski, Klein<br/>134 declarations</font>>, fillcolor="#a1356f", fontcolor="white"];
+"Categories" [label=<<b>VII · Categories</b><br/><font point-size="10">Yoneda, Lawvere<br/>115 declarations</font>>, fillcolor="#3d7a2a", fontcolor="white"];
+"Topology" [label=<<b>VIII · Topology</b><br/><font point-size="10">compactness, ODEs, Basel<br/>268 declarations</font>>, fillcolor="#6a4c93", fontcolor="white"];
+"Combinatorics" [label=<<b>IX · Combinatorics</b><br/><font point-size="10">Ramsey, Kőnig, Hall<br/>95 declarations</font>>, fillcolor="#b06a00", fontcolor="white"];
+"Probability" [label=<<b>X · Probability</b><br/><font point-size="10">Bayes, large numbers<br/>128 declarations</font>>, fillcolor="#00798c", fontcolor="white"];
+"Algebra" -> "Categories" [penwidth=1.00, tooltip="23 uses of Algebra in Categories"];
+"Numbers" -> "Geometry" [penwidth=3.14, tooltip="3189 uses of Numbers in Geometry"];
+"Numbers" -> "Probability" [penwidth=3.31, tooltip="3662 uses of Numbers in Probability"];
+"Numbers" -> "Topology" [penwidth=4.80, tooltip="9279 uses of Numbers in Topology"];
+"Sets" -> "Numbers" [style=dashed, color="#b8c0cc", penwidth=1.2, label=<<font point-size="9" color="#7d8796">ω ≅ ℕ</font>>];
+"Numbers" -> "Logic" [style=dashed, color="#b8c0cc", penwidth=1.2, label=<<font point-size="9" color="#7d8796">ℕ bridge</font>>];
+"Numbers" -> "Algebra" [style=dashed, color="#b8c0cc", penwidth=1.2, label=<<font point-size="9" color="#7d8796">ℕ, ℤ bridges</font>>];
+"Numbers" -> "Types" [style=dashed, color="#b8c0cc", penwidth=1.2, label=<<font point-size="9" color="#7d8796">ℕ bridge</font>>];
+"Numbers" -> "Combinatorics" [style=dashed, color="#b8c0cc", penwidth=1.2, label=<<font point-size="9" color="#7d8796">ℕ bridge</font>>];
+}
