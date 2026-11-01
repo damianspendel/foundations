@@ -19,6 +19,10 @@ import Foundations.Algebra.FieldExt
 import Foundations.Algebra.Algebraic
 import Foundations.Algebra.Constructible
 import Foundations.Algebra.FiniteField
+import Foundations.Algebra.Symmetric
+import Foundations.Algebra.Alternating
+import Foundations.Algebra.A5
+import Foundations.Algebra.Solvable
 
 /-!
 # Part IV: Algebra
@@ -32,5 +36,7 @@ the division algorithm, the factor theorem and the root bound; Euclidean domains
 unique factorisation (for ℤ and F[x]); the Gaussian integers; Fermat's two-squares
 theorem; vector spaces and dimension, field extensions and the tower law, quadratic and
 cubic extensions, the impossibility of doubling the cube and trisecting the angle; and
-the prime-power order of finite fields.
+the prime-power order of finite fields; the symmetric group and the sign homomorphism, the
+alternating group and its generation by 3-cycles, the simplicity of A₅, and the
+non-solvability of Sₙ for n ≥ 5.
 -/
