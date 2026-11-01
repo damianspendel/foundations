@@ -35,6 +35,9 @@ import Foundations.Logic.BoundedGraphs
 import Foundations.Logic.Representability
 import Foundations.Logic.DiagonalLemma
 import Foundations.Logic.Rosser
+import Foundations.Logic.Lob
+import Foundations.Logic.Ordinals
+import Foundations.Logic.Goodstein
 
 /-!
 # Part III: Logic
@@ -57,5 +60,9 @@ theorem for Peano arithmetic. The final files treat Robinson's arithmetic `Q`:
 Δ₀-absoluteness and Σ₁-completeness, representability of decidable sets and total
 computable functions (via Rosser's witness comparison), the diagonal lemma,
 Tarski's undefinability of truth, and the Gödel–Rosser theorem: every consistent,
-computably enumerable extension of `Q` is incomplete.
+computably enumerable extension of `Q` is incomplete. Löb's theorem and Gödel's
+second incompleteness theorem are derived from the Hilbert–Bernays–Löb derivability
+conditions (taken as hypotheses; (D1) is proved for PA). Finally, ordinals below ε₀
+in Cantor normal form are shown to be well-ordered, which yields Goodstein's theorem —
+a true arithmetical statement unprovable in PA (Kirby–Paris).
 -/
