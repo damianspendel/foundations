@@ -12,7 +12,7 @@ mode, and demos — built from the compiled Lean environment (`site/`).
 
 | Part | Highlights |
 |------|-----------|
-| I · Sets | Aczel's model of ZF inside type theory; all ZF axioms as theorems; Russell; Cantor; ω ≅ ℕ with the Peano axioms; Dedekind's recursion theorem and ω-arithmetic; Schröder–Bernstein; ordinals and Burali-Forti; Zorn's lemma and the well-ordering theorem; transfinite induction |
+| I · Sets | Aczel's model of ZF inside type theory; all ZF axioms as theorems; Russell; Cantor; ω ≅ ℕ with the Peano axioms; Dedekind's recursion theorem and ω-arithmetic; Schröder–Bernstein; ordinals and Burali-Forti; Zorn's lemma and the well-ordering theorem; transfinite induction; comparability of cardinals; κ·κ = κ; infinite ⇔ Dedekind-infinite; Hartogs; Kőnig |
 | II · Numbers | Peano ℕ → ℤ → ℚ → ℝ (Cauchy) as quotients, each bridged to the previous; FTA (existence and uniqueness); √2 irrational; ℝ a complete ordered field; uncountability; categoricity of complete ordered fields; Dedekind cuts ≅ Cauchy reals; Bolzano–Weierstrass, IVT, EVT; ℂ not orderable |
 | III · Logic | Propositional soundness, completeness (Lindenbaum and Kalmár) and compactness; Hilbert ≡ natural deduction; first-order logic with de Bruijn indices; Gödel's completeness theorem (Henkin); compactness; Löwenheim–Skolem; PA and its standard model; a non-standard model of PA; partial recursive functions, halting, Rice, Kleene's recursion theorem |
 | IV · Algebra | (in progress) groups, Lagrange, Cayley, quotients, rings |

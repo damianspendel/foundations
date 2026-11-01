@@ -10,6 +10,11 @@ import Foundations.Sets.OmegaArith
 import Foundations.Sets.Cardinality
 import Foundations.Sets.Choice
 import Foundations.Sets.Transfinite
+import Foundations.Sets.CardinalOrder
+import Foundations.Sets.Infinite
+import Foundations.Sets.CardinalArith
+import Foundations.Sets.Hartogs
+import Foundations.Sets.Koenig
 
 /-!
 # Part I: Sets
@@ -23,4 +28,9 @@ with the Burali-Forti paradox; Dedekind's recursion theorem and set-theoretic
 arithmetic on `ω` (bridged to `Nat`); cardinality of types (ℕ × ℕ ≃ ℕ,
 countable unions, Cantor's diagonal arguments); Zorn's lemma and Zermelo's
 well-ordering theorem; successor/limit ordinals and transfinite induction.
+Then the arithmetic of the infinite: comparability of cardinals (a total
+preorder, with Schröder–Bernstein), the equivalence of "infinite",
+"Dedekind-infinite" and "contains a copy of ℕ", Hessenberg's κ · κ = κ with its
+consequences for sums and products, Hartogs' theorem, the tower
+ℕ < 𝒫(ℕ) < 𝒫(𝒫(ℕ)) < ⋯, and Kőnig's theorem.
 -/
