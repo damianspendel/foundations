@@ -6,3 +6,4 @@ import Foundations.Types
 import Foundations.Geometry
 import Foundations.Categories
 import Foundations.Topology
+import Foundations.Combinatorics

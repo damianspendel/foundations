@@ -1,6 +1,6 @@
 # Foundations of mathematics, from scratch
 
-Sets, numbers, logic, algebra, type theory, geometry, category theory and topology, built in Lean 4 on nothing but the kernel and its three
+Sets, numbers, logic, algebra, type theory, geometry, category theory, topology and combinatorics, built in Lean 4 on nothing but the kernel and its three
 standard axioms (propositional extensionality, quotient soundness, classical choice).
 No Mathlib. Every theorem is machine-checked, and CI rejects any declaration that depends
 on anything else (including `sorry`).
@@ -19,6 +19,7 @@ mode, and demos — built from the compiled Lean environment (`site/`).
 | VI · Geometry | Tarski's axioms; ℝ² is a model of all eleven; Euclid I.1 (equilateral triangle) holds in ℝ² but fails in ℚ² (√3 irrational), so Euclid needs a continuity principle; Pythagoras and its converse; Thales; law of cosines; Heron; triangle inequality; the Beltrami–Klein model satisfies every Tarski axiom except Euclid's, so **the parallel postulate is independent** of the others |
 | VII · Categories | categories, functors, natural transformations; the category of groups; **Yoneda lemma** and embedding; terminal objects, products, equalisers, pullbacks (unique up to unique iso); adjunctions, free monoid ⊣ forgetful, types are cartesian closed; **Lawvere's fixed-point theorem**, with Cantor and Russell as corollaries |
 | VIII · Topology | metric and topological spaces; continuity three ways; Hausdorff; **Heine–Borel**; compact ⇔ sequentially compact; extreme value and intermediate value theorems re-derived from compactness and connectedness; ℝ ≇ ℝ∖{0}; ℚ totally disconnected; **Banach fixed-point theorem**; Brouwer in dimension 1; Tychonoff for two factors; **Vitali: no translation-invariant countably additive measure on all subsets of [0,1)**; Baire category theorem; the Cantor set (compact, empty interior, uncountable); Lebesgue outer measure of [a,b] is b − a |
+| IX · Combinatorics | finite and infinite pigeonhole; Erdős–Szekeres; **Ramsey's theorem** (finite with the recursive bound, R(3,3) = 6, infinite); **Kőnig's lemma**; **Hall's marriage theorem**; finite Ramsey derived from infinite Ramsey by compactness |
 | V · Types | untyped λ-calculus and Church–Rosser; simply typed λ-calculus: subject reduction, progress, strong normalization (Tait); Curry–Howard; cut elimination; excluded middle, Peirce and double-negation elimination unprovable intuitionistically; System F preservation, progress and strong normalization (Girard); Church encodings; the metatheory is constructive (no choice) |
 
 ## What it stands on
