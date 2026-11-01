@@ -44,6 +44,10 @@ import Foundations.Logic.HilbertProvability
 import Foundations.Logic.DerivabilityConditions
 import Foundations.Logic.Ordinals
 import Foundations.Logic.Goodstein
+import Foundations.Logic.SequentCalculus
+import Foundations.Logic.CutElimination
+import Foundations.Logic.SequentEquivalence
+import Foundations.Logic.GentzenConsistency
 
 /-!
 # Part III: Logic
@@ -75,4 +79,10 @@ are verified for a Hilbert-style provability formula of PA, which yields Löb's 
 and Gödel's second incompleteness theorem for PA unconditionally. Finally, ordinals below ε₀
 in Cantor normal form are shown to be well-ordered, which yields Goodstein's theorem —
 a true arithmetical statement unprovable in PA (Kirby–Paris).
+The closing files turn to Gentzen's structural proof theory: the sequent calculus LK,
+the Hauptsatz (cut elimination) with the subformula property and a purely syntactic
+consistency proof, cut-free completeness via terminating proof search (a second
+decision procedure for tautologies), syntactic translations between LK and natural
+deduction, and an account of Gentzen's 1936 consistency proof for PA by induction up
+to ε₀, with its abstract descent principle formalised.
 -/
