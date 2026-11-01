@@ -24,6 +24,13 @@ import Foundations.Topology.SimpleFunctions
 import Foundations.Topology.LebesgueIntegral
 import Foundations.Topology.DominatedConvergence
 import Foundations.Topology.LebesgueRiemann
+import Foundations.Topology.Paths
+import Foundations.Topology.FundamentalGroup
+import Foundations.Topology.Circle
+import Foundations.Topology.Covering
+import Foundations.Topology.CircleGroup
+import Foundations.Topology.NoRetraction
+import Foundations.Topology.WindingFTA
 
 /-!
 # Part VIII: Topology
@@ -72,4 +79,19 @@ Lebesgue's theory of measure and integration (finite measures, real values):
 25. `DominatedConvergence` — integrable functions and linearity; Fatou's lemma; the dominated
     convergence theorem.
 26. `LebesgueRiemann` — for continuous `f` on `[a, b]` the Lebesgue and Riemann integrals agree.
+
+Algebraic topology: the fundamental group (Poincaré, *Analysis Situs*, 1895):
+
+27. `Paths` — subspaces; joint continuity and the pasting lemma; paths, concatenation, reverse;
+    homotopy rel endpoints; the reparametrisation lemma.
+28. `FundamentalGroup` — the group laws up to homotopy; `π₁(X, x₀)` as a `Group`.
+29. `Circle` — continuity in `ℂ`; the kernel of `θ ↦ cis θ`; the Lipschitz local inverse `ang`
+    (via Jordan's inequality); uniform continuity on the square.
+30. `Covering` — path lifting and homotopy lifting for `cis : ℝ → S¹`; uniqueness of lifts.
+31. `CircleGroup` — the degree (winding number) of a loop; homotopy invariance; additivity;
+    `π₁(S¹) ≅ ℤ`.
+32. `NoRetraction` — the disc does not retract onto its boundary circle; Brouwer's fixed-point
+    theorem in dimension 2; loops of non-zero degree are surjective.
+33. `WindingFTA` — the fundamental theorem of algebra by winding numbers (Gauss's topological
+    proof, alongside the analytic `C.fta` of Part II).
 -/
