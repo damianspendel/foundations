@@ -26,7 +26,7 @@ statement, its proof and everything it rests on.
 Also worth a look: `El_summary` (`Bridges/ETCSvsZF.lean`: ZF sets sit fully and faithfully inside
 the structural, categorical world), `reals_in_sets` (`Bridges/RealsInSets.lean`: ℝ built from pure
 sets), `yoneda`, `lawvere_fixed_point` (one diagonal argument behind Cantor, Russell and Gödel),
-`bertrand`, `A5_simple`, `sylow_first`, `dominated_convergence`.
+`bertrand`, `A5_simple`, `sylow_first`, `dominated_convergence`, `pi1_circle_iso_int` and `brouwer_disc` (π₁(S¹) ≅ ℤ and Brouwer's fixed-point theorem in 2D).
 
 ## Honest caveats the audit raised
 
