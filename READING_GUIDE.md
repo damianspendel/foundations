@@ -36,4 +36,4 @@ sets), `yoneda`, `lawvere_fixed_point` (one diagonal argument behind Cantor, Rus
 - **Gentzen's consistency proof of PA** is described, with only the abstract descent principle formalised. PA's consistency is proved through its standard model instead.
 - **Lebesgue measure** is finite (taken on intervals); infinite measure on all of ℝ is not built.
 - **Continuity on [a, b]** means two-sided continuity at every point of [a, b]. This loses nothing, since f can be extended constantly outside [a, b].
-- **Duplicate notions** that are not unified: "countable" (injection into ℕ vs surjection from ℕ), "finite" (several versions), finite sums, and factorial (defined three times).
+- **Duplicate notions** (prime, factorial, absolute value, countable, finite) are now proved to agree in `Bridges/Unification*.lean`. Finite sums still exist in several separate versions.

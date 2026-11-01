@@ -5,6 +5,9 @@ import Foundations.Bridges.RatInSets
 import Foundations.Bridges.RealsInSets
 import Foundations.Bridges.CurryHowardBridge
 import Foundations.Bridges.ETCSvsZF
+import Foundations.Bridges.Unification
+import Foundations.Bridges.UnificationSize
+import Foundations.Bridges.UnificationOrdinals
 
 /-!
 # Part XI: Bridges
@@ -31,4 +34,12 @@ the claim that they form *one building* literal, by proving the connections:
   "type of members" into the category of types is full and faithful, not
   essentially surjective, and preserves the terminal object, products and the
   natural numbers object — material and structural set theory agree on ℕ.
+* **Unification**, **UnificationSize**, **UnificationOrdinals** — the coherence layer:
+  notions defined more than once across parts are proved to agree. The two prime
+  predicates and the three factorials coincide; the absolute value of `Q` is the
+  ordered-field one and is carried into `R`; Part I's countability (injection into ℕ)
+  matches the logic's "surjection from ℕ" on nonempty types, so ℝ is uncountable in
+  Part I's sense; Part I's `IsFinite` matches Part IV's `FiniteType` censuses, with
+  `card` the Part I cardinal; and Part III's ordinal notations below ε₀ embed, order-
+  preservingly, into Part I's von Neumann ordinals, sending `n` to `vn n` and `ω` to `ω`.
 -/
