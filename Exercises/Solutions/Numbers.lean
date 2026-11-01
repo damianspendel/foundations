@@ -1,0 +1,146 @@
+import Foundations.Numbers.Peano
+import Foundations.Numbers.Continuity
+
+/-!
+# Exercises II: Numbers
+
+Problems on Part II of the library (`Foundations/Numbers`): induction on the from-scratch
+natural numbers `N`, and analysis on the real numbers `R` (built from Cauchy sequences):
+ε-N limits, ε-δ continuity and the intermediate value theorem.
+
+Grading: ★ a one-liner using a library lemma, ★★ a short proof, ★★★ a mini-project.
+Proofs between `-- SOLUTION` and `-- END` become `sorry` in `Exercises/Problems/Numbers.lean`.
+
+*Tools for the reals.* `R` is registered as an ordered field with `grind`, so goals that follow
+from hypotheses by linear arithmetic and ring normalisation (including division by
+non-zero numerals) are usually closed by `grind`. `abs` is `OF.abs`; the lemma `OF.abs_lt`
+(`abs x < e ↔ -e < x ∧ x < e`) turns absolute values into pairs of inequalities.
+-/
+
+namespace Exercises.Numbers
+
+open Foundations.Numbers Foundations.Numbers.R Foundations.Numbers.OF Lean.Grind
+
+/-! ## Peano arithmetic -/
+
+/-- **Exercise 2.1 (★★) — No number is its own successor.** For every from-scratch natural
+number `n : N`, `succ n ≠ n`.
+
+*Hint:* induction on `n`. The base case is a clash of constructors; in the step, peel off one
+`succ` from both sides with injectivity.
+
+*Uses:* `N.succ_inj` (or the constructor injectivity `N.succ.inj`). -/
+theorem succ_ne_self (n : N) : N.succ n ≠ n := by
+  -- SOLUTION
+  induction n with
+  | zero => exact fun h => N.noConfusion h
+  | succ n ih => exact fun h => ih (N.succ_inj h)
+  -- END
+
+/-- **Exercise 2.2 (★★) — One is a left unit.** For every `n : N`, `one * n = n`.
+
+Multiplication is defined by recursion on the *second* argument
+(`n * zero = zero`, `n * succ m = n * m + n`), so this is not true by definition.
+
+*Hint:* induction on `n`; unfold `one` and use the defining equations of `*` and `+`
+(`N.mul`, `N.add`) in the step, or `show` the step in the form `one * n + one = succ n`.
+
+*Uses:* `N.add_succ`, `N.add_zero`; do not use `N.mul_comm`. -/
+theorem one_mul' (n : N) : N.one * n = n := by
+  -- SOLUTION
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+    show N.one * n + N.one = N.succ n
+    rw [ih]
+    rfl
+  -- END
+
+/-! ## Limits and continuity -/
+
+/-- **Exercise 2.3 (★★) — An ε-δ proof.** The function `y ↦ 3y + 1` is continuous at every
+point, proved directly from the ε-δ definition.
+
+*Hint:* given `ε > 0`, take `δ = ε / 3`. Turn `abs (y - x) < δ` into two inequalities with
+`abs_lt`, and prove the goal `abs ((3y + 1) - (3x + 1)) < ε` with `abs_lt` and `grind`.
+
+*Uses:* `R.ContinuousAt` (the definition), `OF.abs_lt`; not `continuousAt_mul`. -/
+theorem continuousAt_affine (x : R) : ContinuousAt (fun y => 3 * y + 1) x := by
+  -- SOLUTION
+  intro ε hε
+  refine ⟨ε / 3, by grind, fun y hy => ?_⟩
+  have h := abs_lt.1 hy
+  exact abs_lt.2 ⟨by grind, by grind⟩
+  -- END
+
+/-- **Exercise 2.4 (★★) — The harmonic sequence tends to zero.** `1/(n+1) → 0`.
+
+*Hint:* the library already knows that `1/(k+1)` is eventually below any `ε > 0` and that it
+is positive; all that remains is to compute `abs (1/(k+1) - 0)`.
+
+*Uses:* `R.eps_small`, `R.eps_pos`, `OF.abs_lt`. -/
+theorem tendsto_one_div_succ : Tendsto (fun n : Nat => 1 / ((n : R) + 1)) 0 := by
+  -- SOLUTION
+  intro ε hε
+  obtain ⟨N, hN⟩ := eps_small hε
+  refine ⟨N, fun n hn => abs_lt.2 ⟨?_, ?_⟩⟩
+  · have := eps_pos n; grind
+  · have := hN n hn; grind
+  -- END
+
+/-- **Exercise 2.5 (★★★) — The squeeze theorem.** If `aₙ ≤ bₙ ≤ cₙ` for all `n` and both
+`aₙ → L` and `cₙ → L`, then `bₙ → L`.
+
+The library does not state this; prove it from the definition of `Tendsto`.
+
+*Hint:* given `ε`, get `N₁` for `a` and `N₂` for `c`, and use `max N₁ N₂`. For `n` beyond it,
+unpack both absolute values with `abs_lt`, and conclude with `abs_lt` and `grind`.
+
+*Uses:* `R.Tendsto` (the definition), `OF.abs_lt`. -/
+theorem squeeze {a b c : Nat → R} {L : R} (ha : Tendsto a L) (hc : Tendsto c L)
+    (hab : ∀ n, a n ≤ b n) (hbc : ∀ n, b n ≤ c n) : Tendsto b L := by
+  -- SOLUTION
+  intro ε hε
+  obtain ⟨N₁, h₁⟩ := ha ε hε
+  obtain ⟨N₂, h₂⟩ := hc ε hε
+  refine ⟨max N₁ N₂, fun n hn => abs_lt.2 ?_⟩
+  have k₁ := abs_lt.1 (h₁ n (by omega))
+  have k₂ := abs_lt.1 (h₂ n (by omega))
+  have := hab n
+  have := hbc n
+  exact ⟨by grind, by grind⟩
+  -- END
+
+/-! ## The intermediate value theorem -/
+
+/-- **Exercise 2.6 (★) — A cube root.** There is a real number `r ≥ 0` with `r³ = 5`.
+
+*Hint:* the library constructs `n`-th roots of non-negative reals.
+
+*Uses:* `R.exists_nth_root`. -/
+theorem exists_cube_root_five : ∃ r : R, 0 ≤ r ∧ r ^ 3 = 5 := by
+  -- SOLUTION
+  exact exists_nth_root (by grind) (by omega)
+  -- END
+
+/-- **Exercise 2.7 (★★★) — The one-dimensional Brouwer theorem.** A function that is
+continuous on `[0, 1]` and maps `[0, 1]` into itself has a fixed point.
+
+*Hint:* apply the intermediate value theorem to `g x = f x - x` on `[0, 1]`: `g 0 = f 0 ≥ 0`
+and `g 1 = f 1 - 1 ≤ 0`. Mind the direction: `intermediate_value` wants the function to go from
+`≤ 0` to `≥ 0`, so use `x - f x` instead (or `intermediate_value'` with value `0`).
+Continuity of the difference comes from the library.
+
+*Uses:* `R.intermediate_value`, `R.continuousAt_sub`, `R.continuousAt_id`. -/
+theorem fixed_point_unit_interval {f : R → R}
+    (hf : ∀ x, 0 ≤ x → x ≤ 1 → ContinuousAt f x) (hmaps : ∀ x, 0 ≤ x → x ≤ 1 → 0 ≤ f x ∧ f x ≤ 1) :
+    ∃ c, 0 ≤ c ∧ c ≤ 1 ∧ f c = c := by
+  -- SOLUTION
+  obtain ⟨c, hc0, hc1, hc⟩ := intermediate_value (f := fun x => x - f x) (a := 0) (b := 1)
+    (by grind) (fun x h0 h1 => continuousAt_sub (continuousAt_id x) (hf x h0 h1))
+    (by have := hmaps 0 (by grind) (by grind); show 0 - f 0 ≤ 0; grind)
+    (by have := hmaps 1 (by grind) (by grind); show 0 ≤ 1 - f 1; grind)
+  exact ⟨c, hc0, hc1, by grind⟩
+  -- END
+
+end Exercises.Numbers

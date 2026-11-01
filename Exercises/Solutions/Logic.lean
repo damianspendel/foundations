@@ -1,0 +1,137 @@
+import Foundations.Logic.PropCompleteness
+
+/-!
+# Exercises III: Logic
+
+Problems on propositional logic from Part III (`Foundations/Logic`): derivations in the
+Hilbert system (axiom schemes K, S, double-negation elimination and the rules for `∧`, `∨`,
+with modus ponens as the only rule), natural deduction, truth tables, soundness, completeness
+and compactness.
+
+Grading: ★ a one-liner using a library lemma, ★★ a short proof, ★★★ a mini-project.
+Proofs between `-- SOLUTION` and `-- END` become `sorry` in `Exercises/Problems/Logic.lean`.
+
+*Reminder.* `Γ ⊢ₕ φ` is built from `HDerives.hyp` (premises), `HDerives.ax` (instances of
+`HAxiom`, e.g. `HAxiom.k φ ψ : φ → (ψ → φ)`) and `HDerives.mp` (modus ponens). Negation is
+defined: `neg φ = imp φ bot`. A theory is a predicate on formulas and
+`insert Γ φ = fun ψ => ψ = φ ∨ Γ ψ`.
+-/
+
+namespace Exercises.Logic
+
+open Foundations.Logic Foundations.Logic.Formula Foundations.Logic.Theory
+
+/-! ## The Hilbert system -/
+
+/-- **Exercise 3.1 (★★) — Hypothetical syllogism, by hand.** If `φ → ψ` and `ψ → χ` are
+derivable in the Hilbert system, so is `φ → χ`.
+
+Do it without the deduction theorem, using only axioms K and S and modus ponens.
+
+*Hint:* from `ψ → χ` and K get `φ → (ψ → χ)`; feed that to S to get `(φ → ψ) → (φ → χ)`.
+
+*Uses:* `HAxiom.k`, `HAxiom.s`, `HDerives.mp`. -/
+theorem hilbert_imp_trans {Γ : Theory} {φ ψ χ : Formula} (h₁ : Γ ⊢ₕ imp φ ψ)
+    (h₂ : Γ ⊢ₕ imp ψ χ) : Γ ⊢ₕ imp φ χ := by
+  -- SOLUTION
+  have hk : Γ ⊢ₕ imp φ (imp ψ χ) := .mp (.ax (.k (imp ψ χ) φ)) h₂
+  exact .mp (.mp (.ax (.s φ ψ χ)) hk) h₁
+  -- END
+
+/-- **Exercise 3.2 (★★) — Double-negation introduction.** `φ → ¬¬φ` is derivable in the
+Hilbert system from any premises.
+
+*Hint:* apply the deduction theorem twice. Then you must derive `⊥` from the premises
+`φ` and `¬φ = φ → ⊥`: one modus ponens.
+
+*Uses:* `HDerives.deduction`, `HDerives.hyp`, `HDerives.mp`. -/
+theorem hilbert_dni (Γ : Theory) (φ : Formula) : Γ ⊢ₕ imp φ (neg (neg φ)) := by
+  -- SOLUTION
+  apply HDerives.deduction
+  apply HDerives.deduction
+  exact .mp (.hyp (Or.inl rfl)) (.hyp (Or.inr (Or.inl rfl)))
+  -- END
+
+/-- **Exercise 3.3 (★★★) — The converse of the deduction theorem.** If `Γ ⊢ₕ φ → ψ`, then
+`ψ` is derivable from `Γ` together with the extra premise `φ`.
+
+The library proves the (harder) direction `insert Γ φ ⊢ₕ ψ → Γ ⊢ₕ φ → ψ`. For this one you
+need *weakening* for the Hilbert system, which the library does not state for `⊢ₕ`.
+
+*Hint:* first prove, by induction on the derivation, that `Γ ⊢ₕ θ` and `Γ ⊆ Δ` give
+`Δ ⊢ₕ θ` (as a `have` inside the proof). Then weaken the hypothesis to `insert Γ φ`
+and apply modus ponens with the premise `φ`.
+
+*Uses:* `HDerives` (induction on it), `Theory.subset_insert`. -/
+theorem hilbert_undeduction {Γ : Theory} {φ ψ : Formula} (h : Γ ⊢ₕ imp φ ψ) :
+    insert Γ φ ⊢ₕ ψ := by
+  -- SOLUTION
+  have weaken : ∀ {Γ Δ : Theory} {θ : Formula}, Γ ⊢ₕ θ → Γ.Subset Δ → Δ ⊢ₕ θ := by
+    intro Γ Δ θ hθ hsub
+    induction hθ with
+    | hyp hθ => exact .hyp (hsub _ hθ)
+    | ax hθ => exact .ax hθ
+    | mp _ _ ih₁ ih₂ => exact .mp ih₁ ih₂
+  exact .mp (weaken h (subset_insert Γ φ)) (.hyp (Or.inl rfl))
+  -- END
+
+/-- **Exercise 3.4 (★★) — The Hilbert system is consistent.** `⊥` is not derivable from no
+premises.
+
+*Hint:* by soundness, a derivation would make `⊥` true under every valuation satisfying the
+(empty) set of premises, for instance the valuation that is constantly `false`.
+
+*Uses:* `HDerives.soundness`, `Formula.eval`. -/
+theorem hilbert_consistent : ¬ (Theory.empty ⊢ₕ bot) := by
+  -- SOLUTION
+  intro h
+  have := HDerives.soundness h (fun _ => false) (fun _ hψ => False.elim hψ)
+  simp [eval] at this
+  -- END
+
+/-- **Exercise 3.5 (★★) — Not everything follows.** The formula `p₀ → p₁` (two different
+atoms) is not derivable in the Hilbert system from no premises.
+
+*Hint:* find a valuation making `p₀` true and `p₁` false, and use soundness.
+
+*Uses:* `HDerives.soundness`, `Formula.eval`. -/
+theorem hilbert_not_imp : ¬ (Theory.empty ⊢ₕ imp (var 0) (var 1)) := by
+  -- SOLUTION
+  intro h
+  have := HDerives.soundness h (fun n => n == 0) (fun _ hψ => False.elim hψ)
+  simp [eval] at this
+  -- END
+
+/-! ## Completeness and compactness -/
+
+/-- **Exercise 3.6 (★) — Peirce's law.** `((p → q) → p) → p` is derivable in natural deduction
+from no premises.
+
+Finding the derivation by hand is a classic puzzle (it needs the classical rule). Here,
+let the completeness theorem and the truth-table decision procedure do the work.
+
+*Hint:* a formula is derivable from no premises iff it is a tautology, and tautologies are
+decidable.
+
+*Uses:* `tautology_iff_derivable`, `Formula.decTautology` (via `decide`). -/
+theorem peirce : Theory.empty ⊢ imp (imp (imp (var 0) (var 1)) (var 0)) (var 0) := by
+  -- SOLUTION
+  exact (tautology_iff_derivable _).1 (by decide)
+  -- END
+
+/-- **Exercise 3.7 (★★) — Proofs use finitely many premises.** If `φ` is a semantic
+consequence of `Γ`, then there is a finite list `L` of premises from `Γ` such that `φ` is
+derivable from `L` in the *Hilbert* system.
+
+*Hint:* combine the compactness theorem (consequence form) with completeness of the Hilbert
+system.
+
+*Uses:* `compactness_entails`, `hilbert_completeness`. -/
+theorem finite_hilbert_proof {Γ : Theory} {φ : Formula} (h : Γ ⊨ φ) :
+    ∃ L : List Formula, (∀ ψ ∈ L, Γ ψ) ∧ ofList L ⊢ₕ φ := by
+  -- SOLUTION
+  obtain ⟨L, hL, hLφ⟩ := compactness_entails h
+  exact ⟨L, hL, hilbert_completeness hLφ⟩
+  -- END
+
+end Exercises.Logic

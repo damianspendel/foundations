@@ -9,3 +9,9 @@ name = "Foundations"
 name = "extract"
 root = "Extract"
 supportInterpreter = true
+
+# The exercise layer (see EXERCISES.md). Only the worked solutions are built; the generated
+# student files in Exercises/Problems contain `sorry` and are checked with `lake env lean`.
+[[lean_lib]]
+name = "Exercises"
+globs = ["Exercises.Solutions.*"]
