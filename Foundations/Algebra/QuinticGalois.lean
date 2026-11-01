@@ -27,12 +27,12 @@ automorphisms of the splitting field `L ⊆ ℂ`. The argument does not use `|Au
 the factor `5` in the group order comes from transitivity on the roots instead. The project
 does not prove that `L/ℚ` is Galois in the sense of `IsGalois`, or compute `[L : ℚ] = 120`.
 
-**What remains.** *Galois's criterion* (solvable by radicals ⇒ solvable Galois group) is not
-formalised in this project. The theorem proved is therefore the group-theoretic statement
-"the Galois group of `x⁵ - 6x + 3` over `ℚ` is `S₅` and is not solvable", not the
-statement that the roots cannot be expressed by radicals. The full Galois correspondence
-(every intermediate field is a fixed field) is also not formalised; see
-`GaloisCorrespondence.lean`.
+**What comes next.** This file proves the group-theoretic statement "the Galois group of
+`x⁵ - 6x + 3` over `ℚ` is `S₅` and is not solvable". *Galois's criterion* (solvable by
+radicals ⇒ solvable Galois group) is proved in `GaloisCriterion.lean`, and the two are
+combined in `QuinticNotRadical.lean` to show the roots cannot be expressed by radicals. The
+full Galois correspondence (every intermediate field is a fixed field) is not formalised;
+see `GaloisCorrespondence.lean`.
 -/
 
 namespace Foundations.Algebra
@@ -233,7 +233,7 @@ noncomputable def galoisGroup_iso_S5 : FieldAut Qc L ≃* Perm (Fin 5) :=
 
 /-- **The Galois group of `x⁵ - 6x + 3` over `ℚ` is not solvable.** The group `Aut(L/ℚ)` of
 automorphisms of the splitting field `L = ℚ(β₀, …, β₄) ⊆ ℂ` maps onto `S₅`, which is not
-solvable. (With Galois's criterion, which is not formalised here, this means the roots of
+solvable. (Combined with Galois's criterion in `QuinticNotRadical.lean`, this shows the roots of
 `x⁵ - 6x + 3` cannot be expressed by radicals.) -/
 theorem quintic_galois_not_solvable : ¬ IsSolvable (FieldAut Qc L) :=
   not_solvable_of_surjective_S5 galRep galRep_surjective
