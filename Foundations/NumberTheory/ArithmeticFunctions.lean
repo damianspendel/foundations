@@ -278,7 +278,7 @@ theorem lnat_pow {p : Nat} (hp : 0 < p) (k : Nat) : lnat (p ^ k) = (k : R) * lna
 `0` otherwise — written as a sum over the pairs `(p, k)` with `p, k ≤ n`.
 
 The `PNT*` files define the same function independently as `PNT.vonMangoldt` (with their own
-`dsum` and `psi`); no bridging lemma between the two copies is stated. -/
+`dsum` and `psi`); `Unify.vonMangoldt_eq` proves the two copies equal. -/
 noncomputable def vonMangoldt (n : Nat) : R :=
   gsum (fun p => gsum (fun k => if Prime p ∧ 1 ≤ k ∧ p ^ k = n then lnat p else 0) (n + 1)) (n + 1)
 

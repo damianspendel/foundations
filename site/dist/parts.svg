@@ -193,14 +193,14 @@
 <path fill="#9c2f2f" stroke="black" stroke-width="0" d="M1195.5,-527C1195.5,-527 1040.5,-527 1040.5,-527 1034.5,-527 1028.5,-521 1028.5,-515 1028.5,-515 1028.5,-488 1028.5,-488 1028.5,-482 1034.5,-476 1040.5,-476 1040.5,-476 1195.5,-476 1195.5,-476 1201.5,-476 1207.5,-482 1207.5,-488 1207.5,-488 1207.5,-515 1207.5,-515 1207.5,-521 1201.5,-527 1195.5,-527"/>
 <text text-anchor="start" x="1046.5" y="-508.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="13.00" fill="white">XII · NumberTheory</text>
 <text text-anchor="start" x="1091.5" y="-498" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">the primes</text>
-<text text-anchor="start" x="1077" y="-488" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">601 declarations</text>
+<text text-anchor="start" x="1077" y="-488" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">633 declarations</text>
 </g>
 <!-- Numbers&#45;&gt;NumberTheory -->
 <g id="edge12" class="edge">
 <title>Numbers&#45;&gt;NumberTheory</title>
-<g id="a_edge12"><a xlink:title="22228 uses of Numbers in NumberTheory">
-<path fill="none" stroke="#8a94a3" stroke-width="4.27" d="M704.34,-138.39C815.26,-141.1 1009.66,-151.13 1172,-187 1216.75,-196.89 1242.66,-184.49 1269,-222 1304.65,-272.77 1257.11,-372 1219,-425 1205.68,-443.53 1186.47,-459.48 1168.37,-471.89"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="4.27" points="1166.64,-469.89 1162.28,-475.96 1169.55,-474.24 1166.64,-469.89"/>
+<g id="a_edge12"><a xlink:title="23743 uses of Numbers in NumberTheory">
+<path fill="none" stroke="#8a94a3" stroke-width="4.39" d="M704.34,-138.39C815.26,-141.1 1009.66,-151.13 1172,-187 1216.75,-196.89 1242.66,-184.49 1269,-222 1304.65,-272.77 1257.11,-372 1219,-425 1205.68,-443.53 1186.47,-459.48 1168.37,-471.89"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="4.39" points="1166.6,-469.83 1162.28,-475.96 1169.59,-474.3 1166.6,-469.83"/>
 </a>
 </g>
 </g>
@@ -243,9 +243,9 @@
 <!-- Algebra&#45;&gt;NumberTheory -->
 <g id="edge3" class="edge">
 <title>Algebra&#45;&gt;NumberTheory</title>
-<g id="a_edge3"><a xlink:title="639 uses of Algebra in NumberTheory">
-<path fill="none" stroke="#8a94a3" stroke-width="1.39" d="M821.38,-273.17C841.83,-294.24 872.76,-324.87 902,-349 958.35,-395.5 1028.33,-442.87 1073.08,-471.97"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.39" points="1072.02,-474.2 1079.22,-475.95 1074.68,-470.09 1072.02,-474.2"/>
+<g id="a_edge3"><a xlink:title="653 uses of Algebra in NumberTheory">
+<path fill="none" stroke="#8a94a3" stroke-width="1.4" d="M821.38,-273.17C841.83,-294.24 872.76,-324.87 902,-349 958.35,-395.5 1028.33,-442.87 1073.08,-471.97"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.4" points="1072.02,-474.2 1079.22,-475.95 1074.68,-470.09 1072.02,-474.2"/>
 </a>
 </g>
 </g>

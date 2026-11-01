@@ -32,6 +32,8 @@ import Foundations.NumberTheory.PNTTauberianA
 import Foundations.NumberTheory.PNTTauberianB
 import Foundations.NumberTheory.PNTTauberianC
 import Foundations.NumberTheory.PNTTheorem
+import Foundations.NumberTheory.Unify
+import Foundations.NumberTheory.Corollaries
 
 /-!
 # Part XII: Number theory — the distribution of the primes
@@ -75,6 +77,12 @@ de la Vallée Poussin (1896). The `PNT*` files run as follows:
   lowers any eventual bound on `|ψ(n)/n − 1|` by a fixed amount (`PNTTauberianC`);
 * `PNTTheorem`: iterating that lemma gives `ψ(N)/N → 1`, hence `θ(N)/N → 1` and
   `π(N) log N / N → 1`.
+
+* `Unify` and `Corollaries` — bridges showing that the Dirichlet block and the PNT block use the
+  same `Λ`, `μ`, `ψ` and Mertens sum (`vonMangoldt_eq`, `mobius_eq`, `psi_eq_gsum`,
+  `mertens_sum_eq`); then **Euler's theorem** `Σ 1/p = ∞` (`euler_sum_reciprocal_primes`),
+  `π(2N)/π(N) → 2` (`primeCount_two_mul_div_tendsto`) and Dirichlet's theorem in Euler's form,
+  `Σ_{p ≡ a (q)} log p / p = ∞` (`dirichlet_euler`).
 
 Fermat's Last Theorem is out of scope: even its
 case `n = 4` (Fermat's infinite descent) is not attempted here, while the full theorem was
