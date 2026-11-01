@@ -35,6 +35,12 @@ not solvable, and the roots cannot be expressed by radicals.
 
 So the theorem "the general quintic is not solvable by radicals" is reduced here to these two
 field-theoretic inputs, which remain open in this project.
+
+
+**Status update.** The relabelling lemma and the computation of the Galois group of
+x⁵ − 6x + 3 (≅ S₅, hence not solvable) are now formalised in the later files
+`S5Generation` … `QuinticGalois` (see `quintic_galois_not_solvable`). Galois's criterion
+(solvable by radicals ⇒ solvable group) and the full Galois correspondence remain open.
 -/
 
 namespace Foundations.Algebra

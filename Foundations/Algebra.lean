@@ -29,6 +29,16 @@ import Foundations.Algebra.Reciprocity
 import Foundations.Algebra.FieldAut
 import Foundations.Algebra.GaloisCorrespondence
 import Foundations.Algebra.Quintic
+import Foundations.Algebra.S5Generation
+import Foundations.Algebra.QuinticReal
+import Foundations.Algebra.Eisenstein
+import Foundations.Algebra.QuinticIrreducible
+import Foundations.Algebra.ComplexField
+import Foundations.Algebra.Adjoin
+import Foundations.Algebra.Embedding
+import Foundations.Algebra.QuinticRoots
+import Foundations.Algebra.SplittingField
+import Foundations.Algebra.QuinticGalois
 
 /-!
 # Part IV: Algebra
@@ -48,4 +58,14 @@ non-solvability of Sₙ for n ≥ 5; quadratic residues, Euler's criterion, Gaus
 two supplements and the law of quadratic reciprocity; field automorphisms, Dedekind's lemma,
 Artin's theorem and the Galois correspondence (Artin's half); and the group-theoretic core
 of the insolvability of the quintic.
+
+The final chapter computes a Galois group. A transposition and any 5-cycle generate `S₅`;
+`x⁵ - 6x + 3` has exactly three real roots (intermediate value theorem and Rolle) and is
+irreducible over `ℚ` (Gauss's lemma and Eisenstein's criterion). Inside `ℂ` (from Part II,
+with the fundamental theorem of algebra), simple algebraic extensions `F(γ)` are built and
+embeddings are extended along them. The splitting field `L` of `x⁵ - 6x + 3` is a finite
+extension of `ℚ`, and its automorphism group `Aut(L/ℚ)` is isomorphic to `S₅`, hence **not
+solvable** (`quintic_galois_not_solvable`). Galois's criterion (solvable by radicals ⇒
+solvable Galois group) and the full Galois correspondence for intermediate fields are not
+formalised.
 -/
