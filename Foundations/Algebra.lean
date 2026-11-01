@@ -26,6 +26,9 @@ import Foundations.Algebra.Solvable
 import Foundations.Algebra.QuadraticResidues
 import Foundations.Algebra.GaussLemma
 import Foundations.Algebra.Reciprocity
+import Foundations.Algebra.FieldAut
+import Foundations.Algebra.GaloisCorrespondence
+import Foundations.Algebra.Quintic
 
 /-!
 # Part IV: Algebra
@@ -42,5 +45,7 @@ cubic extensions, the impossibility of doubling the cube and trisecting the angl
 the prime-power order of finite fields; the symmetric group and the sign homomorphism, the
 alternating group and its generation by 3-cycles, the simplicity of A₅, and the
 non-solvability of Sₙ for n ≥ 5; quadratic residues, Euler's criterion, Gauss's lemma, the
-two supplements and the law of quadratic reciprocity.
+two supplements and the law of quadratic reciprocity; field automorphisms, Dedekind's lemma,
+Artin's theorem and the Galois correspondence (Artin's half); and the group-theoretic core
+of the insolvability of the quintic.
 -/

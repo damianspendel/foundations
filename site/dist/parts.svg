@@ -52,7 +52,7 @@
 <path fill="#2f62b5" stroke="black" stroke-width="0" d="M300,-273C300,-273 192,-273 192,-273 186,-273 180,-267 180,-261 180,-261 180,-234 180,-234 180,-228 186,-222 192,-222 192,-222 300,-222 300,-222 306,-222 312,-228 312,-234 312,-234 312,-261 312,-261 312,-267 306,-273 300,-273"/>
 <text text-anchor="start" x="203" y="-254.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="13.00" fill="white">IV · Algebra</text>
 <text text-anchor="start" x="198" y="-244" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">groups, rings, fields</text>
-<text text-anchor="start" x="205" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">826 declarations</text>
+<text text-anchor="start" x="205" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">869 declarations</text>
 </g>
 <!-- Numbers&#45;&gt;Algebra -->
 <g id="edge7" class="edge">
