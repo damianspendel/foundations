@@ -262,7 +262,7 @@ theorem neg_classical_iff_intuitionistic (φ : Logic.Formula) :
     simp only [List.map_nil, toClassical, toClassical_toIntuitionistic] at this
     exact this.weaken fun _ h => absurd h List.not_mem_nil
 
-/-- **Equiconsistency.** Classical propositional natural deduction is consistent
+/-- **Consistency of classical natural deduction (via Glivenko).** Classical propositional natural deduction is consistent
 (does not derive `⊥`) — a consequence of Glivenko's theorem and the consistency of
 intuitionistic natural deduction, which Part V proved by normalization (cut
 elimination), without any appeal to truth tables. -/

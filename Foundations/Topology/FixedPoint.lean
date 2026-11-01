@@ -161,8 +161,8 @@ theorem banach_fixed_point (hX : Complete X) {f : X → X} {q : R} (hq0 : 0 ≤ 
 
 /-! ## Brouwer's fixed-point theorem in dimension one -/
 
-/-- **Brouwer's fixed-point theorem, dimension 1.** Every continuous map `f : [0, 1] → [0, 1]` has
-a fixed point. -/
+/-- **Brouwer's fixed-point theorem, dimension 1.** Every `f` continuous at every point of `[0, 1]`
+and mapping `[0, 1]` into itself has a fixed point. -/
 theorem brouwer_one_dim {f : R → R} (hf : ∀ x, 0 ≤ x → x ≤ 1 → R.ContinuousAt f x)
     (hmaps : ∀ x, 0 ≤ x → x ≤ 1 → 0 ≤ f x ∧ f x ≤ 1) : ∃ x, 0 ≤ x ∧ x ≤ 1 ∧ f x = x := by
   -- Apply the intermediate value theorem to `g x = x − f x`, with `g 0 ≤ 0 ≤ g 1`.

@@ -21,27 +21,18 @@ not solvable, and the roots cannot be expressed by radicals.
   (`S5_generated`): every permutation of five letters is a product of these. Together with
   `symmetric_not_solvable`, this is the purely group-theoretic core of the argument above.
 
-**What is *not* formalised in this Part (stated honestly):**
+**What this file does not do, and where it is done.** Two field-theoretic inputs are
+needed beyond the group theory here, and both are supplied by later files:
 
-1. *Galois's criterion*, "solvable by radicals ⇒ solvable Galois group". This needs radical
-   towers, roots of unity, cyclic Kummer extensions, normal closures, and the full Galois
-   correspondence for normal subextensions. The previous file gives only Artin's half of the
-   correspondence.
-2. *The computation of the Galois group of `x⁵ - 6x + 3`*. This needs splitting fields inside
-   `ℂ`, real numbers and the intermediate value theorem (three real roots), and the identification
-   of the Galois group with a group of permutations of the roots. The relabelling step "an
-   arbitrary transposition and an arbitrary 5-cycle generate `S₅`" is also not proved; only the
-   normalised case `(0 1)`, `(0 1 2 3 4)` is.
+1. *The computation of the Galois group of `x⁵ - 6x + 3`* (≅ `S₅`, hence not solvable),
+   including the relabelling step "an arbitrary transposition and an arbitrary 5-cycle
+   generate `S₅`" (this file proves only the normalised case `(0 1)`, `(0 1 2 3 4)`): see
+   `S5Generation` … `QuinticGalois` (`quintic_galois_not_solvable`).
+2. *Galois's criterion*, "solvable by radicals ⇒ solvable Galois group": see
+   `GaloisCriterion` and `QuinticNotRadical`.
 
-So the theorem "the general quintic is not solvable by radicals" is reduced here to these two
-field-theoretic inputs, which remain open in this project.
-
-
-**Status update.** The relabelling lemma and the computation of the Galois group of
-x⁵ − 6x + 3 (≅ S₅, hence not solvable) are now formalised in the later files
-`S5Generation` … `QuinticGalois` (see `quintic_galois_not_solvable`). Galois's criterion
-(solvable by radicals ⇒ solvable group) is now formalised too (`GaloisCriterion`,
-`QuinticNotRadical`); the full Galois correspondence and the converse remain open.
+What remains open in this project is the full Galois correspondence (only Artin's half is
+in `GaloisCorrespondence`) and the converse, "solvable Galois group ⇒ solvable by radicals".
 -/
 
 namespace Foundations.Algebra

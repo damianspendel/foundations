@@ -37,8 +37,10 @@ own number iff PA proves that it does not.
 *What is not done here.* Gödel's original theorem assumes only consistency
 (ω-consistency, improved by Rosser to plain consistency) instead of soundness; that
 version requires the formulas of `Definability` to be *provably* correct in PA (or in
-Robinson's `Q`), i.e. representability, together with the diagonal lemma, and is not
-formalised; nor is the second incompleteness theorem.
+Robinson's `Q`), i.e. representability. It is not done in this file, but Rosser's version
+is formalised later as `PA_rosser` (`Rosser.lean`), and the second incompleteness theorem
+as `godel_second_PA_unconditional` (`DerivabilityConditions.lean`), for the provability
+formula `provH` (not shown PA-provably equivalent to the textbook Con(PA)).
 -/
 
 namespace Foundations.Logic.FO

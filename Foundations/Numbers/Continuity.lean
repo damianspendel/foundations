@@ -17,6 +17,12 @@ We prove the two classical theorems about continuous functions on a closed inter
   maximum — proved with Bolzano–Weierstrass.
 
 As an application, every non-negative real has an **`n`-th root** for every `n ≥ 1`.
+
+*Convention.* "Continuous on `[a, b]`" means here that `f : ℝ → ℝ` is (two-sidedly)
+`ContinuousAt` every point of `[a, b]`, endpoints included — formally stronger than continuity
+of the restriction to `[a, b]`, but nothing is lost: a function continuous on `[a, b]` in the
+subspace sense can be extended constantly outside `[a, b]` to one of this kind, as
+`Topology/UniformConvergence.lean` does.
 -/
 
 namespace Foundations.Numbers
@@ -110,7 +116,7 @@ theorem tendsto_comp {f : R → R} {L : R} {x : Nat → R} (hf : ContinuousAt f 
 
 /-! ## The intermediate value theorem -/
 
-/-- **Intermediate value theorem.** A function continuous on `[a, b]` with `f a ≤ 0 ≤ f b` has a
+/-- **Intermediate value theorem.** A function continuous at every point of `[a, b]` with `f a ≤ 0 ≤ f b` has a
 zero in `[a, b]`. -/
 theorem intermediate_value {f : R → R} {a b : R} (hab : a ≤ b)
     (hf : ∀ x, a ≤ x → x ≤ b → ContinuousAt f x) (ha : f a ≤ 0) (hb : 0 ≤ f b) :
@@ -146,7 +152,7 @@ theorem intermediate_value {f : R → R} {a b : R} (hab : a ≤ b)
       grind
     grind
 
-/-- **Intermediate value theorem (general form).** A continuous function on `[a, b]` takes every
+/-- **Intermediate value theorem (general form).** A function continuous at every point of `[a, b]` takes every
 value between `f a` and `f b`. -/
 theorem intermediate_value' {f : R → R} {a b v : R} (hab : a ≤ b)
     (hf : ∀ x, a ≤ x → x ≤ b → ContinuousAt f x) (ha : f a ≤ v) (hb : v ≤ f b) :
@@ -188,7 +194,8 @@ theorem bounded_above {f : R → R} {a b : R} (hf : ∀ x, a ≤ x → x ≤ b �
   simp only at k1
   grind
 
-/-- **Extreme value theorem.** A function continuous on `[a, b]` attains a maximum there. -/
+/-- **Extreme value theorem.** A function continuous at every point of `[a, b]` attains a
+maximum there. -/
 theorem extreme_value {f : R → R} {a b : R} (hab : a ≤ b)
     (hf : ∀ x, a ≤ x → x ≤ b → ContinuousAt f x) :
     ∃ c, a ≤ c ∧ c ≤ b ∧ ∀ x, a ≤ x → x ≤ b → f x ≤ f c := by

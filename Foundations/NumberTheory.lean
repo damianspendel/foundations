@@ -24,7 +24,7 @@ residues of Part IV.
 3. `PrimorialBound` — Erdős's bound: the product of the primes up to `n` is at most `4ⁿ`.
 4. `Bertrand` — **Bertrand's postulate** (conjectured 1845, proved by Chebyshev 1852): for every
    `n ≥ 1` there is a prime in `(n, 2n]`. We follow Erdős's elementary proof of 1932, which
-   simplified Ramanujan's of 1919; small `n` are settled by a chain of eleven primes up to 1259,
+   simplified Ramanujan's of 1919; small `n` are settled by a chain of twelve primes up to 1259,
    checked by the kernel.
 5. `Chebyshev` — **Chebyshev's bounds**: `⌊m/2⌋ · log 2 ≤ π(m) · log m ≤ m · log 1024` for
    `m ≥ 6`, so `π(m)` is of order `m / log m`.

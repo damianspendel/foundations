@@ -150,7 +150,8 @@ theorem c3_mem_derivedSeries {n : Nat} (hn : 5 ≤ n) :
 
 /-- **`Sₙ` is not solvable for `n ≥ 5`.** Every term of its derived series contains the
 3-cycle `(0 1 2)`, which is not the identity. (Together with Galois's criterion, this is why
-the general equation of degree `n ≥ 5` is not solvable by radicals.) -/
+the general equation of degree `n ≥ 5` is not solvable by radicals — an informal statement;
+Galois's criterion is formalised here only for `x⁵ − 6x + 3`, in `QuinticNotRadical.lean`.) -/
 theorem symmetric_not_solvable {n : Nat} (hn : 5 ≤ n) : ¬ IsSolvable (Perm (Fin n)) := by
   intro ⟨k, hk⟩
   let a : Fin n := ⟨0, by omega⟩

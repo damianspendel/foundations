@@ -74,7 +74,7 @@ theorem HasIntegral.abs_sub_le {f : R → R} {u v c ε I : R} (huv : u ≤ v)
 
 /-! ## The fundamental theorem, part I -/
 
-/-- **Fundamental theorem of calculus, part I.** If `f` is continuous on `[a, b]`, then
+/-- **Fundamental theorem of calculus, part I.** If `f` is continuous at every point of `[a, b]`, then
 `F x = ∫ₐˣ f` is differentiable at every interior point `x`, with derivative `f x`. -/
 theorem ftc1 {f : R → R} {a b : R} (hf : ∀ x, a ≤ x → x ≤ b → ContinuousAt f x) {x : R}
     (hax : a < x) (hxb : x < b) : HasDerivAt (fun y => integral f a y) (f x) x := fun ε hε => by
@@ -160,7 +160,7 @@ theorem ftc2 {F f : R → R} {a b I : R} (hab : a ≤ b)
   exact this
 
 /-- **Fundamental theorem of calculus, part II** (integral form). If `F' = f` on `[a, b]` with `f`
-continuous, then `∫ₐᵇ f = F b − F a`. -/
+continuous at every point of `[a, b]`, then `∫ₐᵇ f = F b − F a`. -/
 theorem integral_eq_sub {F f : R → R} {a b : R} (hab : a ≤ b)
     (hd : ∀ t, a ≤ t → t ≤ b → HasDerivAt F (f t) t)
     (hf : ∀ t, a ≤ t → t ≤ b → ContinuousAt f t) : integral f a b = F b - F a :=

@@ -14,9 +14,10 @@ obtained by adjoining an `m`-th root, and Galois saw that such a tower correspon
 the *Galois group* of the equation into a chain of normal subgroups with abelian quotients — a
 *solvable* group. The general quintic has Galois group `S₅`, whose only non-trivial proper
 normal subgroup is `A₅`; and `A₅`, being simple and non-abelian, cannot be broken down
-further. So no chain with abelian steps exists, and no formula in radicals can exist. (The
-Galois correspondence itself is beyond this Part; the next file proves the group-theoretic
-half in the form "`Sₙ` is not solvable for `n ≥ 5`".)
+further. So no chain with abelian steps exists, and no formula in radicals can exist. (This
+file is pure group theory; the next file proves "`Sₙ` is not solvable for `n ≥ 5`". Artin's
+half of the Galois correspondence is in `GaloisCorrespondence.lean`, and the insolvability of
+`x⁵ − 6x + 3` by radicals in `QuinticNotRadical.lean`.)
 
 **The proof.** Let `N ≠ 1` be normal in `A₅` and pick `σ ∈ N` with `σ ≠ 1`.
 

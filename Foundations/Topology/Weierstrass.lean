@@ -271,7 +271,7 @@ theorem weierstrass01 {f : R → R} (hf : ∀ x, 0 ≤ x → x ≤ 1 → R.Conti
     grind
   grind
 
-/-- **Weierstrass approximation theorem.** Every function continuous on `[a, b]` can be
+/-- **Weierstrass approximation theorem.** Every function continuous at every point of `[a, b]` can be
 approximated uniformly on `[a, b]` by polynomials to within any `ε > 0`: the polynomials are dense
 in `C[a, b]`. -/
 theorem weierstrass {f : R → R} {a b : R} (hab : a ≤ b)

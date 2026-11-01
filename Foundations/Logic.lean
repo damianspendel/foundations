@@ -76,9 +76,10 @@ conditions; then, reasoning inside arbitrary (possibly non-standard) models of P
 internal arithmetic, induction for definable properties, β-coding and concatenation
 of sequences of non-standard length — and using completeness, the conditions (D1)–(D3)
 are verified for a Hilbert-style provability formula of PA, which yields Löb's theorem
-and Gödel's second incompleteness theorem for PA unconditionally. Finally, ordinals below ε₀
+and Gödel's second incompleteness theorem for PA unconditionally (for that provability
+formula, not shown PA-provably equivalent to the textbook Con(PA)). Finally, ordinals below ε₀
 in Cantor normal form are shown to be well-ordered, which yields Goodstein's theorem —
-a true arithmetical statement unprovable in PA (Kirby–Paris).
+a true arithmetical statement unprovable in PA (Kirby–Paris; not formalised here).
 The closing files turn to Gentzen's structural proof theory: the sequent calculus LK,
 the Hauptsatz (cut elimination) with the subformula property and a purely syntactic
 consistency proof, cut-free completeness via terminating proof search (a second

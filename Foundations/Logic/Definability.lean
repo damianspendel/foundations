@@ -34,7 +34,8 @@ arithmetical truth; and this is what drives the incompleteness theorem.
 that the incompleteness proof via soundness needs. The stronger statement that these
 formulas *represent* the functions inside a weak theory such as Robinson's `Q` (i.e.
 that the true instances are provable, which is needed for Gödel's original
-syntactic proof and for Rosser's theorem) is not formalised here.
+syntactic proof and for Rosser's theorem) is not proved in this file; it is done in
+`RobinsonQ.lean` and `Representability.lean`.
 -/
 
 namespace Foundations.Logic.FO

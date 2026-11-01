@@ -88,10 +88,11 @@ theorem integral_lipschitz {φ : R → R} (hφ : ∀ s, R.ContinuousAt φ s) {t�
   · rw [abs_sub_comm, abs_sub_comm v, abs_of_nonneg (by grind : (0 : R) ≤ u - v)]
     exact key v u hv h hu'
 
-/-- **Picard–Lindelöf theorem.** Let `F` be jointly continuous and Lipschitz in `y` with constant
-`L`. Then for every initial value `y(t₀) = y₀` there is `h > 0` and a solution `y` of
-`y' = F(t, y)` on `[t₀, t₀ + h]` (differentiable inside, continuous everywhere), and every other
-solution coincides with it on `[t₀, t₀ + h]`. -/
+/-- **Picard–Lindelöf theorem.** Let `F` be jointly continuous and globally Lipschitz in `y` with
+constant `L`. Then for every initial value `y(t₀) = y₀` there is `h > 0` and a solution `y` of
+`y' = F(t, y)` on the forward interval `[t₀, t₀ + h]` (differentiable inside, continuous
+everywhere), and every other solution (continuous at every point of `[t₀, t₀ + h]`) coincides
+with it on `[t₀, t₀ + h]`. -/
 theorem picard_lindelof (hF : JointCont F) {L : R} (hL0 : 0 ≤ L)
     (hL : ∀ t y z, abs (F t y - F t z) ≤ L * abs (y - z)) (t₀ y₀ : R) :
     ∃ h : R, 0 < h ∧ ∃ y : R → R, y t₀ = y₀ ∧ (∀ t, R.ContinuousAt y t) ∧

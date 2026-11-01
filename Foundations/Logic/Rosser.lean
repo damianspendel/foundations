@@ -32,15 +32,14 @@ the opposite of what `T` predicts*. Consider `σ := R(⌜d⌝)`. If `T` decided 
 `φ_{⌜d⌝}(⌜d⌝) = 1` and `Q` — hence `T` — proves `¬σ`; if it found a proof of `¬σ` it
 outputs `0`, so `T` proves `σ`. Either way `T` is inconsistent.
 
-*Not formalised: the second incompleteness theorem.* Gödel's second theorem
-(PA ⊬ Con(PA)) requires, beyond what is done here, (1) a formula `Prov(x)` expressing
-PA-provability *inside* PA — available from `PAProofs` via the Σ₁ graph of the proof
-search code — and (2) the **Hilbert–Bernays–Löb derivability conditions**, above all
-`PA ⊢ Prov(⌜φ⌝) → Prov(⌜Prov(⌜φ⌝)⌝)` (formalised Σ₁-completeness), whose proof
-needs PA to prove facts about our arithmetisation (the β-function, the bounded
-graphs, the proof checker) *inside* PA, i.e. formal derivations by induction rather
-than the semantic arguments in models of `Q` used throughout these files. None of
-this is attempted.
+*The second incompleteness theorem* is not proved in this file. It needs (1) a formula
+`Prov(x)` expressing PA-provability *inside* PA and (2) the **Hilbert–Bernays–Löb
+derivability conditions**, above all `PA ⊢ Prov(⌜φ⌝) → Prov(⌜Prov(⌜φ⌝)⌝)`. Both are
+supplied later: `DerivabilityConditions.lean` verifies (D1)–(D3) for a Hilbert-style
+provability formula `provH` and proves Gödel II in Hilbert–Bernays–Löb form
+(`godel_second_PA_unconditional : ¬ PA ⊢₁ conF provH`), and `Lob.lean` gives Löb's
+theorem. Caveat: `conF provH` is not shown to be PA-provably equivalent to the textbook
+consistency sentence Con(PA) built from another arithmetisation of proofs.
 -/
 
 set_option linter.unusedSimpArgs false

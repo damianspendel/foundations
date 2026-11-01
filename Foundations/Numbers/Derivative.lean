@@ -355,7 +355,7 @@ theorem nhds_of_interior {a b c : R} (hac : a < c) (hcb : c < b) :
   obtain ⟨δ, hδ, h1, h2⟩ := exists_pos_le_both (by grind : 0 < c - a) (by grind : 0 < b - c)
   exact ⟨δ, hδ, fun y hy => by have := abs_lt.1 hy; grind⟩
 
-/-- **Rolle's theorem.** If `f` is continuous on `[a, b]`, differentiable on `(a, b)`, and
+/-- **Rolle's theorem.** If `f` is continuous at every point of `[a, b]`, differentiable on `(a, b)`, and
 `f a = f b`, then `f' c = 0` at some `c` strictly between `a` and `b`. -/
 theorem rolle {f f' : R → R} {a b : R} (hab : a < b)
     (hc : ∀ x, a ≤ x → x ≤ b → ContinuousAt f x)
@@ -393,7 +393,7 @@ theorem rolle {f f' : R → R} {a b : R} (hab : a < b)
     have := hmax y (by grind) (by grind)
     grind
 
-/-- **Mean value theorem** (Lagrange). If `f` is continuous on `[a, b]` and differentiable on
+/-- **Mean value theorem** (Lagrange). If `f` is continuous at every point of `[a, b]` and differentiable on
 `(a, b)`, then the chord slope is attained as a derivative: `f b − f a = f' c · (b − a)` for some
 `c` strictly between `a` and `b`. -/
 theorem mean_value {f f' : R → R} {a b : R} (hab : a < b)
