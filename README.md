@@ -1,6 +1,6 @@
 # Foundations of mathematics, from scratch
 
-Sets, numbers, logic, algebra, type theory, geometry, category theory, topology, combinatorics and probability, and the bridges that join them, built in Lean 4 on nothing but the kernel and its three
+Sets, numbers, logic, algebra, type theory, geometry, category theory, topology, combinatorics and probability, the bridges that join them, and number theory, built in Lean 4 on nothing but the kernel and its three
 standard axioms (propositional extensionality, quotient soundness, classical choice).
 No Mathlib. Every theorem is machine-checked, and CI rejects any declaration that depends
 on anything else (including `sorry`).
@@ -22,6 +22,7 @@ mode, and demos — built from the compiled Lean environment (`site/`).
 | IX · Combinatorics | finite and infinite pigeonhole; Erdős–Szekeres; **Ramsey's theorem** (finite with the recursive bound, R(3,3) = 6, infinite); **Kőnig's lemma**; **Hall's marriage theorem**; finite Ramsey derived from infinite Ramsey by compactness |
 | X · Probability | finite probability spaces; inclusion–exclusion; conditional probability, total probability, **Bayes' theorem**; independence; expectation, variance, covariance, Bienaymé; Markov and Chebyshev; **the weak law of large numbers**; binomial mean and variance; Monty Hall |
 | XI · Bridges | the three natural-number constructions (von Neumann ω, Peano ℕ, Lean's ℕ) are uniquely isomorphic; **ℤ, ℚ and ℝ (Dedekind cuts) built inside the ZF model** and shown isomorphic to Part II's; intuitionistic ⊆ classical logic, strictly; **Glivenko's theorem**; the category of ZF sets maps fully and faithfully into types, preserving products and the natural-numbers object |
+| XII · Number theory | infinitely many primes ≡ 1 and ≡ 3 (mod 4); binomial coefficients, Legendre's formula; Erdős's primorial bound ∏_{p≤n} p ≤ 4ⁿ; **Bertrand's postulate**; Chebyshev's bounds: π(n) is of order n / log n |
 | V · Types | untyped λ-calculus and Church–Rosser; simply typed λ-calculus: subject reduction, progress, strong normalization (Tait); Curry–Howard; cut elimination; excluded middle, Peirce and double-negation elimination unprovable intuitionistically; System F preservation, progress and strong normalization (Girard); Church encodings; the metatheory is constructive (no choice) |
 
 ## What it stands on

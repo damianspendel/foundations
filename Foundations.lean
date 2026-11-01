@@ -9,3 +9,4 @@ import Foundations.Topology
 import Foundations.Combinatorics
 import Foundations.Probability
 import Foundations.Bridges
+import Foundations.NumberTheory
