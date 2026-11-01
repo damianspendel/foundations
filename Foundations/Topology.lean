@@ -8,6 +8,10 @@ import Foundations.Topology.Vitali
 import Foundations.Topology.Baire
 import Foundations.Topology.CantorSet
 import Foundations.Topology.OuterMeasure
+import Foundations.Topology.UniformConvergence
+import Foundations.Topology.PicardLindelof
+import Foundations.Topology.Weierstrass
+import Foundations.Topology.ArzelaAscoli
 
 /-!
 # Part VIII: Topology
@@ -29,4 +33,10 @@ From the analysis of the real line to general spaces:
 8. `Baire` — the Baire category theorem; ℝ is not meagre; ℝ is uncountable (third proof).
 9. `CantorSet` — the Cantor set: closed, compact, empty interior, uncountable.
 10. `OuterMeasure` — Lebesgue outer measure; `m*([a, b]) = b − a`.
+11. `UniformConvergence` — uniform limits of continuous functions are continuous; integrals of
+    uniform limits; `C[a, b]` with the sup metric is complete.
+12. `PicardLindelof` — existence and uniqueness for `y' = F(t, y)` via Banach's fixed-point
+    theorem; `y' = y` gives `exp`.
+13. `Weierstrass` — polynomials are dense in `C[a, b]` (Bernstein polynomials).
+14. `ArzelaAscoli` — bounded equicontinuous sequences have uniformly convergent subsequences.
 -/
