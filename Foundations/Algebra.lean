@@ -39,6 +39,12 @@ import Foundations.Algebra.Embedding
 import Foundations.Algebra.QuinticRoots
 import Foundations.Algebra.SplittingField
 import Foundations.Algebra.QuinticGalois
+import Foundations.Algebra.RootsOfUnity
+import Foundations.Algebra.Kummer
+import Foundations.Algebra.RadicalTower
+import Foundations.Algebra.NormalClosure
+import Foundations.Algebra.GaloisCriterion
+import Foundations.Algebra.QuinticNotRadical
 
 /-!
 # Part IV: Algebra
@@ -65,7 +71,14 @@ irreducible over `ℚ` (Gauss's lemma and Eisenstein's criterion). Inside `ℂ` 
 with the fundamental theorem of algebra), simple algebraic extensions `F(γ)` are built and
 embeddings are extended along them. The splitting field `L` of `x⁵ - 6x + 3` is a finite
 extension of `ℚ`, and its automorphism group `Aut(L/ℚ)` is isomorphic to `S₅`, hence **not
-solvable** (`quintic_galois_not_solvable`). Galois's criterion (solvable by radicals ⇒
-solvable Galois group) and the full Galois correspondence for intermediate fields are not
+solvable** (`quintic_galois_not_solvable`).
+
+The last files prove the needed half of Galois's criterion. Roots of unity of prime order and
+Kummer's observation make automorphisms commute on each radical step; a radical tower is enlarged
+to a stable tower of prime Kummer steps (its normal closure); the derived series of its
+automorphism group descends the tower, so that group is solvable and maps onto `Aut(L/ℚ)`.
+Hence **no root of `x⁵ - 6x + 3` is expressible by radicals over `ℚ`**
+(`quintic_not_solvable_by_radicals`). The converse half of Galois's criterion, the criterion for
+arbitrary polynomials, and the full Galois correspondence for intermediate fields are not
 formalised.
 -/

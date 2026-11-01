@@ -16,7 +16,7 @@ letters,
   `(a b c) = [(a b d), (a c e)]`,
 
 so every 3-cycle is a commutator of 3-cycles. By induction every term of the derived series
-contains all 3-cycles, and so is never trivial. With Galois's criterion (not formalised here),
+contains all 3-cycles, and so is never trivial. With Galois's criterion (formalised later, in `GaloisCriterion.lean`),
 this is the reason the general equation of degree five or more has no solution by radicals.
 -/
 

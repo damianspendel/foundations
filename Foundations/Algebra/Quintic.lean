@@ -40,7 +40,8 @@ field-theoretic inputs, which remain open in this project.
 **Status update.** The relabelling lemma and the computation of the Galois group of
 x⁵ − 6x + 3 (≅ S₅, hence not solvable) are now formalised in the later files
 `S5Generation` … `QuinticGalois` (see `quintic_galois_not_solvable`). Galois's criterion
-(solvable by radicals ⇒ solvable group) and the full Galois correspondence remain open.
+(solvable by radicals ⇒ solvable group) is now formalised too (`GaloisCriterion`,
+`QuinticNotRadical`); the full Galois correspondence and the converse remain open.
 -/
 
 namespace Foundations.Algebra
@@ -89,7 +90,7 @@ theorem isSolvable_of_surjective {G : Type u} {H : Type v} [Group G] [Group H] (
   rw [hk x hx, f.map_one]
 
 /-- **A group mapping onto `S₅` is not solvable.** In particular, a Galois group isomorphic to
-`S₅` is not solvable, which by Galois's criterion (not formalised) means the corresponding
+`S₅` is not solvable, which by Galois's criterion (formalised later, in `GaloisCriterion.lean`) means the corresponding
 equation is not solvable by radicals. -/
 theorem not_solvable_of_surjective_S5 {G : Type u} [Group G] (f : G →* Perm (Fin 5))
     (surj : ∀ y, ∃ x, f x = y) : ¬ IsSolvable G :=

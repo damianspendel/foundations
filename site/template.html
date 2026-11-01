@@ -26,6 +26,7 @@
   --combinatorics: #b06a00;
   --probability: #00798c;
   --bridges: #5a5a5a;
+  --numbertheory: #9c2f2f;
   --other: #6b7685;
   --hi: #d4a017;
   --font-display: "Newsreader", Georgia, serif;
@@ -36,13 +37,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #11151b; --surface: #181e26; --ink: #e4e8ee; --muted: #97a1b0; --line: #2b333f;
-    --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --algebra: #6c9be6; --types: #d1b25a; --geometry: #e07aae; --categories: #7cc466; --topology: #a58bd0; --combinatorics: #e8a33d; --probability: #4fc3d4; --bridges: #b0b0b0; --other: #8a95a5; --hi: #f0c040;
+    --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --algebra: #6c9be6; --types: #d1b25a; --geometry: #e07aae; --categories: #7cc466; --topology: #a58bd0; --combinatorics: #e8a33d; --probability: #4fc3d4; --bridges: #b0b0b0; --numbertheory: #e06b6b; --other: #8a95a5; --hi: #f0c040;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #11151b; --surface: #181e26; --ink: #e4e8ee; --muted: #97a1b0; --line: #2b333f;
-  --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --algebra: #6c9be6; --types: #d1b25a; --geometry: #e07aae; --categories: #7cc466; --topology: #a58bd0; --combinatorics: #e8a33d; --probability: #4fc3d4; --bridges: #b0b0b0; --other: #8a95a5; --hi: #f0c040;
+  --sets: #a77fdc; --numbers: #43b3a1; --logic: #e07b52; --algebra: #6c9be6; --types: #d1b25a; --geometry: #e07aae; --categories: #7cc466; --topology: #a58bd0; --combinatorics: #e8a33d; --probability: #4fc3d4; --bridges: #b0b0b0; --numbertheory: #e06b6b; --other: #8a95a5; --hi: #f0c040;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -205,6 +206,7 @@ const PARTS = [
   { key: "Combinatorics", title: "IX · Combinatorics", sub: "order in large structures", color: "--combinatorics" },
   { key: "Probability", title: "X · Probability", sub: "reasoning under uncertainty", color: "--probability" },
   { key: "Bridges", title: "XI · Bridges", sub: "how the parts are one building", color: "--bridges" },
+  { key: "NumberTheory", title: "XII · Number theory", sub: "the primes", color: "--numbertheory" },
 ];
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 

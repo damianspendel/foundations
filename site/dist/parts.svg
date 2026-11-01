@@ -69,14 +69,14 @@
 <path fill="#2f62b5" stroke="black" stroke-width="0" d="M624,-273C624,-273 516,-273 516,-273 510,-273 504,-267 504,-261 504,-261 504,-234 504,-234 504,-228 510,-222 516,-222 516,-222 624,-222 624,-222 630,-222 636,-228 636,-234 636,-234 636,-261 636,-261 636,-267 630,-273 624,-273"/>
 <text text-anchor="start" x="527" y="-254.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="13.00" fill="white">IV · Algebra</text>
 <text text-anchor="start" x="522" y="-244" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">groups, rings, fields</text>
-<text text-anchor="start" x="526" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">1059 declarations</text>
+<text text-anchor="start" x="526" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">1147 declarations</text>
 </g>
 <!-- Numbers&#45;&gt;Algebra -->
 <g id="edge5" class="edge">
 <title>Numbers&#45;&gt;Algebra</title>
-<g id="a_edge5"><a xlink:title="2105 uses of Numbers in Algebra">
-<path fill="none" stroke="#8a94a3" stroke-width="2.48" d="M508.15,-162.23C519.81,-178.12 535.05,-198.88 547.48,-215.81"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.48" points="545.8,-217.67 551.92,-221.86 549.75,-214.77 545.8,-217.67"/>
+<g id="a_edge5"><a xlink:title="3114 uses of Numbers in Algebra">
+<path fill="none" stroke="#8a94a3" stroke-width="2.84" d="M508.15,-162.23C519.81,-178.12 535.05,-198.88 547.48,-215.81"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.84" points="545.8,-217.67 551.92,-221.86 549.75,-214.77 545.8,-217.67"/>
 </a>
 </g>
 </g>
