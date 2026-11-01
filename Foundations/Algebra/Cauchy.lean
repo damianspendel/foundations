@@ -76,7 +76,7 @@ theorem mem_tuples (L : List α) : ∀ (n : Nat) (f : Fin n → α), (∀ i, f i
 
 /-- A `flatMap` of repetition-free, pairwise disjoint blocks indexed by a repetition-free
 list is repetition-free. -/
-theorem nodup_flatMap {β : Type u} {l : List α} {f : α → List β} (h1 : l.Nodup)
+theorem nodup_flatMap {β : Type _} {l : List α} {f : α → List β} (h1 : l.Nodup)
     (h2 : ∀ a, (f a).Nodup) (h3 : ∀ a b, a ≠ b → ∀ x, x ∈ f a → x ∉ f b) :
     (l.flatMap f).Nodup := by
   induction l with

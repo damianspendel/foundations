@@ -53,11 +53,16 @@ def rsum (f : R → R) : R → List (R × R) → R
   | _, [] => 0
   | a, (t, x) :: l => f t * (x - a) + rsum f x l
 
-/-- `f` has **Riemann integral** `I` over `[a, b]`: Riemann sums over all sufficiently fine
-tagged partitions are close to `I`. -/
+/-- `f` has **Riemann integral** `I` over `[a, b]` (where `a ≤ b`): Riemann sums over all
+sufficiently fine tagged partitions are close to `I`. The condition `a ≤ b` is part of the
+definition: for `b < a` there are no tagged partitions at all, and the approximation condition
+alone would hold vacuously for every `I`. -/
 def HasIntegral (f : R → R) (a b I : R) : Prop :=
-  ∀ ε : R, 0 < ε → ∃ δ : R, 0 < δ ∧
+  a ≤ b ∧ ∀ ε : R, 0 < ε → ∃ δ : R, 0 < δ ∧
     ∀ l, IsTagged a l b → MeshLt δ a l → abs (rsum f a l - I) < ε
+
+/-- An integral over `[a, b]` only exists for `a ≤ b`. -/
+theorem HasIntegral.le {f : R → R} {a b I : R} (h : HasIntegral f a b I) : a ≤ b := h.1
 
 /-- The partition points increase: a tagged partition of `[a, b]` has `a ≤ b`. -/
 theorem IsTagged.le {a b : R} {l : List (R × R)} (h : IsTagged a l b) : a ≤ b := by
@@ -227,8 +232,8 @@ theorem HasIntegral.unique {f : R → R} {a b I J : R} (hab : a ≤ b) (hI : Has
     (hJ : HasIntegral f a b J) : I = J := by
   apply eq_of_abs_lt_all
   intro ε hε
-  obtain ⟨δ₁, hδ₁, h₁⟩ := hI (ε / 2) (by grind)
-  obtain ⟨δ₂, hδ₂, h₂⟩ := hJ (ε / 2) (by grind)
+  obtain ⟨δ₁, hδ₁, h₁⟩ := hI.2 (ε / 2) (by grind)
+  obtain ⟨δ₂, hδ₂, h₂⟩ := hJ.2 (ε / 2) (by grind)
   obtain ⟨δ, hδ, hδ1, hδ2⟩ := exists_pos_le_both hδ₁ hδ₂
   obtain ⟨l, hl, hm⟩ := exists_tagged hab hδ
   have k1 := h₁ l hl (hm.mono hδ1)
@@ -242,9 +247,9 @@ theorem HasIntegral.unique {f : R → R} {a b I J : R} (hab : a ≤ b) (hI : Has
 
 /-- **Linearity I.** `∫ (f + g) = ∫ f + ∫ g`. -/
 theorem HasIntegral.add {f g : R → R} {a b I J : R} (hf : HasIntegral f a b I)
-    (hg : HasIntegral g a b J) : HasIntegral (fun y => f y + g y) a b (I + J) := fun ε hε => by
-  obtain ⟨δ₁, hδ₁, h₁⟩ := hf (ε / 2) (by grind)
-  obtain ⟨δ₂, hδ₂, h₂⟩ := hg (ε / 2) (by grind)
+    (hg : HasIntegral g a b J) : HasIntegral (fun y => f y + g y) a b (I + J) := ⟨hf.1, fun ε hε => by
+  obtain ⟨δ₁, hδ₁, h₁⟩ := hf.2 (ε / 2) (by grind)
+  obtain ⟨δ₂, hδ₂, h₂⟩ := hg.2 (ε / 2) (by grind)
   obtain ⟨δ, hδ, hδ1, hδ2⟩ := exists_pos_le_both hδ₁ hδ₂
   refine ⟨δ, hδ, fun l hl hm => ?_⟩
   have k1 := h₁ l hl (hm.mono hδ1)
@@ -252,32 +257,33 @@ theorem HasIntegral.add {f g : R → R} {a b I J : R} (hf : HasIntegral f a b I)
   rw [rsum_add]
   have k3 := abs_add (rsum f a l - I) (rsum g a l - J)
   rw [show rsum f a l - I + (rsum g a l - J) = rsum f a l + rsum g a l - (I + J) by grind] at k3
-  grind
+  grind⟩
 
 /-- **Linearity II.** `∫ c f = c ∫ f`. -/
 theorem HasIntegral.const_mul (c : R) {f : R → R} {a b I : R} (hf : HasIntegral f a b I) :
-    HasIntegral (fun y => c * f y) a b (c * I) := fun ε hε => by
+    HasIntegral (fun y => c * f y) a b (c * I) := ⟨hf.1, fun ε hε => by
   obtain ⟨η, hη, hηc⟩ := exists_mul_le c (by grind : 0 < ε / 2)
-  obtain ⟨δ, hδ, h⟩ := hf η hη
+  obtain ⟨δ, hδ, h⟩ := hf.2 η hη
   refine ⟨δ, hδ, fun l hl hm => ?_⟩
   rw [rsum_const_mul, show c * rsum f a l - c * I = c * (rsum f a l - I) by grind, abs_mul]
   have := OrderedRing.mul_le_mul_of_nonneg_left (Std.le_of_lt (h l hl hm)) (abs_nonneg c)
-  grind
+  grind⟩
 
 /-- The integral of a constant: `∫ₐᵇ c = c (b − a)`. -/
-theorem hasIntegral_const (c a b : R) : HasIntegral (fun _ => c) a b (c * (b - a)) :=
-  fun ε hε => ⟨1, by grind, fun l hl _ => by
+theorem hasIntegral_const (c : R) {a b : R} (hab : a ≤ b) :
+    HasIntegral (fun _ => c) a b (c * (b - a)) :=
+  ⟨hab, fun ε hε => ⟨1, by grind, fun l hl _ => by
     have := abs_rsum_sub_le (f := fun _ => c) (c := c) (ε := 0) hl fun t _ _ => by
       rw [show c - c = 0 by grind, abs_zero]; exact Std.le_refl _
-    grind⟩
+    grind⟩⟩
 
 /-- **Monotonicity of the integral.** If `f ≤ g` on `[a, b]` then `∫ f ≤ ∫ g`. -/
 theorem HasIntegral.mono {f g : R → R} {a b I J : R} (hab : a ≤ b) (hf : HasIntegral f a b I)
     (hg : HasIntegral g a b J) (hfg : ∀ t, a ≤ t → t ≤ b → f t ≤ g t) : I ≤ J := by
   apply Classical.byContradiction
   intro hlt
-  obtain ⟨δ₁, hδ₁, h₁⟩ := hf ((I - J) / 2) (by grind)
-  obtain ⟨δ₂, hδ₂, h₂⟩ := hg ((I - J) / 2) (by grind)
+  obtain ⟨δ₁, hδ₁, h₁⟩ := hf.2 ((I - J) / 2) (by grind)
+  obtain ⟨δ₂, hδ₂, h₂⟩ := hg.2 ((I - J) / 2) (by grind)
   obtain ⟨δ, hδ, hδ1, hδ2⟩ := exists_pos_le_both hδ₁ hδ₂
   obtain ⟨l, hl, hm⟩ := exists_tagged hab hδ
   have k1 := abs_lt.1 (h₁ l hl (hm.mono hδ1))
@@ -292,9 +298,9 @@ theorem HasIntegral.add_interval {f : R → R} {a b c I J K : R} (hab : a ≤ b)
     K = I + J := by
   apply eq_of_abs_lt_all
   intro ε hε
-  obtain ⟨δ₁, hδ₁, h₁⟩ := hI (ε / 3) (by grind)
-  obtain ⟨δ₂, hδ₂, h₂⟩ := hJ (ε / 3) (by grind)
-  obtain ⟨δ₃, hδ₃, h₃⟩ := hK (ε / 3) (by grind)
+  obtain ⟨δ₁, hδ₁, h₁⟩ := hI.2 (ε / 3) (by grind)
+  obtain ⟨δ₂, hδ₂, h₂⟩ := hJ.2 (ε / 3) (by grind)
+  obtain ⟨δ₃, hδ₃, h₃⟩ := hK.2 (ε / 3) (by grind)
   obtain ⟨δ₄, hδ₄, h₄1, h₄2⟩ := exists_pos_le_both hδ₁ hδ₂
   obtain ⟨δ, hδ, hδ1, hδ2⟩ := exists_pos_le_both hδ₄ hδ₃
   obtain ⟨l₁, hl₁, hm₁⟩ := exists_tagged hab hδ
@@ -503,7 +509,7 @@ theorem integrable_of_continuous {f : R → R} {a b : R} (hab : a ≤ b)
       have := hδ' (P m) (P n) (hP m) (hN m hm) (hP n) (hN n hn); grind⟩
   obtain ⟨I, hI⟩ := cauchy_complete hS
   -- Its limit is the integral.
-  refine ⟨I, fun ε hε => ?_⟩
+  refine ⟨I, hab, fun ε hε => ?_⟩
   obtain ⟨δ, hδ, hδ'⟩ := huc (ε / 2) (by grind)
   refine ⟨δ, hδ, fun l hl hm => ?_⟩
   obtain ⟨N₁, hN₁⟩ := hfine δ hδ

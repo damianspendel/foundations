@@ -23,6 +23,9 @@ import Foundations.Numbers.Log
 import Foundations.Numbers.Integral
 import Foundations.Numbers.FTC
 import Foundations.Numbers.Trig
+import Foundations.Numbers.TrigIdentities
+import Foundations.Numbers.ComplexExp
+import Foundations.Numbers.PiIrrational
 
 /-!
 # Part II: Number systems
@@ -61,4 +64,9 @@ The number systems built from scratch, each from the previous by a quotient cons
 18. `FTC` — the fundamental theorem of calculus, both parts; `∫ tⁿ` and `∫ exp`.
 19. `Trig` — power series with bounded coefficients and termwise differentiation; sine and
     cosine; `sin² + cos² = 1`; `π` as twice the first positive zero of cosine.
+20. `TrigIdentities` — addition formulas; periodicity with period `2π`; `sin π = 0`, `cos π = −1`;
+    all zeros of sine and cosine.
+21. `ComplexExp` — the complex exponential as a power series; `exp (z + w) = exp z · exp w` via the
+    Cauchy product; Euler's formula `exp (iθ) = cos θ + i sin θ`; Euler's identity `e^{iπ} + 1 = 0`.
+22. `PiIrrational` — π is irrational (Niven's proof, via the fundamental theorem of calculus).
 -/

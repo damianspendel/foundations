@@ -27,8 +27,9 @@ namespace R
 
 /-! ## The integral as a number -/
 
-/-- **The integral** `∫ₐᵇ f`: the Riemann integral of `f` over `[a, b]` if it exists (and `0`
-otherwise, a value of no significance). -/
+/-- **The integral** `∫ₐᵇ f`: the Riemann integral of `f` over `[a, b]` if it exists. If it does
+not exist — in particular whenever `b < a`, since `HasIntegral` requires `a ≤ b` — the value is
+`0`, a value of no significance. -/
 noncomputable def integral (f : R → R) (a b : R) : R :=
   open Classical in if h : ∃ I, HasIntegral f a b I then h.choose else 0
 
@@ -62,7 +63,7 @@ theorem HasIntegral.abs_sub_le {f : R → R} {u v c ε I : R} (huv : u ≤ v)
     abs (I - c * (v - u)) ≤ ε * (v - u) := by
   apply Classical.byContradiction
   intro hlt
-  obtain ⟨δ, hδ, h⟩ := hI (abs (I - c * (v - u)) - ε * (v - u)) (by grind)
+  obtain ⟨δ, hδ, h⟩ := hI.2 (abs (I - c * (v - u)) - ε * (v - u)) (by grind)
   obtain ⟨l, hl, hm⟩ := exists_tagged huv hδ
   have k1 := h l hl hm
   have k2 := abs_rsum_sub_le hl hf
@@ -151,7 +152,7 @@ theorem ftc2 {F f : R → R} {a b I : R} (hab : a ≤ b)
     I = F b - F a := by
   apply eq_of_abs_lt_all
   intro ε hε
-  obtain ⟨δ, hδ, h⟩ := hI ε hε
+  obtain ⟨δ, hδ, h⟩ := hI.2 ε hε
   obtain ⟨l, hl, hm⟩ := exists_tagged hab hδ
   obtain ⟨l', hl', hm', hsum⟩ := exists_telescoping_tags l a hl hd
   have := h l' hl' (hm' δ hm)
