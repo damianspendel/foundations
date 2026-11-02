@@ -32,7 +32,7 @@ sets), `yoneda`, `lawvere_fixed_point` (one diagonal argument behind Cantor, Rus
 
 ## Honest caveats the audit raised
 
-- **Gödel II** holds for the provability formula `provH`. For the derivation-based predicate `provD` ("there is a coded PA-derivation of x"), D1 and D2 are proved and `provD` defines PA-provability in ℕ, but D3 (formalised Σ₁-completeness) is open, so textbook Gödel II is reduced to D3 (`godel_second_provD_of_D3`), not proved. `GodelIIFeferman` gives a kernel-checked instance of Feferman's point: two predicates defining the same provability, one with Con provable in PA and one without.
+- **Gödel II** is proved without hypotheses for two predicates: `provH` (Hilbert-style, with necessitation built in) and `provDP` (`godel_second_provDP`), a derivation predicate that checks modus ponens and numeral substitution by explicit formulas and gets D3 from formalised Σ₁-completeness (`sig_complete`). `provDP` still checks the remaining calculus steps through a program known only to exist, and it is not shown PA-provably equivalent to the plain derivation predicate `provD`, for which D3 stays open. `GodelIIFeferman` gives a kernel-checked instance of Feferman's point that the choice of predicate matters.
 - **Independence of the parallel postulate** is shown with models: "not provable" means "fails in a model". No formal proof system for geometry is built.
 - **Constructible numbers** (doubling the cube, trisecting the angle) are defined algebraically, as Descartes and Wantzel did. The link to actual ruler-and-compass constructions is described, not formalised.
 - **Gentzen's consistency proof of PA** is described, with only the abstract descent principle formalised. PA's consistency is proved through its standard model instead.

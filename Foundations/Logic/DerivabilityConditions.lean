@@ -5,7 +5,8 @@ import Foundations.Logic.HilbertProvability
 
 We now verify the Hilbert–Bernays–Löb conditions (D2) and (D3) for the provability
 formula `provH` of the previous file, and obtain Löb's theorem and Gödel's second
-incompleteness theorem for PA **without hypotheses**.
+incompleteness theorem for PA **without hypotheses**, for the Hilbert-style predicate
+`provH` (built-in necessitation; see the caveat below).
 
 *Method.* By completeness for PA (`PA_proves_of_models`), it suffices to show that
 the two sentences hold in every model `N` of PA. Inside `N` a "proof" is a pair
@@ -33,7 +34,8 @@ which hold in every model of PA by Σ₁-completeness.
 definability calculus) which defines PA-provability in the standard model
 (`sat_provH`, and `provH_std_iff_provPA` relates it to `provPA` of `Lob`) and satisfies
 (D1)–(D3) over PA. The (D3) argument uses the necessitation rule built into the proof
-notion; formalised Σ₁-completeness for arbitrary Σ₁ formulas is *not* developed here,
+notion; formalised Σ₁-completeness for arbitrary Σ₁ formulas is *not* developed in this file
+(see `GodelIID3Sigma`),
 and (D2)/(D3) are not established for the formula `provPA` itself (whose program is
 not under our control in non-standard models). Gödel's second theorem is therefore
 stated for `provH`: `godel_second_PA_unconditional : ¬ PA ⊢ ¬provH(⌜⊥⌝)`.
@@ -51,7 +53,8 @@ natural-deduction calculus satisfying (D1) and (D2) over PA and defining PA-prov
 `ℕ`, for which Gödel II is proved *conditionally on (D3)* (`GodelII.godel_second_provD_of_D3`).
 (D3) for `provD` itself remains open. The files `GodelIID3*` carry out the internal
 arithmetisation of syntax for a transparent variant `provDP`, a derivation predicate for the
-same calculus with modus ponens and numeral substitution checked by explicit formulas. For
+same calculus with modus ponens and numeral substitution checked by explicit formulas (the other rules
+are still checked through the opaque `StepM`, which (D3) does not need to inspect). For
 `provDP` they prove formalised Σ₁-completeness inside every model of PA, hence (D3), and
 **Gödel II unconditionally**: `godel_second_provDP : ¬ PA ⊢ ¬provDP(⌜⊥⌝)`.
 -/
