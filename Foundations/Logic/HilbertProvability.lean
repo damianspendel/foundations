@@ -47,7 +47,8 @@ about `provH`; only `PA ⊢ accF(x) → provH(x)` is proved (`GodelII.accF_imp_p
 the gap: they show why the choice of predicate matters (Feferman 1960), introduce a
 derivation-based formula `provD` for PA's natural-deduction calculus with (D1), (D2) and
 the standard characterisation, and reduce Gödel II for `provD` to (D3) for `provD`
-(formalised Σ₁-completeness), which remains unproved.
+(formalised Σ₁-completeness), which remains unproved. The files `GodelIID3*` prove (D3) and
+Gödel II for the transparent derivation predicate `provDP` (`godel_second_provDP`).
 -/
 
 namespace Foundations.Logic.FO

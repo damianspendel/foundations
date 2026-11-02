@@ -49,8 +49,11 @@ the transfer principles `GodelII.godel_second_of_dominates` and `GodelII.derivab
 (`GodelII.godel_second_intensional`); and a derivation-based formula `provD` for PA's
 natural-deduction calculus satisfying (D1) and (D2) over PA and defining PA-provability in
 `ℕ`, for which Gödel II is proved *conditionally on (D3)* (`GodelII.godel_second_provD_of_D3`).
-(D3) for `provD` — formalised Σ₁-completeness — needs an arithmetisation of syntax inside
-models of PA and remains open.
+(D3) for `provD` itself remains open. The files `GodelIID3*` carry out the internal
+arithmetisation of syntax for a transparent variant `provDP`, a derivation predicate for the
+same calculus with modus ponens and numeral substitution checked by explicit formulas. For
+`provDP` they prove formalised Σ₁-completeness inside every model of PA, hence (D3), and
+**Gödel II unconditionally**: `godel_second_provDP : ¬ PA ⊢ ¬provDP(⌜⊥⌝)`.
 -/
 
 namespace Foundations.Logic.FO
@@ -183,7 +186,8 @@ the Hilbert–Bernays–Löb form of the theorem, not a Feferman-style artefact 
 `GodelII.provF`, which has the same extension in `ℕ` but fails (D2) and has a PA-provable
 consistency statement). For the derivation-based formula `provD`, Gödel II is reduced to
 (D3) in `GodelII.godel_second_provD_of_D3`, and to `PA ⊢ provH(⌜⊥⌝) → provD(⌜⊥⌝)` in
-`GodelII.godel_second_provD_of_dominates`; neither hypothesis is proved. -/
+`GodelII.godel_second_provD_of_dominates`; neither hypothesis is proved. For the derivation
+predicate `provDP`, Gödel II is proved without hypotheses (`godel_second_provDP`). -/
 theorem godel_second_PA_unconditional : ¬ PA ⊢₁ conF provH :=
   godel_second (fun _ h => PA_proves_Q h) provH_derivability PA_consistent
 

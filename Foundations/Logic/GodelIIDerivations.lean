@@ -43,7 +43,11 @@ formalised Σ₁-completeness: inside a model of PA, from a derivation `p` (poss
 non-standard) one must build a derivation of the *sentence* asserting that `p` is a
 derivation, with the numeral of `p` in it. That requires an arithmetisation of syntax
 *inside* models of PA (numerals, substitution, derivations of true Δ₀ sentences by
-internal induction), which this library does not contain.
+internal induction). For `provD` this is blocked: its one-step test is the Σ₁ graph of a
+program known only on standard inputs, so no line with non-standard content can be verified
+inside a model. The files `GodelIID3*` carry out the arithmetisation for the variant `provDP`.
+In `provDP`, modus ponens and the substitution of numerals are also checked transparently,
+and the files prove (D3) and Gödel II for it (`provDP_D3`, `godel_second_provDP`).
 -/
 
 namespace Foundations.Logic.FO

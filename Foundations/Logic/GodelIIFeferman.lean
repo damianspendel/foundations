@@ -31,8 +31,9 @@ in PA would amount to proving `Con_H`, contradicting `godel_second_PA_unconditio
 **Moral for this library.** The example is why the caveat on
 `godel_second_PA_unconditional` matters, and also why the theorem is *not* vacuous: `provH`
 contains no consistency filter and satisfies all of (D1)–(D3) provably in PA, which is
-exactly the property that `provF` lacks. What is still missing is a PA-provable link
-between `provH` and the textbook Σ₁ derivation predicate (see `GodelIITransfer`).
+exactly the property that `provF` lacks. The derivation predicate `provDP` of
+`GodelIID3Main` also satisfies (D1)–(D3), with (D3) obtained by formalised
+Σ₁-completeness, so Gödel II holds for it too (`godel_second_provDP`).
 -/
 
 namespace Foundations.Logic.FO

@@ -52,6 +52,17 @@ import Foundations.Logic.GodelIITransfer
 import Foundations.Logic.GodelIIFeferman
 import Foundations.Logic.GodelIIDerivations
 import Foundations.Logic.GodelIIStandard
+import Foundations.Logic.GodelIID3Syntax
+import Foundations.Logic.GodelIID3Code
+import Foundations.Logic.GodelIID3Defs
+import Foundations.Logic.GodelIID3Closure
+import Foundations.Logic.GodelIID3Std
+import Foundations.Logic.GodelIID3Inst
+import Foundations.Logic.GodelIID3Der
+import Foundations.Logic.GodelIID3Arith
+import Foundations.Logic.GodelIID3Bounded
+import Foundations.Logic.GodelIID3Sigma
+import Foundations.Logic.GodelIID3Main
 
 /-!
 # Part III: Logic

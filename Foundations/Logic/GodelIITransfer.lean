@@ -37,8 +37,10 @@ defined provability formula (such as the derivation-based `provD` of `GodelIIDer
 is not available by the methods of this library. What a proof of Gödel II for a
 derivation-based formula needs instead is its (D3) — formalised Σ₁-completeness — which
 rests on an arithmetisation of syntax *inside* arbitrary models of PA (formula codes,
-numerals, substitution, derivations of true Δ₀ sentences by internal induction). That
-internal arithmetisation is the missing piece.
+numerals, substitution, derivations of true Δ₀ sentences by internal induction). The files
+`GodelIID3*` supply this arithmetisation for the derivation predicate `provDP` and prove
+Gödel II for it unconditionally (`godel_second_provDP`). A PA-provable comparison of
+`provH` with `provD` or `provDP` is still not available.
 
 **This file.** We make the remaining task precise by proving the *transfer principles*
 which reduce it to a single PA-provable implication:

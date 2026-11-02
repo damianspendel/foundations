@@ -23,11 +23,20 @@ for (D3)*. We record the consequences precisely:
 * `provD_std_iff_provH`: `provD` and `provH` have the same extension in `ℕ`. By Feferman's
   observation (`godel_second_intensional`) this alone transfers nothing.
 
-**Status of the caveat.** Neither hypothesis is proved here. Both are statements about
-*non-standard* derivations inside models of PA, and proving either requires the internal
-arithmetisation of syntax that the library lacks (see the module docstring of
-`GodelIITransfer`). Gödel II for the textbook consistency statement therefore remains
-reduced to — not derived from — (D3) for `provD`.
+**Status of the caveat.** Neither hypothesis is proved *for `provD`*. Both are statements
+about non-standard derivations inside models of PA. Every line of a `provD`-derivation is
+checked by the Σ₁ graph of a program known only on standard inputs, so no line with
+non-standard content can be verified inside a non-standard model. `ProvDD3` therefore
+remains open.
+
+The files `GodelIID3*` carry out the missing internal arithmetisation of syntax for a
+variant `provDP` of `provD`. It is the same calculus, but modus ponens and the substitution
+of numerals (a derived rule) may also be checked by explicit formulas. For `provDP` they
+prove formalised Σ-completeness inside every model of PA (`PAModel.sig_complete`), hence
+(D3) (`provDP_D3`), and so **Gödel's second theorem unconditionally**
+(`godel_second_provDP : ¬ PA ⊢ ¬provDP(⌜⊥⌝)`). `provDP` defines PA-provability in `ℕ`
+(`sat_provDP`). PA proves `provD(x) → provDP(x)` but not, as far as is shown, the converse,
+so the result does not transfer back to `provD`.
 -/
 
 namespace Foundations.Logic.FO
@@ -137,7 +146,8 @@ theorem provD_std_iff_provH (φ : Formula Arith) (e : Nat → Nat) :
 
 /-- **The open condition (D3) for `provD`** — formalised Σ₁-completeness for the
 derivation predicate: `PA ⊢ provD(⌜φ⌝) → provD(⌜provD(⌜φ⌝)⌝)` for every formula `φ`.
-This is a *statement*, not a theorem of the library. -/
+This is a *statement*, not a theorem of the library; it is proved instead for the
+transparent variant `provDP` (`provDP_D3` in `GodelIID3Main`). -/
 def ProvDD3 : Prop := ∀ φ : Formula Arith, PA ⊢₁ imp (box provD φ) (box provD (box provD φ))
 
 /-- (D1)–(D3) for `provD`, given (D3). -/
