@@ -23,11 +23,12 @@ statement, its proof and everything it rests on.
 | 14 | `zorn`, `hartogs_theorem`, `schroeder_bernstein` | `Sets/Choice.lean`, `Sets/Hartogs.lean`, `Sets/SchroederBernstein.lean` | The core of set theory and cardinal arithmetic. |
 | 15 | `basel`, `stirling`, `vitali` | `Topology/Basel.lean`, `Topology/Stirling.lean`, `Topology/Vitali.lean` | Σ 1/n² = π²/6; n! ≈ √(2πn)(n/e)ⁿ; there is no way to measure the length of *every* subset of [0, 1). |
 | 16 | `prime_number_theorem`, `dirichlet` | `NumberTheory/PNTTheorem.lean`, `NumberTheory/Dirichlet.lean` | The number of primes up to N is asymptotically N / log N (proved by the elementary Erdős–Selberg route), and every progression a, a+q, a+2q, … with gcd(a, q) = 1 contains infinitely many primes. |
+| 17 | `ZF_not_proves_CH`, `VB_models_ZF` | `Forcing/NotCH.lean`, `Forcing/BSetZF.lean` | The Continuum Hypothesis cannot be proved from the ZF axioms: in Cohen's Boolean-valued model over ω₂ every ZF axiom is true and CH is false. This is half of its independence, for ZF without choice; Gödel's half is not formalised. |
 
 Also worth a look: `El_summary` (`Bridges/ETCSvsZF.lean`: ZF sets sit fully and faithfully inside
 the structural, categorical world), `reals_in_sets` (`Bridges/RealsInSets.lean`: ℝ built from pure
 sets), `yoneda`, `lawvere_fixed_point` (one diagonal argument behind Cantor, Russell and Gödel),
-`bertrand`, `VB_models_ZF` (`Forcing/BSetZF.lean`: every ZF axiom is true in any Boolean-valued universe — the first half of Cohen-style independence proofs; the independence of CH itself is not reached), `euler_sum_reciprocal_primes` (Σ 1/p = ∞), `dirichlet` (`NumberTheory/Dirichlet.lean`: infinitely many primes ≡ a mod q whenever gcd(a, q) = 1), `A5_simple`, `sylow_first`, `dominated_convergence`, `pi1_circle_iso_int` and `brouwer_disc` (π₁(S¹) ≅ ℤ and Brouwer's fixed-point theorem in 2D).
+`bertrand`, `euler_sum_reciprocal_primes` (Σ 1/p = ∞), `dirichlet` (`NumberTheory/Dirichlet.lean`: infinitely many primes ≡ a mod q whenever gcd(a, q) = 1), `A5_simple`, `sylow_first`, `dominated_convergence`, `pi1_circle_iso_int` and `brouwer_disc` (π₁(S¹) ≅ ℤ and Brouwer's fixed-point theorem in 2D).
 
 ## Honest caveats the audit raised
 

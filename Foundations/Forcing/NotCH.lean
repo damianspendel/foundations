@@ -27,8 +27,9 @@ algebra, soundness yields the main theorem:
 `ZF` of `BSetZF`, which includes the universal closures of all scheme instances), with CH the
 specific `LSet` sentence `CH` of `Formulas`. The axiom of choice is not verified in `V^B`, so
 the statement `ZFC ⊬ CH` is not obtained. Gödel's half (`ZF ⊬ ¬CH`, via `L`) is not
-formalised. The result is unconditional rather than relative to Con(ZF), because the
-metatheory here (Lean's type theory with universes) already provides models of ZF.
+formalised. No Con(ZF) hypothesis is needed, because Lean's type theory (with universes and
+choice), which is stronger than ZF, proves that ZF has models. Read from outside, the result is
+relative to the consistency of Lean's logic.
 -/
 
 namespace Foundations.Forcing
