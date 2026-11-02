@@ -71,7 +71,7 @@
 <path fill="#b5532c" stroke="black" stroke-width="0" d="M981,-273C981,-273 861,-273 861,-273 855,-273 849,-267 849,-261 849,-261 849,-234 849,-234 849,-228 855,-222 861,-222 861,-222 981,-222 981,-222 987,-222 993,-228 993,-234 993,-234 993,-261 993,-261 993,-267 987,-273 981,-273"/>
 <text text-anchor="start" x="887.5" y="-254.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="13.00" fill="white">III · Logic</text>
 <text text-anchor="start" x="867" y="-244" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">proofs, models, Gödel</text>
-<text text-anchor="start" x="877" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">1245 declarations</text>
+<text text-anchor="start" x="877" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">1314 declarations</text>
 </g>
 <!-- Numbers&#45;&gt;Logic -->
 <g id="edge22" class="edge">

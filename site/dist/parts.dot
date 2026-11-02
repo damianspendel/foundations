@@ -4,7 +4,7 @@ node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=13, penw
 edge [color="#8a94a3", arrowsize=0.7];
 "Sets" [label=<<b>I · Sets</b><br/><font point-size="10">a model of ZF<br/>358 declarations</font>>, fillcolor="#7b4fb0", fontcolor="white"];
 "Numbers" [label=<<b>II · Numbers</b><br/><font point-size="10">ℕ → ℤ → ℚ → ℝ → ℂ, analysis<br/>938 declarations</font>>, fillcolor="#1f7a6c", fontcolor="white"];
-"Logic" [label=<<b>III · Logic</b><br/><font point-size="10">proofs, models, Gödel<br/>1245 declarations</font>>, fillcolor="#b5532c", fontcolor="white"];
+"Logic" [label=<<b>III · Logic</b><br/><font point-size="10">proofs, models, Gödel<br/>1314 declarations</font>>, fillcolor="#b5532c", fontcolor="white"];
 "Algebra" [label=<<b>IV · Algebra</b><br/><font point-size="10">groups, rings, fields<br/>1147 declarations</font>>, fillcolor="#2f62b5", fontcolor="white"];
 "Types" [label=<<b>V · Types</b><br/><font point-size="10">λ-calculus, Curry–Howard<br/>342 declarations</font>>, fillcolor="#8a6d1d", fontcolor="white"];
 "Geometry" [label=<<b>VI · Geometry</b><br/><font point-size="10">Euclid, Tarski, Klein<br/>134 declarations</font>>, fillcolor="#a1356f", fontcolor="white"];

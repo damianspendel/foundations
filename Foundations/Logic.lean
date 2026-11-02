@@ -48,6 +48,10 @@ import Foundations.Logic.SequentCalculus
 import Foundations.Logic.CutElimination
 import Foundations.Logic.SequentEquivalence
 import Foundations.Logic.GentzenConsistency
+import Foundations.Logic.GodelIITransfer
+import Foundations.Logic.GodelIIFeferman
+import Foundations.Logic.GodelIIDerivations
+import Foundations.Logic.GodelIIStandard
 
 /-!
 # Part III: Logic

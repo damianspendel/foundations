@@ -35,6 +35,19 @@ definite formula of arithmetic (a well-defined mathematical object, though not w
 out explicitly: its two program parameters are obtained by `Classical.choose`).
 
 This file proves the standard characterisation and condition (D1) for `provH`.
+
+**Status relative to the textbook predicate.** `provH` is not Gödel's "there is a
+derivation of `x`": its axiom clause accepts *all* theorems of PA through the opaque
+program `searchPA`, of which only its behaviour on standard inputs (`searchPA_spec`) is
+known, and it has a built-in necessitation rule. Since nothing constrains `accF` on
+non-standard arguments, a PA-provable comparison between `provH` and an independently
+defined (e.g. derivation-based) provability formula is not available from what is known
+about `provH`; only `PA ⊢ accF(x) → provH(x)` is proved (`GodelII.accF_imp_provH_uniform`). The files
+`GodelIITransfer`, `GodelIIFeferman`, `GodelIIDerivations` and `GodelIIStandard` analyse
+the gap: they show why the choice of predicate matters (Feferman 1960), introduce a
+derivation-based formula `provD` for PA's natural-deduction calculus with (D1), (D2) and
+the standard characterisation, and reduce Gödel II for `provD` to (D3) for `provD`
+(formalised Σ₁-completeness), which remains unproved.
 -/
 
 namespace Foundations.Logic.FO

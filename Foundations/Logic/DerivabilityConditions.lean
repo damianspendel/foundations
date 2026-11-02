@@ -37,6 +37,20 @@ notion; formalised Σ₁-completeness for arbitrary Σ₁ formulas is *not* deve
 and (D2)/(D3) are not established for the formula `provPA` itself (whose program is
 not under our control in non-standard models). Gödel's second theorem is therefore
 stated for `provH`: `godel_second_PA_unconditional : ¬ PA ⊢ ¬provH(⌜⊥⌝)`.
+
+*Relation to the textbook consistency statement (see the `GodelII*` files).* It is **not**
+shown that `provH` is PA-provably equivalent to a derivation-based provability formula,
+nor that `PA ⊢ Con_textbook → Con_H`; the known specification of `provH` (whose axiom
+clause is an opaque search program, unconstrained on non-standard arguments) does not
+supply such a relation. What has been added:
+the transfer principles `GodelII.godel_second_of_dominates` and `GodelII.derivability_congr`
+(Gödel II passes to any `P` with `PA ⊢ provH(⌜⊥⌝) → P(⌜⊥⌝)`); a Feferman-style example
+`GodelII.provF` with the same extension as `provH` in `ℕ` whose consistency PA *does* prove
+(`GodelII.godel_second_intensional`); and a derivation-based formula `provD` for PA's
+natural-deduction calculus satisfying (D1) and (D2) over PA and defining PA-provability in
+`ℕ`, for which Gödel II is proved *conditionally on (D3)* (`GodelII.godel_second_provD_of_D3`).
+(D3) for `provD` — formalised Σ₁-completeness — needs an arithmetisation of syntax inside
+models of PA and remains open.
 -/
 
 namespace Foundations.Logic.FO
@@ -165,7 +179,11 @@ Caveat (Gödel II is intensional, Feferman 1960): `provH` is not the textbook "t
 PA-derivation of x"; its proofs are modus-ponens/necessitation closures of a Σ₁ listing of
 PA's theorems, and PA-provable equivalence of `conF provH` with the canonical Con(PA) is not
 established here. `provH` contains no consistency filter, so this is a genuine instance of
-the Hilbert–Bernays–Löb form of the theorem, not a Feferman-style artefact. -/
+the Hilbert–Bernays–Löb form of the theorem, not a Feferman-style artefact (contrast
+`GodelII.provF`, which has the same extension in `ℕ` but fails (D2) and has a PA-provable
+consistency statement). For the derivation-based formula `provD`, Gödel II is reduced to
+(D3) in `GodelII.godel_second_provD_of_D3`, and to `PA ⊢ provH(⌜⊥⌝) → provD(⌜⊥⌝)` in
+`GodelII.godel_second_provD_of_dominates`; neither hypothesis is proved. -/
 theorem godel_second_PA_unconditional : ¬ PA ⊢₁ conF provH :=
   godel_second (fun _ h => PA_proves_Q h) provH_derivability PA_consistent
 
