@@ -27,7 +27,7 @@ separation is the name `{(Aᵢ, bᵢ ⊓ ⟦φ(Aᵢ)⟧)}`, a direct Boolean ana
 
 Combined with soundness, every first-order consequence of these axioms has value `⊤` in
 `V^B` (`VB_val_eq_top_of_proves`). The remaining ZF axioms (power set, infinity and
-collection) are verified in the next file, `BSetZF`. The axiom of choice is not treated.
+collection) are verified in the next file, `BSetZF`. Choice is verified in `AxiomOfChoice`.
 -/
 
 namespace Foundations.Forcing

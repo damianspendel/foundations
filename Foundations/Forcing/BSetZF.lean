@@ -21,8 +21,8 @@ in the Boolean-valued universe. This file adds the three remaining axioms of ZF:
 
 The headline theorem `VB_models_ZF` collects everything. **For every complete Boolean
 algebra `B`, every axiom of ZF has truth value `⊤` in `V^B`** (Scott–Solovay–Vopěnka),
-and so, by soundness, does every first-order consequence of ZF (`VB_val_eq_top_of_ZF`). The
-axiom of choice in `V^B` is not treated.
+and so, by soundness, does every first-order consequence of ZF (`VB_val_eq_top_of_ZF`). Choice in
+`V^B` is verified in `AxiomOfChoice`.
 -/
 
 namespace Foundations.Forcing

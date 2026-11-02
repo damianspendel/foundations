@@ -16,7 +16,8 @@ of the Boolean-valued approach to independence. To show that a theory `T` does n
 `φ`, it suffices to find a complete Boolean algebra `B` and a `B`-valued model in which
 every axiom of `T` has value `⊤` but `⟦φ⟧ ≠ ⊤`. Scott and Solovay showed that for
 `T = ZFC` and `φ = CH` such a model exists (`V^B` for the Cohen algebra `B`). Here this is
-carried out for `T = ZF` in `NotCH` (`ZF_not_proves_CH`); choice in `V^B` is not treated.
+carried out for `T = ZF` in `NotCH` (`ZF_not_proves_CH`), and for `T = ZFC` in
+`AxiomOfChoice` and `Independence` (`CH_independent_ZFC`).
 
 Each rule is checked against the algebra:
 

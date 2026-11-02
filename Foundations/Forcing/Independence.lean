@@ -38,8 +38,8 @@ theorem ZFC_CH_consistent : ¬ (Theory.insert ZFC CH ⊢₁ Formula.bot) := by
   · exact VB_CH _
   · exact VB_models_ZFC _ ψ h
 
-/-- **The independence of the Continuum Hypothesis** (Gödel 1938, Cohen 1963): ZFC proves
-neither `CH` nor `¬CH`. -/
+/-- **The independence of the Continuum Hypothesis** (Gödel 1938, Cohen 1963; here both halves
+by forcing): ZFC proves neither `CH` nor `¬CH`. -/
 theorem CH_independent_ZFC : ¬ (ZFC ⊢₁ CH) ∧ ¬ (ZFC ⊢₁ CH.neg) :=
   ⟨ZFC_not_proves_CH, ZFC_not_proves_notCH⟩
 

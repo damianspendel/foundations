@@ -37,8 +37,8 @@ non-degenerate, soundness gives
 > **`CH_independent_ZF : ¬ (ZF ⊢₁ CH) ∧ ¬ (ZF ⊢₁ CH.neg)`**.
 
 **Scope.** As in `NotCH`, this is independence over **ZF** (the theory `ZF` of `BSetZF`),
-for the specific `LSet` sentence `CH` of `Formulas`. The axiom of choice is not verified in
-`V^B`, so neither `ZFC ⊬ CH` nor `ZFC ⊬ ¬CH` is obtained. The surjection `ω̌₁ → 𝒫(ω̌)` given by
+for the specific `LSet` sentence `CH` of `Formulas`. Choice is verified in every `V^B` in
+`AxiomOfChoice`, and `Independence` lifts both halves to ZFC with the same models. The surjection `ω̌₁ → 𝒫(ω̌)` given by
 the generic is used externally, through the truth values `fo` and `catom`; it is never built as
 an internal name, and neither is `ω̌₁`. That `ω₁` is not collapsed is not stated as a separate
 theorem; its content is used in `enum_total`.
