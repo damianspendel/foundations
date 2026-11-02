@@ -11,9 +11,18 @@ import Foundations.Forcing.CheckNames
 import Foundations.Forcing.Formulas
 import Foundations.Forcing.CardinalPreservation
 import Foundations.Forcing.NotCH
+import Foundations.Forcing.CollapsePoset
+import Foundations.Forcing.CollapseNames
+import Foundations.Forcing.CollapseEnum
+import Foundations.Forcing.CollapseReals
+import Foundations.Forcing.CollapseCH
+import Foundations.Forcing.SanityChecks
+import Foundations.Forcing.Mixing
+import Foundations.Forcing.AxiomOfChoice
+import Foundations.Forcing.Independence
 
 /-!
-# Part: Forcing and Boolean-valued models: ZF does not prove CH
+# Part: Forcing and Boolean-valued models: CH is independent of ZFC
 
 ## The problem
 
@@ -36,7 +45,9 @@ Boolean algebra `B`. Every axiom of ZF(C) gets value `⊤`, and for the Cohen al
 `¬CH`. Soundness of first-order logic for such models then shows that CH is not provable.
 This is the route taken here. It is also the route of the Lean 3 *flypitch* project (Han
 and van Doorn, 2019), which completed the independence proof (both halves, for ZFC) with
-Mathlib. Here Cohen's half is proved **for ZF** (without choice).
+Mathlib. Here both halves are proved, for ZF and then for ZFC: Cohen's half with the Cohen algebra,
+and Gödel's half with a collapse algebra instead of `L` (item 10), with choice verified in every
+`V^B` (item 13); the conclusion is `CH_independent_ZFC` (item 14).
 
 ## What independence means
 
@@ -68,7 +79,7 @@ axioms are fully true and the statement is not.
    membership. `VB_models_ZF`: every axiom of `ZF` has value `⊤` in `V^B` for every complete
    Boolean algebra `B : Type`. Here `ZF` is extensionality, empty set, pairing, union, power set,
    infinity, and the separation, collection and ∈-induction schemes, the scheme instances
-   together with all their universal closures. Choice in `V^B` is **not** proved.
+   together with all their universal closures. Choice in `V^B` is item 13.
 4. **Check names** (`CheckNames`). The ground model embeds into `V^B` faithfully and two-valuedly:
    `⟦x̌ = y̌⟧ = ⊤ ↔ x = y` and `⟦x̌ ∈ y̌⟧ = ⊤ ↔ x ∈ y` for non-degenerate `B`
    (`eq_zcheck_eq_top_iff`, `mem_zcheck_eq_top_iff`).
@@ -92,11 +103,43 @@ axioms are fully true and the statement is not.
    `𝒫(ω)` in `V^B`. Hence
    **`ZF_not_proves_CH : ¬ (ZF ⊢₁ CH)`** and `ZF_notCH_consistent`.
 
-**What is not done.** The other half of independence, `ZF ⊬ ¬CH`: Gödel's `L`, or a
-Boolean-valued collapse model with `⟦CH⟧ = ⊤`. The axiom of choice in `V^B`, needed to upgrade
-the result to `ZFC ⊬ CH`. An internal function name `α ↦ ċ_α`, which is not needed for the
-argument: the proof works with the external family of Cohen reals. A proof inside the
+10. **The collapse and CH** (`CollapsePoset`, `CollapseNames`, `CollapseEnum`, `CollapseReals`,
+   `CollapseCH`). The other half of independence, by the forcing route instead of Gödel's `L`
+   (1938): the Lévy-style collapse of `2^ℵ₀` onto `ℵ₁`. The poset `CCond I` of countable
+   partial functions `I ⇀ 𝒫(ℕ)` is **σ-closed** (`CCond.sigma_closed`) and its regular-open
+   algebra `Col I` is non-degenerate (`col_top_ne_bot`). σ-closure gives the deciding lemma
+   `decide_countable` and hence **no new reals** (`mem_powersetB_le`). The generic function
+   hits every ground real (`top_le_iSup_catom`). Graph names with a checkable injectivity
+   criterion (`BSet.le_isFunc_inf_isInj`, using Boolean injectivity of Kuratowski pairs
+   `BSet.eq_opair_le`) and an external Boolean enumeration of subsets of `ω₁` (`enumV`) build
+   the needed injections. For every `ω₁`-like `I`, `⟦CH⟧ = ⊤` in `V^{Col I}`
+   (`val_CH_eq_top`); for `I = W₁` this gives
+   **`ZF_not_proves_notCH : ¬ (ZF ⊢₁ CH.neg)`**, `ZF_CH_consistent`, and
+   **`CH_independent_ZF : ¬ (ZF ⊢₁ CH) ∧ ¬ (ZF ⊢₁ CH.neg)`**.
+11. **Sanity checks** (`SanityChecks`). An audit that the CH encoding is not trivially false.
+   Kuratowski pairs are injective in the Boolean sense (`Sanity.opair_inj`). Identity and empty
+   injections have value `⊤`. In `V^{Cohen(ω₂)}`, `ω̌` injects into the witness `x`, and the matrix
+   of `CH` has value `⊤` at `x := 𝒫(ω)` and at `x := ∅`. "`w = ω`" and "`p = 𝒫(w)`" determine
+   their objects up to Boolean equality (`Sanity.isOmega_le_eq`, `Sanity.isPow_unique`).
+12. **Mixing and fullness** (`Mixing`). Disjoint refinement of a family in `B` along a
+   well-ordering of its index type (from Zermelo's theorem in `Sets/Choice`), the mixing lemma
+   (`BSet.le_eq_mix`), and the maximum principle `⨆_y ⟦φ(y)⟧ ≤ ⟦φ(z)⟧` for some `z`
+   (`VB_maximum_principle`).
+13. **The axiom of choice in `V^B`** (`AxiomOfChoice`). `axChoice` is the choice-set form of AC:
+   every set of nonempty, pairwise disjoint sets has a set meeting each member in exactly one
+   element. `VB_choice`: `⟦axChoice⟧ = ⊤` in every `V^B`. With `ZFC := ZF ∪ {axChoice}`,
+   `VB_models_ZFC`, **`ZFC_not_proves_CH`** and `ZFC_notCH_consistent`.
+14. **Independence** (`Independence`). The collapse model also satisfies ZFC, so
+   **`ZFC_not_proves_notCH`**, `ZFC_CH_consistent`, and
+   **`CH_independent_ZFC : ¬ (ZFC ⊢₁ CH) ∧ ¬ (ZFC ⊢₁ CH.neg)`**.
+
+**What is not done.** Gödel's `L` itself. A proof inside the calculus that `axChoice` is
+ZF-equivalent to other forms of AC (choice functions, well-ordering); the choice-set form is a
+standard formulation, used as stated. Internal names for the function `α ↦ ċ_α` of the Cohen
+model, for the generic surjection `ω̌₁ → 𝒫(ω̌)` of the collapse model, and for `ω̌₁` itself:
+both proofs work with external families of names and truth values instead. A separate theorem
+that the collapse preserves `ω₁`; its content is used inside `enum_total`. A proof inside the
 calculus that `CH` is ZF-equivalent to other textbook formulations of CH; the sentence is
-simply the standard definition, written out in `LSet`. The unprovability is unconditional
-(not relative to Con(ZF)) because Lean's metatheory proves that ZF has models.
+simply the standard definition, written out in `LSet`. Both unprovability results are
+unconditional (not relative to Con(ZF)) because Lean's metatheory proves that ZF (and ZFC) has models.
 -/

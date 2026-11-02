@@ -25,9 +25,10 @@ algebra, soundness yields the main theorem:
 
 **Scope.** This is Cohen's half of the independence of CH, for **ZF** (in the axiomatisation
 `ZF` of `BSetZF`, which includes the universal closures of all scheme instances), with CH the
-specific `LSet` sentence `CH` of `Formulas`. The axiom of choice is not verified in `V^B`, so
-the statement `ZFC ⊬ CH` is not obtained. Gödel's half (`ZF ⊬ ¬CH`, via `L`) is not
-formalised. No Con(ZF) hypothesis is needed, because Lean's type theory (with universes and
+specific `LSet` sentence `CH` of `Formulas`. The axiom of choice is not used in this file. It is
+verified in `V^B` in `AxiomOfChoice` (choice-set form), which upgrades the result to
+`ZFC_not_proves_CH : ¬ (ZFC ⊢₁ CH)` with the same model. The other half (`ZF ⊬ ¬CH`) is proved
+in `CollapseCH` by a collapse model rather than `L`, and both are combined in `Independence`. No Con(ZF) hypothesis is needed, because Lean's type theory (with universes and
 choice), which is stronger than ZF, proves that ZF has models. Read from outside, the result is
 relative to the consistency of Lean's logic.
 -/
