@@ -54,14 +54,14 @@
 <path fill="#2b5f8a" stroke="black" stroke-width="0" d="M1270.5,-375C1270.5,-375 1143.5,-375 1143.5,-375 1137.5,-375 1131.5,-369 1131.5,-363 1131.5,-363 1131.5,-336 1131.5,-336 1131.5,-330 1137.5,-324 1143.5,-324 1143.5,-324 1270.5,-324 1270.5,-324 1276.5,-324 1282.5,-330 1282.5,-336 1282.5,-336 1282.5,-363 1282.5,-363 1282.5,-369 1276.5,-375 1270.5,-375"/>
 <text text-anchor="start" x="1161" y="-356.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="13.00" fill="white">XIII · Forcing</text>
 <text text-anchor="start" x="1149.5" y="-346" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">Boolean&#45;valued models</text>
-<text text-anchor="start" x="1166" y="-336" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">227 declarations</text>
+<text text-anchor="start" x="1166" y="-336" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">327 declarations</text>
 </g>
 <!-- Sets&#45;&gt;Forcing -->
 <g id="edge17" class="edge">
 <title>Sets&#45;&gt;Forcing</title>
-<g id="a_edge17"><a xlink:title="16 uses of Sets in Forcing">
-<path fill="none" stroke="#8a94a3" stroke-width="0.89" d="M726.03,-33.97C879.68,-54.73 1285.56,-118.53 1364,-222 1377.69,-240.06 1376.06,-253.81 1364,-273 1347.23,-299.67 1318.12,-317.13 1289.49,-328.47"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.89" points="1288.29,-326.3 1282.62,-331.08 1290.03,-330.88 1288.29,-326.3"/>
+<g id="a_edge17"><a xlink:title="118 uses of Sets in Forcing">
+<path fill="none" stroke="#8a94a3" stroke-width="1.05" d="M726.03,-33.97C879.68,-54.73 1285.56,-118.53 1364,-222 1377.69,-240.06 1376.06,-253.81 1364,-273 1347.23,-299.67 1318.12,-317.13 1289.49,-328.47"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.05" points="1288.29,-326.3 1282.62,-331.08 1290.03,-330.88 1288.29,-326.3"/>
 </a>
 </g>
 </g>
@@ -233,9 +233,9 @@
 <!-- Logic&#45;&gt;Forcing -->
 <g id="edge8" class="edge">
 <title>Logic&#45;&gt;Forcing</title>
-<g id="a_edge8"><a xlink:title="205 uses of Logic in Forcing">
-<path fill="none" stroke="#8a94a3" stroke-width="1.13" d="M991.33,-273.09C1033.25,-287.75 1086.51,-306.37 1129.62,-321.44"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.13" points="1129.03,-323.83 1136.45,-323.83 1130.65,-319.21 1129.03,-323.83"/>
+<g id="a_edge8"><a xlink:title="296 uses of Logic in Forcing">
+<path fill="none" stroke="#8a94a3" stroke-width="1.2" d="M991.33,-273.09C1033.25,-287.75 1086.51,-306.37 1129.62,-321.44"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.2" points="1129.03,-323.83 1136.45,-323.83 1130.65,-319.21 1129.03,-323.83"/>
 </a>
 </g>
 </g>

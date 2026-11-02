@@ -264,6 +264,10 @@ theorem ne_bot_iff {U : RO P} : U ≠ ⊥ ↔ ∃ p, U.carrier p := by
   · rintro ⟨p, hp⟩ rfl
     exact hp
 
+/-- **Non-degeneracy.** If there is at least one condition, the regular-open algebra is
+non-trivial: `⊤ ≠ ⊥`. -/
+theorem top_ne_bot (p : P) : (⊤ : RO P) ≠ ⊥ := ne_bot_iff.2 ⟨p, trivial⟩
+
 /-- Disjoint regular open sets share no condition. -/
 theorem not_mem_of_inf_eq_bot {U V : RO P} (h : U ⊓ V = ⊥) (p : P) :
     ¬ (U.carrier p ∧ V.carrier p) := fun hp => by
@@ -297,6 +301,13 @@ end RO
 /-- **The Cohen algebra** for adding `I`-many Cohen reals: the regular-open algebra of finite
 partial functions `I × ℕ ⇀ Bool`. (For the failure of CH one takes `|I| = ℵ₂`.) -/
 abbrev Cohen (I : Type) : Type := RO (Cond (I × Nat))
+
+/-- The empty Cohen condition. -/
+def Cond.empty (J : Type) : Cond J := ⟨fun _ => none, ⟨[], fun _ h => absurd rfl h⟩⟩
+
+/-- **The Cohen algebra is non-degenerate:** `⊤ ≠ ⊥`, since the empty condition lies in `⊤`.
+Without this, statements of the form `⟦φ⟧ = ⊥` about the Cohen algebra would be vacuous. -/
+theorem cohen_top_ne_bot (I : Type) : (⊤ : Cohen I) ≠ ⊥ := RO.top_ne_bot (Cond.empty _)
 
 /-- **The Cohen algebra satisfies the countable chain condition.** For every index type `I`,
 every family of non-zero, pairwise disjoint elements of the Cohen algebra is countable. -/

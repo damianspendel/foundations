@@ -304,21 +304,25 @@ theorem VB_coll (φ : Formula LSet) (e : Nat → BSet B) : (VB B).val e (axColl 
 
 /-- **The axioms of ZF** (with Collection, and ∈-induction as the form of Foundation):
 extensionality, empty set, pairing, union, power set, infinity, and all instances of the
-separation, collection and ∈-induction schemes. -/
-def ZF : Theory LSet := fun ψ => ZFFrag ψ ∨ ψ = axPow ∨ ψ = axInf ∨ ∃ φ, ψ = axColl φ
+separation, collection and ∈-induction schemes, each together with all of its universal
+closures `∀ⁿ` (so the closed textbook axioms are members). -/
+def ZF : Theory LSet := fun ψ =>
+  ZFFrag ψ ∨ ψ = axPow ∨ ψ = axInf ∨ ∃ φ n, ψ = allN (axColl φ) n
 
 /-- **`V^B` is a Boolean-valued model of ZF** (Scott–Solovay–Vopěnka). For every complete
 Boolean algebra `B : Type` and every environment, every axiom of ZF has truth value `⊤` in
 the Boolean-valued universe `V^B`. -/
 theorem VB_models_ZF (e : Nat → BSet B) : ∀ ψ, ZF ψ → (VB B).val e ψ = ⊤ := by
-  rintro ψ (h | rfl | rfl | ⟨φ, rfl⟩)
+  rintro ψ (h | rfl | rfl | ⟨φ, n, rfl⟩)
   · exact VB_models_ZFFrag e ψ h
   · exact VB_pow e
   · exact VB_inf e
-  · exact VB_coll φ e
+  · exact val_allN_eq_top (M := VB B) (VB_coll φ) n e
 
-/-- **Every theorem of ZF is true in `V^B`.** If `ZF ⊢₁ φ`, then `⟦φ⟧ = ⊤` in `V^B`, for every
-complete Boolean algebra `B`. -/
+/-- **Every theorem of ZF is true in `V^B`.** If `ZF ⊢₁ φ`, then `⟦φ⟧ₑ = ⊤` in `V^B` for every
+complete Boolean algebra `B` and every environment `e`. Here `ZF` contains the scheme
+instances both as open formulas and with all their universal closures, so it derives at
+least everything the closed textbook axiomatisation derives. -/
 theorem VB_val_eq_top_of_ZF {φ : Formula LSet} (h : ZF ⊢₁ φ) (e : Nat → BSet B) :
     (VB B).val e φ = ⊤ :=
   val_eq_top_of_theory h (VB B) e (VB_models_ZF e)

@@ -248,6 +248,18 @@ theorem val_liftBy (k : Nat) (φ : Formula L) (z : M.Dom) (env e : Nat → M.Dom
   have : (fun n => M.evalT env (Term.var (n + k) : Term L)) = e := funext h
   rw [this]
 
+/-- The universal closure `∀ⁿ φ`: `n` universal quantifiers in front of `φ`. -/
+def allN (φ : Formula L) : Nat → Formula L
+  | 0 => φ
+  | n + 1 => .all (allN φ n)
+
+/-- **Closures of valid formulas are valid.** If `⟦ψ⟧ₑ = ⊤` for every environment, then
+`⟦∀ⁿ ψ⟧ₑ = ⊤` for every environment and every `n`. -/
+theorem val_allN_eq_top {ψ : Formula L} (h : ∀ e, M.val e ψ = ⊤) :
+    ∀ (n : Nat) (e : Nat → M.Dom), M.val e (allN ψ n) = ⊤
+  | 0, e => h e
+  | n + 1, _ => eq_top_iff.2 (le_iInf fun _ => eq_top_iff.1 (val_allN_eq_top h n _))
+
 end BStructure
 
 end Foundations.Forcing

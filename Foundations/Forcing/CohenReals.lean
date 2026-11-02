@@ -21,15 +21,18 @@ coordinate either way.
 * `creal_subset_omega`: `⟦ċ_α ⊆ ω̌⟧ = ⊤`, so each `ċ_α` is a set of natural numbers, i.e. a
   real.
 * `creal_ne`: `⟦ċ_α = ċ_β⟧ = ⊥` for `α ≠ β`. The Cohen reals are pairwise distinct with
-  Boolean value `⊤`. This is an external statement, one for each pair `α ≠ β`; the
-  internal statement "`α ↦ ċ_α` is an injection `Ǐ → 𝒫(ω̌)` in `V^B`" is not formalised.
+  Boolean value `⊤`. This is an external statement, one for each pair `α ≠ β`. The internal
+  function `α ↦ ċ_α` is never built as a name; `NotCH` works with the external family.
 * `creal_ne_ground`: `⟦ċ_α = ǎ⟧ = ⊥` for every ground-model set `a ⊆ ℕ`. The Cohen reals
   are **new**: none of them was already in the ground model.
 
-What these facts do *not* yet give is `V^B ⊨ ¬CH`. For that one must also show that `ℵ₂`
-of the ground model is still `ℵ₂` in `V^B`. That is where the countable chain condition
-(`cohen_ccc`) enters: ccc forcing preserves cofinalities and hence cardinals. One would then
-take `|I| = ℵ₂`. These steps are not formalised here.
+All three are non-vacuous because the Cohen algebra is non-degenerate, `⊤ ≠ ⊥`
+(`cohen_top_ne_bot`): a value `⊥` is genuinely different from `⊤`.
+
+These facts do not by themselves give `V^B ⊨ ¬CH`. One must also know that the ground
+`ℵ₁` and `ℵ₂` stay apart in `V^B`. That is where the countable chain condition
+(`cohen_ccc`) enters, in `CardinalPreservation`. The argument is completed in `NotCH`, with
+`I = ω₂`.
 -/
 
 namespace Foundations.Forcing

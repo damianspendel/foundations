@@ -223,7 +223,7 @@ theorem himp_le_himp (h₁ : c ≤ a) (h₂ : b ≤ d) : a ⇨ b ≤ c ⇨ d :=
 
 /-! ### Complements -/
 
-/-- Complements are unique: if `a ⊓ b ≤ ⊥` and `⊤ ≤ a ⊔ b` then `b = aᶜ`. -/
+/-- Anything disjoint from `a` lies below its complement: `b ⊓ a ≤ ⊥ → b ≤ aᶜ`. -/
 theorem le_compl_of_inf_le_bot (h : b ⊓ a ≤ ⊥) : b ≤ aᶜ := by
   have : b ≤ a ⇨ ⊥ := le_himp_iff.2 h
   exact le_trans' this (sup_le _ _ _ le_rfl bot_le')

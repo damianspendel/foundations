@@ -236,20 +236,23 @@ theorem VB_ind (φ : Formula LSet) (e : Nat → BSet B) : (VB B).val e (axInd φ
 /-! ### The fragment of ZF verified in `V^B` -/
 
 /-- The fragment of ZF verified here: extensionality, empty set, pairing, union, and all
-instances of separation and of ∈-induction. -/
+instances of separation and of ∈-induction. The scheme instances are open formulas (their
+free variables are parameters); their universal closures `∀ⁿ` are included as well, so that
+derivability from `ZFFrag` is at least as strong as from the textbook closed axioms. -/
 def ZFFrag : Theory LSet := fun ψ =>
-  ψ = axExt ∨ ψ = axEmpty ∨ ψ = axPair ∨ ψ = axUnion ∨ (∃ φ, ψ = axSep φ) ∨ (∃ φ, ψ = axInd φ)
+  ψ = axExt ∨ ψ = axEmpty ∨ ψ = axPair ∨ ψ = axUnion ∨ (∃ φ n, ψ = allN (axSep φ) n) ∨
+    (∃ φ n, ψ = allN (axInd φ) n)
 
 /-- **`V^B` is a Boolean-valued model of the fragment `ZFFrag`.** For every complete Boolean
 algebra `B` and every environment, each axiom of `ZFFrag` has truth value `⊤` in `V^B`. -/
 theorem VB_models_ZFFrag (e : Nat → BSet B) : ∀ ψ, ZFFrag ψ → (VB B).val e ψ = ⊤ := by
-  rintro ψ (rfl | rfl | rfl | rfl | ⟨φ, rfl⟩ | ⟨φ, rfl⟩)
+  rintro ψ (rfl | rfl | rfl | rfl | ⟨φ, n, rfl⟩ | ⟨φ, n, rfl⟩)
   · exact VB_ext e
   · exact VB_empty e
   · exact VB_pair e
   · exact VB_union e
-  · exact VB_sep φ e
-  · exact VB_ind φ e
+  · exact val_allN_eq_top (M := VB B) (VB_sep φ) n e
+  · exact val_allN_eq_top (M := VB B) (VB_ind φ) n e
 
 /-- **Every consequence of `ZFFrag` is true in `V^B`.** By Boolean soundness, anything
 derivable from extensionality, empty set, pairing, union, separation and ∈-induction has

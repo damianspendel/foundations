@@ -15,8 +15,8 @@ In particular a formula derivable from no premises has truth value `⊤`. This i
 of the Boolean-valued approach to independence. To show that a theory `T` does not prove
 `φ`, it suffices to find a complete Boolean algebra `B` and a `B`-valued model in which
 every axiom of `T` has value `⊤` but `⟦φ⟧ ≠ ⊤`. Scott and Solovay showed that for
-`T = ZFC` and `φ = CH` such a model exists (`V^B` for the Cohen algebra `B`). That last
-step is not done here (see the aggregator file `Foundations/Forcing.lean`).
+`T = ZFC` and `φ = CH` such a model exists (`V^B` for the Cohen algebra `B`). Here this is
+carried out for `T = ZF` in `NotCH` (`ZF_not_proves_CH`); choice in `V^B` is not treated.
 
 Each rule is checked against the algebra:
 
