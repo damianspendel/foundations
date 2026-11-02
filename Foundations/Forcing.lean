@@ -133,7 +133,7 @@ axioms are fully true and the statement is not.
    **`ZFC_not_proves_notCH`**, `ZFC_CH_consistent`, and
    **`CH_independent_ZFC : ¬ (ZFC ⊢₁ CH) ∧ ¬ (ZFC ⊢₁ CH.neg)`**.
 
-**What is not done.** Gödel's `L` itself. A proof inside the calculus that `axChoice` is
+**What is not done.** Gödel's `L` is built in Part XIV (`Constructible`), with `L ⊨ ZF`, but AC and GCH in `L` are not, so this part's forcing proof remains the library's proof of `ZF ⊬ ¬CH`. A proof inside the calculus that `axChoice` is
 ZF-equivalent to other forms of AC (choice functions, well-ordering); the choice-set form is a
 standard formulation, used as stated. Internal names for the function `α ↦ ċ_α` of the Cohen
 model, for the generic surjection `ω̌₁ → 𝒫(ω̌)` of the collapse model, and for `ω̌₁` itself:

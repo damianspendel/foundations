@@ -1,6 +1,6 @@
 # Reading guide: where to start
 
-About 6,800 checked definitions and theorems is too many to browse, so start here. The list
+About 7,300 checked definitions and theorems is too many to browse, so start here. The list
 comes from an independent project-wide audit. Each entry gives the theorem name, the file, and
 its meaning in plain words. On the site, type the name into the map's search box to see its
 statement, its proof and everything it rests on.
@@ -23,7 +23,7 @@ statement, its proof and everything it rests on.
 | 14 | `zorn`, `hartogs_theorem`, `schroeder_bernstein` | `Sets/Choice.lean`, `Sets/Hartogs.lean`, `Sets/SchroederBernstein.lean` | The core of set theory and cardinal arithmetic. |
 | 15 | `basel`, `stirling`, `vitali` | `Topology/Basel.lean`, `Topology/Stirling.lean`, `Topology/Vitali.lean` | Σ 1/n² = π²/6; n! ≈ √(2πn)(n/e)ⁿ; there is no way to measure the length of *every* subset of [0, 1). |
 | 16 | `prime_number_theorem`, `dirichlet` | `NumberTheory/PNTTheorem.lean`, `NumberTheory/Dirichlet.lean` | The number of primes up to N is asymptotically N / log N (proved by the elementary Erdős–Selberg route), and every progression a, a+q, a+2q, … with gcd(a, q) = 1 contains infinitely many primes. |
-| 17 | `CH_independent_ZFC`, `VB_models_ZFC` | `Forcing/Independence.lean`, `Forcing/AxiomOfChoice.lean` | The Continuum Hypothesis is independent of ZFC: Cohen's model over ω₂ makes it false and a σ-closed collapse model makes it true, while every ZFC axiom is true in both. (Gödel's original L is not formalised; both halves are by forcing.) |
+| 17 | `CH_independent_ZFC`, `VB_models_ZFC` | `Forcing/Independence.lean`, `Forcing/AxiomOfChoice.lean` | The Continuum Hypothesis is independent of ZFC: Cohen's model over ω₂ makes it false and a σ-closed collapse model makes it true, while every ZFC axiom is true in both. (Both halves are by forcing. Gödel's L is built in Part XIV with `L_models_ZF`, but AC and GCH in L are not proved.) |
 
 Also worth a look: `El_summary` (`Bridges/ETCSvsZF.lean`: ZF sets sit fully and faithfully inside
 the structural, categorical world), `reals_in_sets` (`Bridges/RealsInSets.lean`: ℝ built from pure
