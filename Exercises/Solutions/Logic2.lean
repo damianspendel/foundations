@@ -1,0 +1,120 @@
+import Foundations.Logic.GodelIID3Main
+import Foundations.Logic.GodelIIFeferman
+
+/-!
+# Exercises XII: Gödel's second theorem and Löb's theorem
+
+Problems on the newer Gödel II material of Part III (`Foundations/Logic`): the abstract
+derivability conditions and Löb's theorem (`Lob`), the provability formulas `provH`
+(`DerivabilityConditions`) and `provDP` (`GodelIID3Main`, with (D3) proved by formalised
+Σ-completeness), the transfer lemmas (`GodelIITransfer`) and Feferman's example `provF`
+(`GodelIIFeferman`).
+
+*Reminder.* Formulas are first-order formulas over the signature `Arith` of arithmetic.
+`box P φ` is `□_P φ := P(⌜φ⌝)`, the provability formula `P` applied to the numeral of the
+Gödel number of `φ`, and `conF P = ¬□_P ⊥` is the consistency statement. `Derivability PA P`
+bundles the three conditions:
+* (D1) `hD.d1 φ : PA ⊢₁ φ → PA ⊢₁ □φ`,
+* (D2) `hD.d2 φ ψ : PA ⊢₁ □(φ → ψ) → (□φ → □ψ)`,
+* (D3) `hD.d3 φ : PA ⊢₁ □φ → □□φ`.
+
+Derivations `Γ ⊢₁ φ` are natural-deduction proofs: `Proves.impI`, `Proves.impE`,
+`Proves.botE`, `Proves.conjE₁`, `Proves.disjI₁`, `Proves.assume Γ φ : insert Γ φ ⊢₁ φ` and
+`Proves.weaken₁` are the rules used below; `imp_trans` chains implications.
+`neg φ` is `imp φ bot`, and `iffF φ ψ` is `conj (imp φ ψ) (imp ψ φ)`.
+
+Grading: ★ a one-liner using a library lemma, ★★ a short proof, ★★★ a mini-project.
+Proofs between `-- SOLUTION` and `-- END` become `sorry` in `Exercises/Problems/Logic2.lean`.
+-/
+
+namespace Exercises.Logic2
+
+open Foundations.Logic.FO Foundations.Logic.FO.Arith Foundations.Logic.FO.Formula
+open Foundations.Logic.FO.GodelII
+
+/-! ## The derivability conditions -/
+
+/-- **Exercise 12.1 (★) — A (D1) instance.** PA proves "`x = x` is derivable", in the sense of
+the derivation predicate `provDP`: `PA ⊢ □_DP (x = x)`.
+
+*Hint:* `x = x` is an axiom of the calculus (reflexivity); then apply (D1) for `provDP`.
+
+*Uses:* `provDP_derivability`, `Derivability.d1`, `Proves.refl`. -/
+theorem PA_proves_box_refl : PA ⊢₁ box provDP (eq (v 0) (v 0)) := by
+  -- SOLUTION
+  exact provDP_derivability.d1 _ (Proves.refl _)
+  -- END
+
+/-- **Exercise 12.2 (★★) — The box is monotone.** If `PA ⊢ φ → ψ`, then
+`PA ⊢ □_DP φ → □_DP ψ`.
+
+*Hint:* (D1) turns `φ → ψ` into `□(φ → ψ)`; (D2) turns that into `□φ → □ψ` by one modus
+ponens.
+
+*Uses:* `provDP_derivability`, `Derivability.d1`, `Derivability.d2`, `Proves.impE`. -/
+theorem box_mono_provDP {φ ψ : Formula Arith} (h : PA ⊢₁ imp φ ψ) :
+    PA ⊢₁ imp (box provDP φ) (box provDP ψ) := by
+  -- SOLUTION
+  exact Proves.impE (provDP_derivability.d2 φ ψ) (provDP_derivability.d1 _ h)
+  -- END
+
+/-! ## Löb's theorem -/
+
+/-- **Exercise 12.3 (★★) — Henkin's problem.** A sentence that PA proves equivalent to its own
+provability ("I am provable") is provable: if `PA ⊢ ψ ↔ □_DP ψ` then `PA ⊢ ψ`.
+
+*Hint:* the second half of the equivalence is `□ψ → ψ`. Löb.
+
+*Uses:* `lob_provDP`, `Proves.conjE₂`, `iffF`. -/
+theorem henkin_provDP {ψ : Formula Arith} (h : PA ⊢₁ iffF ψ (box provDP ψ)) : PA ⊢₁ ψ := by
+  -- SOLUTION
+  exact lob_provDP (Proves.conjE₂ h)
+  -- END
+
+/-- **Exercise 12.4 (★★★) — PA proves no formula unprovable.** For every formula `φ`, PA does
+not prove `¬□_DP φ`. (Gödel II is the case `φ = ⊥`.)
+
+*Hint:* suppose `PA ⊢ □φ → ⊥`. Then `PA ⊢ □φ → φ` (compose with `⊥ → φ`, i.e.
+`impI (botE (assume _ _))`), so `PA ⊢ φ` by Löb. By (D1), `PA ⊢ □φ`, and modus ponens with the
+hypothesis gives `PA ⊢ ⊥`, contradicting the consistency of PA.
+
+*Uses:* `lob_provDP`, `provDP_derivability`, `imp_trans`, `Proves.botE`, `Proves.assume`,
+`PA_consistent`. -/
+theorem not_proves_unprovable (φ : Formula Arith) : ¬ PA ⊢₁ neg (box provDP φ) := by
+  -- SOLUTION
+  intro h
+  have hbot : PA ⊢₁ imp bot φ := Proves.impI (Proves.botE (Proves.assume PA bot))
+  have hφ : PA ⊢₁ φ := lob_provDP (imp_trans h hbot)
+  exact PA_consistent (Proves.impE h (provDP_derivability.d1 _ hφ))
+  -- END
+
+/-! ## Transfer and Feferman's example -/
+
+/-- **Exercise 12.5 (★★) — Gödel II for a disjunction of provability predicates.** Let
+`P = provH ∨ provDP` ("provable in one sense or the other"). PA does not prove `Con_P`.
+
+*Hint:* a predicate that dominates `provH` at `⊥` inherits Gödel II. Since substitution
+distributes over `∨`, `□_P ⊥` is (definitionally) `□_H ⊥ ∨ □_DP ⊥`, and
+`□_H ⊥ → □_H ⊥ ∨ □_DP ⊥` is one `∨`-introduction.
+
+*Uses:* `godel_second_of_dominates`, `Proves.impI`, `Proves.disjI₁`, `Proves.assume`. -/
+theorem godel_second_disj : ¬ PA ⊢₁ conF (disj provH provDP) := by
+  -- SOLUTION
+  exact godel_second_of_dominates (Proves.impI (Proves.disjI₁ (Proves.assume _ _)))
+  -- END
+
+/-- **Exercise 12.6 (★★) — Feferman's predicate is not provably above `provH`.** It is not the
+case that `PA ⊢ □_H φ → □_F φ` for every formula `φ`. (The library proves it for all
+`φ ≠ ⊥`, so the failure is at `φ = ⊥`.)
+
+*Hint:* if it held, `provF` would dominate `provH` at `⊥` and inherit Gödel II. But PA proves
+`Con_F`.
+
+*Uses:* `godel_second_of_dominates`, `PA_proves_conF_provF`. -/
+theorem not_boxH_imp_boxF : ¬ ∀ φ, PA ⊢₁ imp (box provH φ) (box provF φ) := by
+  -- SOLUTION
+  intro h
+  exact godel_second_of_dominates (h bot) PA_proves_conF_provF
+  -- END
+
+end Exercises.Logic2

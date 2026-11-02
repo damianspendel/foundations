@@ -9,7 +9,7 @@ Site: an interactive map of every definition and theorem, a chapter-by-chapter r
 mode, and demos — built from the compiled Lean environment (`site/`).
 
 Where to start: [`READING_GUIDE.md`](READING_GUIDE.md) lists the key results in plain words.
-To practise: [`EXERCISES.md`](EXERCISES.md) — 62 graded exercises (★ to ★★★) across nine parts,
+To practise: [`EXERCISES.md`](EXERCISES.md) — 94 graded exercises (★ to ★★★) in fourteen sets,
 with Lean-checked solutions in `Exercises/Solutions/` and `sorry`-ed student versions in
 `Exercises/Problems/` (`lake build Exercises` builds the solutions).
 

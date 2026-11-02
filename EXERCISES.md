@@ -1,9 +1,10 @@
 # Exercises
 
-A graded problem set on top of the Foundations library: 62 exercises in nine sets, one per
-part of the library, for a reader who already knows some Lean 4. Every exercise is a single
+A graded problem set on top of the Foundations library: 94 exercises in fourteen sets, covering
+most parts of the library, for a reader who already knows some Lean 4. Every exercise is a single
 theorem about the library's own definitions (its ZF sets, its real numbers, its Hilbert system,
-its λ-calculus, its categories, …), so working through it is also a guided tour of the library.
+its λ-calculus, its categories, its Boolean-valued models, …), so working through it is also a
+guided tour of the library.
 
 The exercises live outside the library, in `Exercises/`. They are not part of the default
 build, the dependency graph or the website.
@@ -65,8 +66,10 @@ library's real numbers, which are registered as an ordered field.
 ## Table of exercises
 
 The numbering follows the library's parts: I Sets, II Numbers, III Logic, IV Algebra,
-V Types, VI Geometry, VII Categories, VIII Topology. Set 9 covers number theory, which draws on
-Parts II, IV and XII.
+V Types, VI Geometry, VII Categories, VIII Topology. Set 9 covers elementary number theory, which
+draws on Parts II, IV and XII. Sets 10–14 were added later for the parts that grew most:
+analytic number theory (characters, Mertens, Dirichlet, Euler, the prime number theorem,
+Möbius), forcing, the Gödel II and Löb material of Part III, combinatorics and probability.
 
 | # | ★ | Exercise | Lean name |
 |---|---|----------|-----------|
@@ -141,8 +144,46 @@ Parts II, IV and XII.
 | 9.5 | ★ | Primes ≡ 3 (mod 4) are unbounded | `primes_mod_four_unbounded` |
 | 9.6 | ★ | There is a prime between 100 and 200 | `prime_between_100_200` |
 | 9.7 | ★ | gcd(a, b) divides a + b | `gcd_dvd_add` |
+| **10** | | **Analytic number theory** (`Exercises.NumberTheory2`) | |
+| 10.1 | ★ | A non-trivial character sums to zero (orthogonality) | `sum_nontrivial_character` |
+| 10.2 | ★★ | Infinitely many primes ≡ 3 (mod 8) and ≡ 1 (mod 3) (Dirichlet) | `primes_three_mod_eight_one_mod_three` |
+| 10.3 | ★★ | Σ_{p ≤ M} 1/p is eventually above every bound (Euler) | `eventually_sum_reciprocal_primes_ge` |
+| 10.4 | ★★★ | Σ_{n ≤ N} Λ(n)/n ∼ log N (Mertens) | `mertens_ratio_tendsto` |
+| 10.5 | ★ | θ(N) ≤ N log 1024, via θ ≤ ψ | `theta_le_mul_log_1024` |
+| 10.6 | ★ | π(N) → ∞ | `primeCount_tendsto_top` |
+| 10.7 | ★★ | Eventually π(N) log N ≥ N/2 (from the PNT) | `primeCount_mul_log_ge_half` |
+| 10.8 | ★★ | μ(30) = −1 and Σ_{d ∣ 30} μ(d) = 0 | `mobius_thirty` |
+| **11** | | **Forcing** (`Exercises.Forcing`) | |
+| 11.1 | ★ | a ⊓ aᶜ = ⊥ in a complete Boolean algebra | `inf_compl_eq_bot'` |
+| 11.2 | ★★ | (a ⇨ b) ⊓ (b ⇨ c) ≤ a ⇨ c | `himp_trans` |
+| 11.3 | ★★ | De Morgan: (a ⊔ b)ᶜ = aᶜ ⊓ bᶜ | `compl_sup'` |
+| 11.4 | ★★ | ⟦∃ x, x = x⟧ = ⊤ in every V^B | `val_exists_eq_self` |
+| 11.5 | ★★ | ⟦x̌ ∈ x̌⟧ = ⊥ for check names | `mem_zcheck_self` |
+| 11.6 | ★★ | ZF does not prove ∀ x ∀ y, x = y (via `not_proves_of_val`) | `ZF_not_proves_subsingleton` |
+| 11.7 | ★★ | ZFC is consistent and does not prove ¬¬CH (from CH's independence) | `ZFC_consistent_and_not_proves_notnotCH` |
+| 11.8 | ★★★ | ZF does not prove ¬(∃ x, x = x) | `ZF_not_proves_not_exists` |
+| **12** | | **Gödel II and Löb** (`Exercises.Logic2`) | |
+| 12.1 | ★ | A (D1) instance: PA ⊢ □_DP (x = x) | `PA_proves_box_refl` |
+| 12.2 | ★★ | PA ⊢ φ → ψ gives PA ⊢ □φ → □ψ | `box_mono_provDP` |
+| 12.3 | ★★ | Henkin: PA ⊢ ψ ↔ □ψ implies PA ⊢ ψ (Löb) | `henkin_provDP` |
+| 12.4 | ★★★ | PA proves no formula unprovable: PA ⊬ ¬□φ | `not_proves_unprovable` |
+| 12.5 | ★★ | Gödel II for provH ∨ provDP (transfer) | `godel_second_disj` |
+| 12.6 | ★★ | Feferman's provF is not provably above provH | `not_boxH_imp_boxF` |
+| **13** | | **Combinatorics** (`Exercises.Combinatorics`) | |
+| 13.1 | ★ | Among five numbers, two agree mod 4 (pigeonhole) | `two_same_mod_four` |
+| 13.2 | ★★ | Every Boolean sequence has a constant infinite subsequence | `bool_constant_subsequence` |
+| 13.3 | ★★ | N → (3, 3) iff N ≥ 6 | `isRamsey_three_three_iff` |
+| 13.4 | ★★ | A monochromatic triangle in every colouring of ℕ (infinite Ramsey) | `mono_triangle` |
+| 13.5 | ★★★ | Three sets inside {0, 1} have no distinct representatives (Hall) | `no_sdr_three_in_two` |
+| **14** | | **Probability** (`Exercises.Probability`) | |
+| 14.1 | ★ | The union bound | `prob_or_le` |
+| 14.2 | ★★ | Complements of independent events are independent | `Indep.compl_compl` |
+| 14.3 | ★★ | A Bernoulli trial has variance ≤ 1/4 | `Var_success_le` |
+| 14.4 | ★★ | Zero variance: deviations have probability 0 (Chebyshev) | `prob_dev_eq_zero_of_Var_eq_zero` |
+| 14.5 | ★★★ | Bernoulli's theorem with the bound 1/(4nε²), uniform in p | `bernoulli_uniform` |
 
-Totals: 62 exercises (14 ★, 37 ★★, 11 ★★★).
+Totals: 94 exercises (21 ★, 57 ★★, 16 ★★★). Sets 1–9: 62 (14 ★, 37 ★★, 11 ★★★);
+sets 10–14: 32 (7 ★, 20 ★★, 5 ★★★).
 
 ## For maintainers
 
@@ -153,6 +194,24 @@ lake build Exercises                       # all solution files (the lean_lib `E
 lake build Exercises.Solutions.Topology    # one part
 python3 scripts/make_exercises.py --lean   # regenerate Problems/ and elaborate each file
 python3 scripts/make_exercises.py --check  # fail if Problems/ is out of date
+```
+
+The script picks up every `Exercises/Solutions/*.lean`, so a new set needs no change to it: add
+the solution file, import it in `Exercises/Solutions.lean`, and regenerate. All three commands
+must succeed before a change is committed; `--lean` must report one `sorry` warning per
+exercise and no errors.
+
+The new sets import large parts of the library (set 10 imports the prime number theorem, set 12
+the whole Gödel II development), so `lake build` must have been run first; with a warm cache,
+elaborating a problem file takes a few seconds.
+
+To check axioms for a whole set at once, append `#print axioms` lines for its theorems to a
+scratch copy of the solution file, or run, for example,
+
+```
+echo 'import Exercises.Solutions.Forcing
+#print axioms Exercises.Forcing.ZF_not_proves_not_exists' > /tmp/Ax.lean
+lake env lean /tmp/Ax.lean
 ```
 
 The `Exercises` library in `lakefile.toml` only covers `Exercises.Solutions.*`, and it is not a
