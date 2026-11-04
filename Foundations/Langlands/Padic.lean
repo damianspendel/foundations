@@ -8,6 +8,8 @@ import Foundations.Langlands.Padic.Hensel
 import Foundations.Langlands.Padic.Units
 import Foundations.Langlands.Padic.Field
 import Foundations.Langlands.Padic.QpAbs
+import Foundations.Langlands.Padic.QpComplete
+import Foundations.Langlands.Padic.StrongHensel
 
 /-!
 # Part XV, local side: absolute values on ℚ and the `p`-adic integers
@@ -57,10 +59,15 @@ lives. (These historical remarks are context; Hasse's principle is not formalise
    (`Qp.ofQ_injective`), and `Qp.abs_ofQ`: `|ofQ x|ₚ = |x|ₚ`, so the absolute value on ℚₚ
    extends the one on ℚ.
 
+10. `QpComplete` — `Qp.abs_ofZp_le_iff` (for `x ∈ ℤₚ`, `|x|ₚ ≤ p^(−k)` iff `x ≡ 0 mod pᵏ`),
+    `Qp.exists_ofZp_of_abs_le_one` (the unit ball of ℚₚ is ℤₚ), and **`Qp.complete`**: every
+    `|·|ₚ`-Cauchy sequence in ℚₚ converges.
+11. `StrongHensel` — **`hensel_strong`**: if `vₚ(f'(a)) = e` and `p^(2e+1) ∣ f(a)` (i.e.
+    `|f(a)|ₚ < |f'(a)|ₚ²`), then `f` has a root `x ∈ ℤₚ` with `x ≡ a mod pᵉ⁺¹`;
+    `sqrt_neg_seven_Z2`: `x² = −7` in ℤ₂ with `x ≡ 1 mod 4`.
+
 ## Not proved here
 
-Completeness of ℚₚ for `|·|ₚ` (only the congruence form of completeness of ℤₚ, `Zp.complete`,
-is proved); the identification of ℚₚ with the `|·|ₚ`-completion of ℚ (explained in prose only);
-Hensel's lemma for non-simple roots (`|f(a)| < |f'(a)|²`) and `√−7 ∈ ℤ₂`; compactness of ℤₚ;
-Hasse's local–global principle.
+Density of ℚ in ℚₚ, hence the identification of ℚₚ with *the* `|·|ₚ`-completion of ℚ (explained
+in prose only); compactness of ℤₚ; Hasse's local–global principle (local or global part).
 -/
