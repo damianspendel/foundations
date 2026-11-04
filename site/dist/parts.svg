@@ -244,14 +244,14 @@
 <path fill="#2e7d5b" stroke="black" stroke-width="0" d="M582,-579C582,-579 459,-579 459,-579 453,-579 447,-573 447,-567 447,-567 447,-540 447,-540 447,-534 453,-528 459,-528 459,-528 582,-528 582,-528 588,-528 594,-534 594,-540 594,-540 594,-567 594,-567 594,-573 588,-579 582,-579"/>
 <text text-anchor="start" x="466" y="-560.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="13.00" fill="white">XV · Langlands</text>
 <text text-anchor="start" x="465" y="-550" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">local fields, reciprocity</text>
-<text text-anchor="start" x="476.5" y="-540" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">1071 declarations</text>
+<text text-anchor="start" x="476.5" y="-540" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">1176 declarations</text>
 </g>
 <!-- Numbers&#45;&gt;Langlands -->
 <g id="edge18" class="edge">
 <title>Numbers&#45;&gt;Langlands</title>
-<g id="a_edge18"><a xlink:title="10107 uses of Numbers in Langlands">
-<path fill="none" stroke="#8a94a3" stroke-width="3.14" d="M753.32,-162.15C742.19,-221.72 707.17,-376.03 628.5,-477 613.85,-495.81 593.22,-511.81 573.92,-524.18"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.14" points="572.61,-522.11 567.98,-527.91 575.22,-526.27 572.61,-522.11"/>
+<g id="a_edge18"><a xlink:title="11066 uses of Numbers in Langlands">
+<path fill="none" stroke="#8a94a3" stroke-width="3.25" d="M753.32,-162.15C742.19,-221.72 707.17,-376.03 628.5,-477 613.85,-495.81 593.22,-511.81 573.92,-524.18"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.25" points="572.61,-522.11 567.98,-527.91 575.22,-526.27 572.61,-522.11"/>
 </a>
 </g>
 </g>
@@ -321,9 +321,9 @@
 <!-- Algebra&#45;&gt;Langlands -->
 <g id="edge3" class="edge">
 <title>Algebra&#45;&gt;Langlands</title>
-<g id="a_edge3"><a xlink:title="9148 uses of Algebra in Langlands">
-<path fill="none" stroke="#8a94a3" stroke-width="3.03" d="M839.58,-273.37C822.04,-324.43 774.94,-441.42 694.5,-503 667.72,-523.5 632.79,-535.51 601.26,-542.55"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.03" points="600.51,-540.2 594.17,-544.06 601.53,-545 600.51,-540.2"/>
+<g id="a_edge3"><a xlink:title="9603 uses of Algebra in Langlands">
+<path fill="none" stroke="#8a94a3" stroke-width="3.08" d="M839.58,-273.37C822.04,-324.43 774.94,-441.42 694.5,-503 667.72,-523.5 632.79,-535.51 601.26,-542.55"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.08" points="600.51,-540.2 594.17,-544.06 601.53,-545 600.51,-540.2"/>
 </a>
 </g>
 </g>

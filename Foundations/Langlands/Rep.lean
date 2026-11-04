@@ -16,6 +16,10 @@ import Foundations.Langlands.Rep.SecondOrthogonality
 import Foundations.Langlands.Rep.Monomial
 import Foundations.Langlands.Rep.S3
 import Foundations.Langlands.Rep.A4
+import Foundations.Langlands.Rep.CharacterIso
+import Foundations.Langlands.Rep.Induction
+import Foundations.Langlands.Rep.Induced
+import Foundations.Langlands.Rep.InducedS3
 
 /-!
 # Part XV, chapter 2: representations of finite groups
@@ -108,13 +112,40 @@ matrix-valued: `Rep G K ι` is a homomorphism `G → GL(K^ι)`, the degree being
   (`A4.irreducibles_complete`, from `1 + 1 + 1 + 9 = 12`); the character table on `1, t, c, c²`
   (`A4.character_table`); every element is conjugate to one of `1, t, c, c²`
   (`A4.conj_rep`).
+* `CharacterIso`: reindexing isomorphisms (`iso_of_reindex`), associativity and commutativity
+  of direct sums up to isomorphism (`Iso.dsum_assoc`, `Iso.dsum_comm`); splitting an
+  irreducible `τ` with `⟨χ_S, χ_τ⟩ ≠ 0` off a sum of irreducibles (`sumIrr_split`); and
+  **characters determine representations** (`iso_of_character_eq`, `iso_iff_character_eq`): for
+  `G : Type u` and index types in `Type`, complex representations with equal characters are
+  isomorphic (complete reducibility plus multiplicities, by induction on the degree).
+* `Induction`: the restriction `Rep.res H ρ` to a subgroup `H : Subgroup G` (the subgroups of
+  `Algebra/Group`, as used for Lagrange and Sylow), with `χ_{Res ρ} = (χ_ρ)|_H`
+  (`character_res`); the **induced class function** `indFun H f`,
+  `Ind f(g) = (1/|H|) Σ_{x ∈ G} f°(x g x⁻¹)` with `f°` the extension by zero, a class function
+  (`indFun_isClassFunction`); and **Frobenius reciprocity** (Frobenius 1898,
+  `frobenius_reciprocity`): `(1/|G|) Σ_g Ind f(g) ψ(g⁻¹) = (1/|H|) Σ_h f(h) ψ(h⁻¹)` for every
+  `f : H → ℂ` and every class function `ψ` on `G`.
+* `Induced`: coset representatives `cosetRep H g` chosen classically (Hilbert's `ε`), depending
+  only on the coset; the finite type `CosetReps H`; the **induced representation**
+  `indRep H σ` on `K^(CosetReps H × ι)`, over any commutative ring, by the block matrices
+  `σ°(t⁻¹ g s)`; its **character** `χ_{Ind σ} = Ind χ_σ` over `ℂ` (`character_indRep`); and
+  Frobenius reciprocity for induced representations (`frobenius_reciprocity_indRep`).
+* `InducedS3`: the rotation subgroup `C₃ ≤ S₃` (`S3.rot`) and its non-trivial character
+  `λ(r^a) = ω^a`; `Ind^{S₃}_{C₃} λ` has the character of `std` (`S3.indFun_lam`), hence
+  **`Ind^{S₃}_{C₃} λ ≅ std`** (`S3.std_iso_induced`) and it is irreducible
+  (`S3.induced_irreducible`).
 
 ## What is not proved
 
 The pairing used is `Σ_g χ(g) ψ(g⁻¹)`; its agreement with the Hermitian product
 `Σ_g χ(g) conj ψ(g)` over `ℂ` is not proved. Second orthogonality is stated with the class size
 `|cl(h)|`; its relation `|G| = |cl(h)| · |C_G(h)|` with the centraliser is not used or proved
-here. Induced representations are not formalised. The groups `S3` and
+here. Induction is formalised for class functions and for representations, with Frobenius reciprocity
+at the level of the pairing; the categorical form (`Hom_G(Ind σ, ρ) ≅ Hom_H(σ, Res ρ)`),
+transitivity of induction, Mackey's formula and the degree formula
+`deg Ind σ = [G : H] · deg σ` are not proved. Only one choice of coset representatives is
+constructed (its character `Ind χ_σ` does not refer to the choice). `iso_of_character_eq` is stated for
+index types in `Type`. The groups `S3` and
 `A4` are constructed directly as semidirect products; their isomorphisms with the permutation
 group of three letters and the even permutations of four letters are not proved. Every element
 is shown to be conjugate to one of the chosen class representatives (`S3.conj_rep`,

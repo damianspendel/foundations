@@ -17,6 +17,10 @@ import Foundations.Langlands.Padic.SquareLift
 import Foundations.Langlands.Padic.Hilbert
 import Foundations.Langlands.Padic.HilbertLegendre
 import Foundations.Langlands.Padic.HilbertBilinear
+import Foundations.Langlands.Padic.HilbertInf
+import Foundations.Langlands.Padic.Primitive
+import Foundations.Langlands.Padic.Hilbert2
+import Foundations.Langlands.Padic.HilbertProduct
 
 /-!
 # Part XV, local side: absolute values on ℚ and the `p`-adic integers
@@ -96,13 +100,24 @@ lives. (These historical remarks are context; Hasse's principle is not formalise
     `a = c² u` or `c² p u`, the explicit table **`Qp.hilbert_std`**, and **bilinearity**
     `Qp.hilbert_mul_right` / `Qp.hilbert_mul_left` for odd `p` (non-zero arguments);
     `Zp.chi_neg_one`: `χ(−1) = (−1)^((p−1)/2)`.
+19. `HilbertInf` — the Hilbert symbol at `∞`: **`hilbertInf_eq_neg_one_iff`**:
+    `(a, b)_∞ = −1` iff `a < 0` and `b < 0`.
+20. `Primitive` — **`Qp.exists_primitive`**: a non-trivial ℚₚ-solution of `z² = a x² + b y²`
+    (`a, b ∈ ℤₚ`) gives a solution in ℤₚ not divisible by `p` (clearing denominators, descent).
+21. `Hilbert2` — **`Zp.exists_sq_of_modPow_eight`**: `u ≡ 1 (mod 8)` is a square in ℤ₂ (strong
+    Hensel plus compactness); **`Qp.hilbert_two_units`**: for units of ℤ₂, `(u, v)₂ = −1` iff
+    `u ≡ v ≡ 3 (mod 4)`.
+22. `HilbertProduct` — **`hilbert_product_formula_primes`** (and the finite-product form
+    `hilbert_product_formula_primes'`): for distinct odd primes `p, q`, `(p, q)_ℓ = 1` at primes
+    `ℓ ∉ {2, p, q}` and `(p, q)_∞ (p, q)_2 (p, q)_p (p, q)_q = 1` — via quadratic reciprocity.
 
 ## Not proved here
 
 The general uniqueness of completions up to isometry (so "ℚₚ is *the* completion" rests on
 density plus completeness, not on a formalised universal property); for the Hilbert symbol at
 `p = 2` only the general identities (symmetry, `(a, c²)`, `(a, −a)`, `(a, 1 − a)`, square classes,
-`(a, b) = (a, −ab)`) are proved — the unit, Legendre and bilinearity results need `p` odd; the
-Hilbert symbol at `∞` and Hilbert's product formula `∏_v (a, b)_v = 1`; Hasse's local–global
+`(a, b) = (a, −ab)`) and the values on pairs of units are proved — not the values involving the
+factor `2`, nor bilinearity at `2`; Hilbert's product formula `∏_v (a, b)_v = 1` only for `a, b`
+distinct odd primes, not for general non-zero rationals; Hasse's local–global
 principle (local or global part).
 -/
