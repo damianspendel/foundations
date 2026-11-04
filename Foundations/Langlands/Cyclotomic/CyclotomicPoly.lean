@@ -11,7 +11,7 @@ the **cyclotomic polynomial** ("circle-dividing": its roots divide the unit circ
 equal arcs). Gauss proved in 1801 (*Disquisitiones*, art. 341) that `Φ_p` is irreducible over
 `ℚ`; Eisenstein's criterion (1850), applied to `Φ_p(x + 1)`, gives the short proof
 formalised in `Irreducible.lean`. Kronecker (1854) and Dedekind (1857) extended irreducibility
-to all cyclotomic polynomials `Φ_n`, which we do not need.
+to all cyclotomic polynomials `Φ_n`, which is treated in `CyclotomicN` and `IrreducibleN`.
 
 This file defines `Φ_p` over any commutative ring, as the coefficient list `[1, 1, …, 1]`, and
 records its basic properties: it is the sum `Σ_{j<p} Xʲ`; it satisfies

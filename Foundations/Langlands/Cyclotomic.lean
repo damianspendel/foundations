@@ -13,6 +13,12 @@ import Foundations.Langlands.Cyclotomic.QuadraticFixed
 import Foundations.Langlands.Cyclotomic.PrimePowerIrreducible
 import Foundations.Langlands.Cyclotomic.PrimePowerGalois
 import Foundations.Langlands.Cyclotomic.PrimePowerDegree
+import Foundations.Langlands.Cyclotomic.MonicPoly
+import Foundations.Langlands.Cyclotomic.CyclotomicN
+import Foundations.Langlands.Cyclotomic.Dedekind
+import Foundations.Langlands.Cyclotomic.IrreducibleN
+import Foundations.Langlands.Cyclotomic.GaloisN
+import Foundations.Langlands.Cyclotomic.FrobeniusN
 
 /-!
 # Part XV, chapter 3: reciprocity as Galois theory (the cyclotomic case)
@@ -50,7 +56,19 @@ formalises that prototype.
 * **Prime powers.** For `n = p^{k+1}`, `Φ_n = Σ_{j<p} x^{j p^k}` is irreducible over `ℚ`
   (`cycloPP_irreducible`, Eisenstein at `p` after `x ↦ x + 1`, using `Φ_n(x+1) ≡ x^{φ(n)}`
   mod `p`), `Aut(ℚ(ζ_n)/ℚ) ≅ (ℤ/n)ˣ` (`cycloGaloisIsoPP`), and `[ℚ(ζ_n) : ℚ] = (p - 1)p^k`
-  (`deg_cycloFieldPP`). General `n` (irreducibility of every `Φ_n`) is not done.
+  (`deg_cycloFieldPP`).
+* **General `n` (Kronecker 1854, Dedekind 1857).** For every `n ≥ 1`,
+  `Φ_n = ∏_{a < n, gcd(a,n) = 1} (x - ζ_n^a)` is defined over `ℂ` (`cycloC`), has degree
+  `φ(n)` (`natDegree_cycloC`), and is the image of a monic integer polynomial `cycloZ n` of
+  degree `φ(n)` (`map_cycloZ`, `natDegree_cycloZ`). It is irreducible over `ℚ`
+  (`cycloQ_irreducible`) and is the minimal polynomial of `ζ_n` (`aeval_zetaN_eq_zero_iff`);
+  for prime `p` it is the earlier `Φ_p` (`cycloQ_prime`). The proof is Dedekind's: for a prime
+  `p ∤ n`, `ζ ↦ ζ^p` preserves the minimal polynomial (`dedekind_step`), by Gauss's lemma for
+  monic factors (`int_of_monic_factor`) and the separability of `xⁿ - 1` modulo `p`
+  (`isUnit_of_sq_dvd_X_pow_sub_one`). Consequently `Aut(ℚ(ζ_n)/ℚ) ≅ (ℤ/n)ˣ`
+  (`cycloGaloisIsoN`), `[ℚ(ζ_n) : ℚ] = φ(n)` (`deg_cycloFieldN`), and for every prime `q ∤ n`
+  the automorphism `σ_q` reduces to the `q`-th power map `ℤ[ζ_n] → 𝔽_q[x]/(Φ̄_n)`
+  (`reduceN_galAut`).
 * **Kummer** (1840s) made `ℤ[ζ_p]` the object of an arithmetic of ideal numbers. We use it only
   through its reduction map to `𝔽_q[x]/(Φ_p)`. We do not prove that this ring is
   `ℤ[ζ_p]/(q)`, nor anything about ideals of `ℤ[ζ_p]`.
@@ -64,11 +82,13 @@ formalises that prototype.
   (`galChar_frobenius`).
 * **Langlands for `GL(1)`** is this correspondence between Galois characters and Dirichlet
   (more generally Hecke) characters. Langlands' conjectures (1967) extend it to `GL(n)`. Beyond
-  the cyclotomic cases treated here (prime `p`, and prime powers for the Galois group), nothing
-  of class field theory is claimed.
+  the cyclotomic fields treated here (`ℚ(ζ_n)` for all `n ≥ 1`: irreducibility, Galois group,
+  degree, Frobenius congruence; Gauss sums and characters only for prime `p`), nothing of class
+  field theory is claimed.
 
 Files, in order: `Basic` (sums, binomial theorem, Legendre-symbol facts), `GaussSum`,
 `CyclotomicPoly`, `Reciprocity`, `Eisenstein`, `Irreducible`, `Field`, `Galois`, `Frobenius`,
 `Degree`, `Quadratic`, `QuadraticFixed`, `PrimePowerIrreducible`, `PrimePowerGalois`,
-`PrimePowerDegree`.
+`PrimePowerDegree`, `MonicPoly`, `CyclotomicN`, `Dedekind`, `IrreducibleN`, `GaloisN`,
+`FrobeniusN`.
 -/

@@ -24,7 +24,9 @@ that is formalised here. This part builds the first layers it stands on, from sc
   Gauss's sixth proof), and Dirichlet characters read as characters of the Galois group, with
   `χ(σ_q) = χ(q)` (`galChar_frobenius`), where `σ_q` is shown to be a Frobenius: it reduces
   to the `q`-th power map on `ℤ[ζ_p]` mod `q` (`reduce_galAut`). Also the degree `p − 1`, the
-  quadratic subfield `ℚ(√p*)` as the fixed field of the squares, and the prime-power case.
+  quadratic subfield `ℚ(√p*)` as the fixed field of the squares, and, for **every** `n`,
+  irreducibility of `Φ_n` (Dedekind's argument), `Gal(ℚ(ζ_n)/ℚ) ≅ (ℤ/n)ˣ` (`cycloGaloisIsoN`),
+  degree `φ(n)`, and the Frobenius congruence (`reduceN_galAut`).
 
 Not formalised: ℚₚ as a field, Hasse's principle, Kronecker–Weber, Artin reciprocity in general,
 modular forms, automorphic representations — that is, everything that makes Langlands Langlands.
