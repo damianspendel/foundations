@@ -244,14 +244,14 @@
 <path fill="#2e7d5b" stroke="black" stroke-width="0" d="M582,-579C582,-579 459,-579 459,-579 453,-579 447,-573 447,-567 447,-567 447,-540 447,-540 447,-534 453,-528 459,-528 459,-528 582,-528 582,-528 588,-528 594,-534 594,-540 594,-540 594,-567 594,-567 594,-573 588,-579 582,-579"/>
 <text text-anchor="start" x="466" y="-560.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="13.00" fill="white">XV · Langlands</text>
 <text text-anchor="start" x="465" y="-550" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">local fields, reciprocity</text>
-<text text-anchor="start" x="476.5" y="-540" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">1421 declarations</text>
+<text text-anchor="start" x="476.5" y="-540" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">1620 declarations</text>
 </g>
 <!-- Numbers&#45;&gt;Langlands -->
 <g id="edge18" class="edge">
 <title>Numbers&#45;&gt;Langlands</title>
-<g id="a_edge18"><a xlink:title="12835 uses of Numbers in Langlands">
-<path fill="none" stroke="#8a94a3" stroke-width="3.44" d="M753.32,-162.15C742.19,-221.72 707.17,-376.03 628.5,-477 613.85,-495.81 593.22,-511.81 573.92,-524.18"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.44" points="572.61,-522.11 567.98,-527.91 575.22,-526.27 572.61,-522.11"/>
+<g id="a_edge18"><a xlink:title="16326 uses of Numbers in Langlands">
+<path fill="none" stroke="#8a94a3" stroke-width="3.78" d="M753.32,-162.15C742.19,-221.72 707.17,-376.03 628.5,-477 613.85,-495.81 593.22,-511.81 573.92,-524.18"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.78" points="572.61,-522.11 567.98,-527.91 575.22,-526.27 572.61,-522.11"/>
 </a>
 </g>
 </g>
@@ -321,9 +321,9 @@
 <!-- Algebra&#45;&gt;Langlands -->
 <g id="edge3" class="edge">
 <title>Algebra&#45;&gt;Langlands</title>
-<g id="a_edge3"><a xlink:title="10097 uses of Algebra in Langlands">
-<path fill="none" stroke="#8a94a3" stroke-width="3.14" d="M839.58,-273.37C822.04,-324.43 774.94,-441.42 694.5,-503 667.72,-523.5 632.79,-535.51 601.26,-542.55"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.14" points="600.51,-540.2 594.17,-544.06 601.53,-545 600.51,-540.2"/>
+<g id="a_edge3"><a xlink:title="10158 uses of Algebra in Langlands">
+<path fill="none" stroke="#8a94a3" stroke-width="3.15" d="M839.58,-273.37C822.04,-324.43 774.94,-441.42 694.5,-503 667.72,-523.5 632.79,-535.51 601.26,-542.55"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.15" points="600.51,-540.2 594.17,-544.06 601.53,-545 600.51,-540.2"/>
 </a>
 </g>
 </g>
@@ -384,16 +384,16 @@
 <!-- Combinatorics&#45;&gt;Langlands -->
 <g id="edge8" class="edge">
 <title>Combinatorics&#45;&gt;Langlands</title>
-<g id="a_edge8"><a xlink:title="13 uses of Combinatorics in Langlands">
-<path fill="none" stroke="#8a94a3" stroke-width="0.88" d="M333.6,-273.17C310.56,-284.81 287.68,-301.28 274.5,-324 263.13,-343.61 265.62,-354.14 274.5,-375 305.89,-448.76 386.91,-497.56 447.45,-525"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.88" points="446.59,-527.3 453.98,-527.91 448.59,-522.82 446.59,-527.3"/>
+<g id="a_edge8"><a xlink:title="14 uses of Combinatorics in Langlands">
+<path fill="none" stroke="#8a94a3" stroke-width="0.89" d="M333.6,-273.17C310.56,-284.81 287.68,-301.28 274.5,-324 263.13,-343.61 265.62,-354.14 274.5,-375 305.89,-448.76 386.91,-497.56 447.45,-525"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="0.89" points="446.59,-527.3 453.98,-527.91 448.59,-522.82 446.59,-527.3"/>
 </a>
 </g>
 </g>
 <!-- NumberTheory&#45;&gt;Langlands -->
 <g id="edge13" class="edge">
 <title>NumberTheory&#45;&gt;Langlands</title>
-<g id="a_edge13"><a xlink:title="261 uses of NumberTheory in Langlands">
+<g id="a_edge13"><a xlink:title="265 uses of NumberTheory in Langlands">
 <path fill="none" stroke="#8a94a3" stroke-width="1.18" d="M520.5,-477.22C520.5,-490.32 520.5,-506.56 520.5,-520.61"/>
 <polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.18" points="518.05,-520.72 520.5,-527.72 522.95,-520.72 518.05,-520.72"/>
 </a>

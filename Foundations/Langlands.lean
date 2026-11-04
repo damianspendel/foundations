@@ -1,6 +1,8 @@
 import Foundations.Langlands.Padic
 import Foundations.Langlands.Rep
 import Foundations.Langlands.Cyclotomic
+import Foundations.Langlands.Squares
+import Foundations.Langlands.Modular
 
 /-!
 # Part XV: Toward Langlands
@@ -33,7 +35,16 @@ that is formalised here. This part builds the first layers it stands on, from sc
   `dirichletGaloisN` between Dirichlet characters mod `n` and characters of `Gal(ℚ(ζ_n)/ℚ)`,
   matching at Frobenius and in finite unramified Euler products (`dirichletEuler_eq_artinEuler`).
 
-Not formalised: Hasse–Minkowski beyond conics, Kronecker–Weber, Artin reciprocity in general,
-modular forms, automorphic representations — that is, everything that makes Langlands Langlands.
+* `Squares` — sums of squares: **Lagrange's four-square theorem**, the full two-squares
+  characterisation, and **the three-square theorem** (n is a sum of three squares iff it is not
+  4ᵃ(8b+7)), proved via Dirichlet's theorem, reciprocity, Legendre's theorem and
+  Davenport–Cassels.
+* `Modular` — the first step on the automorphic side: `SL₂(ℤ)` acting on the upper half-plane,
+  the fundamental domain (every orbit meets it; interior points are inequivalent), generation by
+  `S` and `T`, and the weight-`k` transformation law as a predicate (holomorphy is not
+  formalised, so these are not yet modular forms).
+
+Not formalised: Hasse–Minkowski beyond conics, holomorphic modular forms (Eisenstein series, Δ, j), Kronecker–Weber, Artin reciprocity in general,
+automorphic representations — that is, everything that makes Langlands Langlands.
 Each sub-part's aggregator states exactly what it proves and what it does not.
 -/
