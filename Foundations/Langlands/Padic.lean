@@ -5,6 +5,9 @@ import Foundations.Langlands.Padic.OstrowskiBound
 import Foundations.Langlands.Padic.Ostrowski
 import Foundations.Langlands.Padic.Integers
 import Foundations.Langlands.Padic.Hensel
+import Foundations.Langlands.Padic.Units
+import Foundations.Langlands.Padic.Field
+import Foundations.Langlands.Padic.QpAbs
 
 /-!
 # Part XV, local side: absolute values on ℚ and the `p`-adic integers
@@ -44,10 +47,20 @@ lives. (These historical remarks are context; Hasse's principle is not formalise
    and `not_ordered`: for odd primes `p`, ℤₚ carries no order compatible with addition in which
    squares are non-negative and `¬ 1 ≤ 0`.
 
+7. `Units` — ℤₚ: `Zp.isUnit_iff` (`x` invertible iff `x ≢ 0 mod p`), `Zp.eq_pow_mul_unit`
+   (every nonzero `x` is `pᵛ · u`, `u` a unit), and `Zp.eq_zero_or_eq_zero` (integral domain).
+8. `Field` — ℚₚ = ℤₚ[1/p] as classes of `x / pᵏ`; `Qp.instField`: ℚₚ is a field
+   (`Lean.Grind.Field`); `ℤₚ → ℚₚ` is an injective ring map.
+9. `QpAbs` — uniqueness of `v` in `x = pᵛ u` (`Zp.pow_unique`); the valuation on ℤₚ and ℚₚ,
+   additive and ultrametric; `Qp.abs` with `Qp.abs_mul` and `Qp.abs_ultrametric`,
+   `Qp.abs_ofZp_le_one`; the embedding `Qp.ofQ : ℚ → ℚₚ`, additive, multiplicative, injective
+   (`Qp.ofQ_injective`), and `Qp.abs_ofQ`: `|ofQ x|ₚ = |x|ₚ`, so the absolute value on ℚₚ
+   extends the one on ℚ.
+
 ## Not proved here
 
-The field ℚₚ itself (fraction field of ℤₚ, or completion of ℚ), its extended absolute value and
-its completeness as a metric space; the identification of ℤₚ with the `|·|ₚ`-completion of ℤ is
-explained in prose only; compactness of ℤₚ; Hensel's lemma for `p = 2`-type non-simple roots;
+Completeness of ℚₚ for `|·|ₚ` (only the congruence form of completeness of ℤₚ, `Zp.complete`,
+is proved); the identification of ℚₚ with the `|·|ₚ`-completion of ℚ (explained in prose only);
+Hensel's lemma for non-simple roots (`|f(a)| < |f'(a)|²`) and `√−7 ∈ ℤ₂`; compactness of ℤₚ;
 Hasse's local–global principle.
 -/
