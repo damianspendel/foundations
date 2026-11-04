@@ -26,7 +26,9 @@ that is formalised here. This part builds the first layers it stands on, from sc
   to the `q`-th power map on `ℤ[ζ_p]` mod `q` (`reduce_galAut`). Also the degree `p − 1`, the
   quadratic subfield `ℚ(√p*)` as the fixed field of the squares, and, for **every** `n`,
   irreducibility of `Φ_n` (Dedekind's argument), `Gal(ℚ(ζ_n)/ℚ) ≅ (ℤ/n)ˣ` (`cycloGaloisIsoN`),
-  degree `φ(n)`, and the Frobenius congruence (`reduceN_galAut`).
+  degree `φ(n)`, and the Frobenius congruence (`reduceN_galAut`); the **GL(1) dictionary**
+  `dirichletGaloisN` between Dirichlet characters mod `n` and characters of `Gal(ℚ(ζ_n)/ℚ)`,
+  matching at Frobenius and in finite unramified Euler products (`dirichletEuler_eq_artinEuler`).
 
 Not formalised: ℚₚ as a field, Hasse's principle, Kronecker–Weber, Artin reciprocity in general,
 modular forms, automorphic representations — that is, everything that makes Langlands Langlands.

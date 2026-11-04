@@ -19,6 +19,9 @@ import Foundations.Langlands.Cyclotomic.Dedekind
 import Foundations.Langlands.Cyclotomic.IrreducibleN
 import Foundations.Langlands.Cyclotomic.GaloisN
 import Foundations.Langlands.Cyclotomic.FrobeniusN
+import Foundations.Langlands.Cyclotomic.DictionaryN
+import Foundations.Langlands.Cyclotomic.EulerFactors
+import Foundations.Langlands.Cyclotomic.QuadraticSplitting
 
 /-!
 # Part XV, chapter 3: reciprocity as Galois theory (the cyclotomic case)
@@ -77,18 +80,38 @@ formalises that prototype.
 * **Artin reciprocity** (1927): for an abelian extension, Frobenius elements depend only on the
   prime modulo the conductor, and characters of the Galois group correspond to characters of
   idèle class groups. In the cyclotomic case this is the fact that `σ_q` depends only on
-  `q mod p`. The dictionary statement proved here is that a Dirichlet character `χ` mod `p`,
-  transported to `Gal(ℚ(ζ_p)/ℚ)`, takes the value `χ(q)` at the Frobenius element `σ_q`
-  (`galChar_frobenius`).
+  `q mod n`. For prime `p`, a Dirichlet character `χ` mod `p`, transported to `Gal(ℚ(ζ_p)/ℚ)`,
+  takes the value `χ(q)` at the Frobenius element `σ_q` (`galChar_frobenius`).
+* **The `GL(1)` dictionary for every `n ≥ 1`.** The characters of a commutative group form a
+  commutative group (`characterCommGroup`), `Gal(ℚ(ζ_n)/ℚ)` is a finite abelian group of order
+  `φ(n)` (`card_cycloGaloisN`), and transport along `cycloGaloisIsoN` is a group isomorphism
+  `χ ↦ ρ_χ` from Dirichlet characters mod `n` to characters of `Gal(ℚ(ζ_n)/ℚ)`
+  (`dirichletGaloisN`) with `ρ_χ(σ_q) = χ(q)` for every prime `q ∤ n`
+  (`dirichletGaloisN_frobenius`). With Dirichlet's theorem on primes in progressions, every
+  Galois element is `σ_q` for infinitely many primes `q` (`exists_frobenius_eq`, a qualitative
+  cyclotomic Chebotarev), so `ρ_χ` is the unique Galois character with these Frobenius values
+  (`dirichletGaloisN_unique`).
+* **Euler factors.** Consequently the local factors `(1 - χ(q) q^{-s})⁻¹` of the Dirichlet
+  `L`-function and `(1 - ρ_χ(Frob_q) q^{-s})⁻¹` of the Artin `L`-function agree at every prime
+  `q ∤ n` (`localFactor_match`), and the finite partial Euler products agree
+  (`dirichletEuler_eq_artinEuler`). These are identities of finite products in `ℂ`; nothing is
+  claimed about analytic `L`-functions.
+* **Splitting in `ℚ(√p*)`, via Frobenius.** For distinct odd primes `p, q`, the Frobenius `σ_q`
+  fixes `ℚ(√p*)` iff `q` is a square mod `p` iff `p*` is a square mod `q`
+  (`frobenius_sqrtField_tfae`, `frobenius_fixes_sqrtField_iff_pstar_sq`), the second equivalence
+  being quadratic reciprocity. This is the Galois-side form of "`q` splits in `ℚ(√p*)`"; prime
+  ideals are not formalised, so splitting itself is not stated.
 * **Langlands for `GL(1)`** is this correspondence between Galois characters and Dirichlet
   (more generally Hecke) characters. Langlands' conjectures (1967) extend it to `GL(n)`. Beyond
   the cyclotomic fields treated here (`ℚ(ζ_n)` for all `n ≥ 1`: irreducibility, Galois group,
-  degree, Frobenius congruence; Gauss sums and characters only for prime `p`), nothing of class
-  field theory is claimed.
+  degree, Frobenius congruence, the character dictionary; Gauss sums only for prime `p`), nothing
+  of class field theory is claimed: in particular Kronecker–Weber, the identification of Hecke
+  characters of `ℚ` with Dirichlet characters, and the analytic theory of Artin `L`-functions are
+  not formalised.
 
 Files, in order: `Basic` (sums, binomial theorem, Legendre-symbol facts), `GaussSum`,
 `CyclotomicPoly`, `Reciprocity`, `Eisenstein`, `Irreducible`, `Field`, `Galois`, `Frobenius`,
 `Degree`, `Quadratic`, `QuadraticFixed`, `PrimePowerIrreducible`, `PrimePowerGalois`,
 `PrimePowerDegree`, `MonicPoly`, `CyclotomicN`, `Dedekind`, `IrreducibleN`, `GaloisN`,
-`FrobeniusN`.
+`FrobeniusN`, `DictionaryN`, `EulerFactors`, `QuadraticSplitting`.
 -/
