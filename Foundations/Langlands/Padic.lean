@@ -21,6 +21,9 @@ import Foundations.Langlands.Padic.HilbertInf
 import Foundations.Langlands.Padic.Primitive
 import Foundations.Langlands.Padic.Hilbert2
 import Foundations.Langlands.Padic.HilbertProduct
+import Foundations.Langlands.Padic.Hilbert2Bilinear
+import Foundations.Langlands.Padic.HilbertLocal
+import Foundations.Langlands.Padic.HilbertReciprocity
 
 /-!
 # Part XV, local side: absolute values on ℚ and the `p`-adic integers
@@ -111,13 +114,26 @@ lives. (These historical remarks are context; Hasse's principle is not formalise
     `hilbert_product_formula_primes'`): for distinct odd primes `p, q`, `(p, q)_ℓ = 1` at primes
     `ℓ ∉ {2, p, q}` and `(p, q)_∞ (p, q)_2 (p, q)_p (p, q)_q = 1` — via quadratic reciprocity.
 
+23. `Hilbert2Bilinear` — the symbol at `2` with the factor `2`: **`Qp.hilbertSolvable_unit_two_iff`**
+    (`z² = u x² + 2v y²` is solvable iff `u ≡ 1` or `u + 2v ≡ 1 (mod 8)`), the full table
+    **`Qp.hilbert_std_two`**: `(2^α u, 2^β v)₂ = (−1)^(ε(u)ε(v) + α ω(v) + β ω(u))` on residues
+    mod `8` (`table2`), and **bilinearity at `2`** `Qp.hilbert_mul_right_two` /
+    `Qp.hilbert_mul_left_two` (non-zero arguments).
+24. `HilbertLocal` — local symbols of rationals at every place: bilinearity
+    (`hilbertAt_mul_left`, `hilbertInfQ_mul_left`), symmetry, square classes,
+    `(a, a)_v = (a, −1)_v`; `hilbertAt_neg_one_self`: `(−1, p)ₚ = (−1)^((p−1)/2)` and
+    `hilbertAt_two_self`: `(2, p)ₚ = (2/p) = (−1)^((p²−1)/8)` for odd `p`; the values at `2` of
+    odd integers and `2` (`hilbertAt_two_units_int`, `hilbertAt_two_int_two`).
+25. `HilbertReciprocity` — **`hilbert_product_formula`**: for all non-zero rationals `a, b`, there
+    is `N` with `(a, b)_ℓ = 1` for `ℓ ≥ N` and `(∏_{ℓ < M prime} (a, b)_ℓ) · (a, b)_∞ = 1` for all
+    `M ≥ N`. Proof: multiplicativity of the formula (`HilbertPF.mul_left`), reduction to the
+    generators `−1`, `2`, odd primes (`HilbertPF.of_generators`), and the generator pairs
+    (`hilbertPF_gen`), which are quadratic reciprocity and its two supplements.
+
 ## Not proved here
 
 The general uniqueness of completions up to isometry (so "ℚₚ is *the* completion" rests on
-density plus completeness, not on a formalised universal property); for the Hilbert symbol at
-`p = 2` only the general identities (symmetry, `(a, c²)`, `(a, −a)`, `(a, 1 − a)`, square classes,
-`(a, b) = (a, −ab)`) and the values on pairs of units are proved — not the values involving the
-factor `2`, nor bilinearity at `2`; Hilbert's product formula `∏_v (a, b)_v = 1` only for `a, b`
-distinct odd primes, not for general non-zero rationals; Hasse's local–global
-principle (local or global part).
+density plus completeness, not on a formalised universal property); Hilbert symbols over finite
+extensions of ℚₚ; the converse direction of the product formula (existence of a global
+element with prescribed local symbols); Hasse's local–global principle (local or global part).
 -/
