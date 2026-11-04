@@ -6,6 +6,8 @@ import Foundations.Langlands.Rep.Orthogonality
 import Foundations.Langlands.Rep.Multiplicity
 import Foundations.Langlands.Rep.Abelian
 import Foundations.Langlands.Rep.Permutation
+import Foundations.Langlands.Rep.Decompose
+import Foundations.Langlands.Rep.Regular
 
 /-!
 # Part XV, chapter 2: representations of finite groups
@@ -48,12 +50,26 @@ matrix-valued: `Rep G K ι` is a homomorphism `G → GL(K^ι)`, the degree being
   points (`character_permRep`); they contain the trivial representation, which splits off
   (`trivial_sub_permRep`, `permRep_splits`).
 
+* `Decompose`: bases of subspaces (`exists_basis_subspace`); restriction of a representation
+  to complementary invariant subspaces (`iso_dsum_of_compl`: `ρ ≅ ρ₁ ⊕ ρ₂` with degrees
+  `d, e ≥ 1`, `d + e ≤ deg ρ`); `Iso.trans`, `Iso.dsum`; and **complete reducibility**
+  (`complete_reducibility`): over a field with `|G| ≠ 0`, every representation on a non-zero
+  `K^ι` (`ι : Type`) is isomorphic to some `σ` with `SumIrr σ`, i.e. built from irreducibles by
+  direct sums.
+* `Regular`: the **irreducibility criterion** over `ℂ` (`irreducible_iff_pairing`):
+  `ρ` irreducible ⇔ `Σ_g χ(g) χ(g⁻¹) = |G|`; the regular representation `regularRep`, with
+  character `|G|·[g = 1]` (`character_regularRep`); `pairing_regular`
+  (`Σ_g χ_reg(g) χ_ρ(g⁻¹) = dim ρ · |G|`), and `regular_multiplicity`: if
+  `χ_reg = Σ_k m_k χ_k` for pairwise non-isomorphic irreducibles, then `m_k = dim ρ_k`;
+  **Burnside's formula** (`sum_sq_degrees`, for `G : Type`): if `ρ₀, …, ρ_{r−1}` are pairwise
+  non-isomorphic irreducible complex representations and every irreducible representation
+  (on an index type in `Type`) is isomorphic to one of them, then `Σ_k (dim ρ_k)² = |G|`.
+
 ## What is not proved
 
 The pairing used is `Σ_g χ(g) ψ(g⁻¹)`; its agreement with the Hermitian product
-`Σ_g χ(g) conj ψ(g)` over `ℂ` is not proved. It is not formalised that every representation is
-*isomorphic* to a direct sum of irreducibles (that needs restricting a representation to a
-subspace with a chosen basis), nor the irreducibility criterion `⟨χ, χ⟩ = 1 ⇒ irreducible`,
-`Σ (deg ρᵢ)² = |G|`, the count of irreducibles by conjugacy classes, second orthogonality,
-induced representations, or worked character tables of `S₃` and `A₄`.
+`Σ_g χ(g) conj ψ(g)` over `ℂ` is not proved. `sum_sq_degrees` takes the complete list of
+irreducibles as a hypothesis; that such a finite list exists is not proved separately. Also not
+formalised: second orthogonality, the count of irreducibles by conjugacy classes, induced
+representations, and worked character tables of `S₃` and `A₄`.
 -/
