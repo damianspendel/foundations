@@ -4,6 +4,10 @@ import Foundations.Langlands.Modular.FundamentalDomain
 import Foundations.Langlands.Modular.FundamentalDomainUnique
 import Foundations.Langlands.Modular.Generation
 import Foundations.Langlands.Modular.Forms
+import Foundations.Langlands.Modular.SquareSums
+import Foundations.Langlands.Modular.LatticeSum
+import Foundations.Langlands.Modular.Eisenstein
+import Foundations.Langlands.Modular.EisensteinNonzero
 
 /-!
 # Part XV, chapter 4: the modular group and the upper half-plane
@@ -52,11 +56,30 @@ reciprocity conjecture, far beyond what is built here.
   weights force `f = 0` (`eq_zero_of_odd`); and a **non-constant weight-0 invariant**, the
   height `max_γ Im(γτ)` (`heightC_isModular`), which also shows `i ≁ 2i`
   (`not_equiv_i_two_i`).
+* `SquareSums`: finite sums over the squares `Q_N = {|m|, |n| ≤ N}` of ℤ², their symmetries
+  (`sq_swap`, `sq_neg_snd`), restriction (`sq_restrict`), and the **comparison lemma**
+  (`cabs_sq_ite_sub_le`) behind every rearrangement below; limits in ℂ (`CLim`, `exists_CLim`).
+* `LatticeSum`: the **lattice-sum estimate** `|mτ + n| ≥ C(τ) max(|m|, |n|)`
+  (`lattice_estimate`); counting the `8N` points on each shell (`shell_step`, `sq_cabs_le`),
+  **`Σ' |mτ + n|^{−k}` converges along squares for `k ≥ 3`** (`abs_lattice_sum_converges`).
+* `Eisenstein`: the **Eisenstein series** `G_k(τ) = Σ' (mτ + n)^{−k}` (Eisenstein 1847), as the
+  limit of square partial sums (`G`, `tendsto_G`); **`G_k(τ + 1) = G_k(τ)`** (`G_T`, by a
+  rearrangement justified by absolute convergence), **`G_k(−1/τ) = τ^k G_k(τ)`** (`G_S`), hence
+  **`G_k` satisfies the weight-k law** (`G_isModular`), and **`G_k(i) = 0` for `k ≡ 2 (mod 4)`**
+  (`G_i_eq_zero`).
+* `EisensteinNonzero`: **`G_k(9i) ≠ 0` for every even `k ≥ 4`** (`G_ne_zero`, via
+  `Re G_k(9i) ≥ 2/9`), so the weight-k law has non-zero solutions in every even weight `≥ 4`
+  (`G_nonzero_but_vanishes_at_i` for `k ≡ 2 mod 4`).
+
+Eisenstein series are where Langlands himself started: his work on their analytic continuation
+and functional equations for general groups produced the continuous spectrum and the first
+automorphic `L`-functions (prose only; not formalised).
 
 ## Not formalised
 
-Holomorphy and the cusp condition; Eisenstein series, the discriminant `Δ`, the `j`-function
-and `q`-expansions; the dimension formula; the boundary identifications of `F` and the
+Holomorphy and the cusp condition (so `G_k` is shown to satisfy the weight-k law, not to be a
+modular form); the limit `G_k(iy) → 2ζ(k)` and the `q`-expansion; Weierstrass's `℘` and the
+relations `g₂ = 60 G_4`, `g₃ = 140 G_6`; the discriminant `Δ` and the `j`-function; the dimension formula; the boundary identifications of `F` and the
 stabilisers of `i` and `ρ`; the presentation `⟨S, T | S⁴, (ST)³, S²(ST)⁻³⟩`; congruence
 subgroups, Hecke operators, `L`-functions; automorphic representations; modularity.
 -/

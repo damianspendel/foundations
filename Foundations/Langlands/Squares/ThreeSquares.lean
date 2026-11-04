@@ -4,7 +4,7 @@ import Foundations.Langlands.Squares.Identities
 # Three squares: the necessary condition
 
 That numbers of the form `8b + 7` are never sums of three squares was known in the seventeenth
-century (it is stated by Descartes and by Fermat), and **Legendre** (*Essai sur la théorie des nombres*, 1798) proved the full theorem:
+century (it is stated by Descartes and by Fermat), and **Legendre** (*Essai sur la théorie des nombres*, 1798) stated the full theorem, with a proof resting on the then-unproved Dirichlet theorem:
 
 > a natural number is a sum of three squares if and only if it is not of the form `4ᵃ(8b + 7)`.
 

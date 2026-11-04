@@ -31,8 +31,8 @@ What we prove:
 * **a non-trivial weight-0 example** (`height`): the *height* `h(τ) = max_γ Im(γτ)`, which
   exists by `FundamentalDomain.exists_max_im`, is SL₂(ℤ)-invariant (`height_smul`), equals
   `Im τ` on `F` (`height_of_mem_F`), and is not constant (`height_i`, `height_two_i`); hence
-  `i` and `2i` are not equivalent (`not_equiv_i_two_i`). The height is continuous but not
-  holomorphic — it is a weight-0 invariant, not a modular function such as `j`.
+  `i` and `2i` are not equivalent (`not_equiv_i_two_i`). The height is a weight-0 invariant
+  (its continuity is not proved here, and it is not holomorphic), not a modular function such as `j`.
 
 ## The modularity theorem and the automorphic side of Langlands (prose only)
 

@@ -42,9 +42,10 @@ that is formalised here. This part builds the first layers it stands on, from sc
 * `Modular` — the first step on the automorphic side: `SL₂(ℤ)` acting on the upper half-plane,
   the fundamental domain (every orbit meets it; interior points are inequivalent), generation by
   `S` and `T`, and the weight-`k` transformation law as a predicate (holomorphy is not
-  formalised, so these are not yet modular forms).
+  formalised, so these are not yet modular forms); **Eisenstein series** `G_k` as absolutely
+  convergent lattice sums satisfying the weight-`k` law (`G_isModular`), not identically zero.
 
-Not formalised: Hasse–Minkowski beyond conics, holomorphic modular forms (Eisenstein series, Δ, j), Kronecker–Weber, Artin reciprocity in general,
+Not formalised: Hasse–Minkowski beyond conics, holomorphic modular forms (holomorphy of `G_k`, q-expansions, Δ, j), Kronecker–Weber, Artin reciprocity in general,
 automorphic representations — that is, everything that makes Langlands Langlands.
 Each sub-part's aggregator states exactly what it proves and what it does not.
 -/

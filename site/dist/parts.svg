@@ -244,14 +244,14 @@
 <path fill="#2e7d5b" stroke="black" stroke-width="0" d="M582,-579C582,-579 459,-579 459,-579 453,-579 447,-573 447,-567 447,-567 447,-540 447,-540 447,-534 453,-528 459,-528 459,-528 582,-528 582,-528 588,-528 594,-534 594,-540 594,-540 594,-567 594,-567 594,-573 588,-579 582,-579"/>
 <text text-anchor="start" x="466" y="-560.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="13.00" fill="white">XV · Langlands</text>
 <text text-anchor="start" x="465" y="-550" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">local fields, reciprocity</text>
-<text text-anchor="start" x="476.5" y="-540" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">1620 declarations</text>
+<text text-anchor="start" x="476.5" y="-540" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">1722 declarations</text>
 </g>
 <!-- Numbers&#45;&gt;Langlands -->
 <g id="edge18" class="edge">
 <title>Numbers&#45;&gt;Langlands</title>
-<g id="a_edge18"><a xlink:title="16326 uses of Numbers in Langlands">
-<path fill="none" stroke="#8a94a3" stroke-width="3.78" d="M753.32,-162.15C742.19,-221.72 707.17,-376.03 628.5,-477 613.85,-495.81 593.22,-511.81 573.92,-524.18"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="3.78" points="572.61,-522.11 567.98,-527.91 575.22,-526.27 572.61,-522.11"/>
+<g id="a_edge18"><a xlink:title="20660 uses of Numbers in Langlands">
+<path fill="none" stroke="#8a94a3" stroke-width="4.15" d="M753.32,-162.15C742.19,-221.72 707.17,-376.03 628.5,-477 613.85,-495.81 593.22,-511.81 573.92,-524.18"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="4.15" points="572.56,-522.04 567.98,-527.91 575.26,-526.34 572.56,-522.04"/>
 </a>
 </g>
 </g>
