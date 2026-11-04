@@ -3,6 +3,7 @@ import Foundations.Langlands.Rep
 import Foundations.Langlands.Cyclotomic
 import Foundations.Langlands.Squares
 import Foundations.Langlands.Modular
+import Foundations.Langlands.Forms
 
 /-!
 # Part XV: Toward Langlands
@@ -47,6 +48,11 @@ that is formalised here. This part builds the first layers it stands on, from sc
   `S` and `T`, and the weight-`k` transformation law as a predicate (holomorphy is not
   formalised, so these are not yet modular forms); **Eisenstein series** `G_k` as absolutely
   convergent lattice sums satisfying the weight-`k` law (`G_isModular`), not identically zero for even `k ≥ 4` (`G_ne_zero`).
+
+* `Forms` — binary quadratic forms: the `SL₂(ℤ)` action, **Gauss reduction** (every positive
+  definite class has exactly one reduced form, `existsUnique_reduced`), the class number `h(D)`
+  with `h(−3) = h(−4) = 1`, `h(−20) = 2`, `h(−23) = 3`, and which primes a form of discriminant
+  `D` represents (`prime_rep_iff`); `p = x² + 5y²` forces `p ≡ 1, 9 mod 20`.
 
 Not formalised: Hasse–Minkowski beyond conics, holomorphic modular forms (holomorphy of `G_k`, q-expansions, Δ, j), Kronecker–Weber, Artin reciprocity in general,
 automorphic representations — that is, everything that makes Langlands Langlands.
