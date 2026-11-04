@@ -10,6 +10,9 @@ import Foundations.Langlands.Rep.Decompose
 import Foundations.Langlands.Rep.Regular
 import Foundations.Langlands.Rep.Completeness
 import Foundations.Langlands.Rep.Existence
+import Foundations.Langlands.Rep.ClassFunctions
+import Foundations.Langlands.Rep.Classes
+import Foundations.Langlands.Rep.SecondOrthogonality
 import Foundations.Langlands.Rep.Monomial
 import Foundations.Langlands.Rep.S3
 import Foundations.Langlands.Rep.A4
@@ -78,6 +81,18 @@ matrix-valued: `Rep G K ι` is a homomorphism `G → GL(K^ι)`, the degree being
 * `Existence`: every finite group (`G : Type`) has a finite complete list of pairwise
   non-isomorphic irreducible complex representations (`exists_complete_irrList`), so
   Burnside's formula holds for it without hypotheses (`exists_sum_sq_degrees`).
+* `ClassFunctions`: for a class function `f`, `Σ_g f(g) ρ(g)` is a `G`-map (`classOp_isGMap`);
+  **characters detect class functions** (`classFunction_eq_zero`, for `G : Type`): a class
+  function `f` with `Σ_g f(g) χ(g) = 0` for every irreducible character `χ` is zero.
+* `Classes`: conjugacy classes `ConjClasses G` (the quotient by conjugacy); **the number of
+  irreducibles is the number of conjugacy classes** (`card_irr_eq_card_conjClasses`): every
+  complete list of pairwise non-isomorphic irreducible complex representations has
+  `|ConjClasses G|` members; with `exists_card_irr_eq_card_conjClasses` for existence.
+* `SecondOrthogonality`: **characters span the class functions** (`classFunction_expansion`):
+  for a complete list, `|G| f(g) = Σ_k (Σ_x f(x) χ_k(x)) χ_k(g⁻¹)` for every class function `f`;
+  **second orthogonality** (`second_orthogonality`): `|cl(h)| · Σ_k χ_k(h) χ_k(g⁻¹)` is `|G|`
+  if `g` is conjugate to `h` and `0` otherwise, with `|cl(h)|` the number of conjugates of `h`;
+  `second_orthogonality_of_not_conj`.
 * `Monomial`: monomial matrices and their products (`monoMat_mul`); monomial representations
   `monoRep` built from a permutation-and-exponent cocycle, with their characters
   (`character_monoRep`); a primitive cube root of unity `omega3` in `ℂ` (`ω² + ω + 1 = 0`,
@@ -97,8 +112,9 @@ matrix-valued: `Rep G K ι` is a homomorphism `G → GL(K^ι)`, the degree being
 ## What is not proved
 
 The pairing used is `Σ_g χ(g) ψ(g⁻¹)`; its agreement with the Hermitian product
-`Σ_g χ(g) conj ψ(g)` over `ℂ` is not proved. Also not formalised: second orthogonality, the
-count of irreducibles by conjugacy classes, and induced representations. The groups `S3` and
+`Σ_g χ(g) conj ψ(g)` over `ℂ` is not proved. Second orthogonality is stated with the class size
+`|cl(h)|`; its relation `|G| = |cl(h)| · |C_G(h)|` with the centraliser is not used or proved
+here. Induced representations are not formalised. The groups `S3` and
 `A4` are constructed directly as semidirect products; their isomorphisms with the permutation
 group of three letters and the even permutations of four letters are not proved. Every element
 is shown to be conjugate to one of the chosen class representatives (`S3.conj_rep`,
