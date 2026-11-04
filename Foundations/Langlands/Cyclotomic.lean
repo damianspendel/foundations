@@ -8,7 +8,7 @@ import Foundations.Langlands.Cyclotomic.Field
 import Foundations.Langlands.Cyclotomic.Galois
 
 /-!
-# Part XV, chapter 1: reciprocity as Galois theory (the cyclotomic case)
+# Part XV, chapter 3: reciprocity as Galois theory (the cyclotomic case)
 
 The Langlands programme predicts a correspondence between Galois representations and
 automorphic forms. For `GL(1)`, i.e. one-dimensional representations, the prediction is class

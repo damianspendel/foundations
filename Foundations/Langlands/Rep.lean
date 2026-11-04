@@ -8,7 +8,7 @@ import Foundations.Langlands.Rep.Abelian
 import Foundations.Langlands.Rep.Permutation
 
 /-!
-# Part XV, chapter 1: representations of finite groups
+# Part XV, chapter 2: representations of finite groups
 
 The Langlands programme relates Galois representations to automorphic representations. This
 chapter builds its most basic layer, the representation theory of finite groups created by

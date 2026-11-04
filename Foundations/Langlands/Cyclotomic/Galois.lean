@@ -21,8 +21,9 @@ import Foundations.NumberTheory.DirichletCharacters
 
 So the Galois group of `ℚ(ζ_p)/ℚ` is abelian and "is" the group of residues. This is the
 first case of the dictionary of class field theory. The automorphism `σ_q` attached to a prime
-`q ≠ p` is the **Frobenius element** at `q`: modulo `q` it is the `q`-th power map, as the
-previous file showed when it computed `g^q`. Here we see it acting on the Gauss sum,
+`q ≠ p` is the automorphism `ζ ↦ ζ^q`, which classical theory identifies with the **Frobenius element**
+at `q`; that identification (through `ℤ[ζ_p]/(q)`) is not formalised here, and the previous file
+computes `g^q` in `𝔽_q[x]/(Φ_p)` instead. Here we see it acting on the Gauss sum,
 `σ_a(g) = (a/p) g` (`galAut_gaussSum`). So `σ_q` fixes `√p* = g` exactly when `(q/p) = 1`,
 which by Gauss's congruence happens exactly when `(p*)^((q-1)/2) ≡ 1 (mod q)`, i.e. when `p*` is
 a square modulo `q` (`frobenius_fixes_sqrt_iff`). This is quadratic reciprocity read as a
@@ -35,7 +36,7 @@ the `GL(1)` dictionary in miniature: Artin's reciprocity law (1927) identifies c
 Galois groups of abelian extensions with characters of idèle class groups (here, Dirichlet
 characters), matching Frobenius elements with primes. Langlands' programme (1967) conjectures
 a non-abelian generalisation, relating `n`-dimensional Galois representations to automorphic
-representations of `GL(n)`. We prove only the cyclotomic case for prime `p`.
+representations of `GL(n)`. We prove only the cyclotomic dictionary, with `σ_q` defined as `ζ ↦ ζ^q`, for prime `p`.
 -/
 
 namespace Foundations.Langlands

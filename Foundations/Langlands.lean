@@ -18,11 +18,12 @@ that is formalised here. This part builds the first layers it stands on, from sc
   characters and their **orthogonality**, multiplicities, and the bridge saying that for abelian
   groups the irreducible characters are exactly the Dirichlet-style characters of `DualGroup`.
 
-* `Cyclotomic` — reciprocity as Galois theory, Langlands for GL(1) in its simplest case:
+* `Cyclotomic` — reciprocity as Galois theory, the prototype of GL(1) reciprocity:
   irreducibility of `Φ_p` (Eisenstein), `Gal(ℚ(ζ_p)/ℚ) ≅ (ℤ/p)ˣ` (`cycloGaloisIso`), Gauss sums
   with `g² = p*`, **quadratic reciprocity re-proved by Frobenius** (`quadratic_reciprocity_gauss`,
   Gauss's sixth proof), and Dirichlet characters read as characters of the Galois group, with
-  `χ(Frob_q) = χ(q)` (`galChar_frobenius`).
+  `χ(σ_q) = χ(q)` for `σ_q : ζ ↦ ζ^q` (`galChar_frobenius`; its identification with the
+  arithmetic Frobenius is not formalised).
 
 Not formalised: ℚₚ as a field, Hasse's principle, Kronecker–Weber, Artin reciprocity in general,
 modular forms, automorphic representations — that is, everything that makes Langlands Langlands.
