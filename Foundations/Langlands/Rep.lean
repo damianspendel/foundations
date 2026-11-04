@@ -8,6 +8,11 @@ import Foundations.Langlands.Rep.Abelian
 import Foundations.Langlands.Rep.Permutation
 import Foundations.Langlands.Rep.Decompose
 import Foundations.Langlands.Rep.Regular
+import Foundations.Langlands.Rep.Completeness
+import Foundations.Langlands.Rep.Existence
+import Foundations.Langlands.Rep.Monomial
+import Foundations.Langlands.Rep.S3
+import Foundations.Langlands.Rep.A4
 
 /-!
 # Part XV, chapter 2: representations of finite groups
@@ -64,12 +69,40 @@ matrix-valued: `Rep G K ι` is a homomorphism `G → GL(K^ι)`, the degree being
   **Burnside's formula** (`sum_sq_degrees`, for `G : Type`): if `ρ₀, …, ρ_{r−1}` are pairwise
   non-isomorphic irreducible complex representations and every irreducible representation
   (on an index type in `Type`) is isomorphic to one of them, then `Σ_k (dim ρ_k)² = |G|`.
+* `Completeness`: isomorphic representations have equal degree (`Iso.card_eq`);
+  **Burnside's inequality** (`sum_sq_le`, for `G : Type`): for any list of pairwise
+  non-isomorphic irreducible complex representations, `Σ_k (dim ρ_k)² ≤ |G|`; the
+  **completeness criterion** (`complete_of_sum_sq`): if equality holds, every irreducible
+  representation (on an index type in `Type`) is isomorphic to a member of the list; and
+  `complete_iff_sum_sq`, combining this with `sum_sq_degrees`.
+* `Existence`: every finite group (`G : Type`) has a finite complete list of pairwise
+  non-isomorphic irreducible complex representations (`exists_complete_irrList`), so
+  Burnside's formula holds for it without hypotheses (`exists_sum_sq_degrees`).
+* `Monomial`: monomial matrices and their products (`monoMat_mul`); monomial representations
+  `monoRep` built from a permutation-and-exponent cocycle, with their characters
+  (`character_monoRep`); a primitive cube root of unity `omega3` in `ℂ` (`ω² + ω + 1 = 0`,
+  from the fundamental theorem of algebra).
+* `S3`: `S₃`, built as `C₃ ⋊ C₂`, with its trivial, sign and 2-dimensional standard
+  representations (the latter as explicit matrices `r ↦ diag(ω, ω²)`, `s ↦ (0 1; 1 0)`),
+  each irreducible, pairwise non-isomorphic, and complete (`S3.irreducibles_complete`, from
+  `1 + 1 + 4 = 6`); the character table on `1, r, s` (`S3.character_table`); every element is conjugate to one of
+  `1, r, s` (`S3.conj_rep`).
+* `A4`: `A₄`, built as `V ⋊ C₃` (Klein four-group by a cyclic group of order 3), with three
+  1-dimensional representations through `A₄ → C₃` and a 3-dimensional representation by signed
+  permutation matrices, each irreducible, pairwise non-isomorphic, and complete
+  (`A4.irreducibles_complete`, from `1 + 1 + 1 + 9 = 12`); the character table on `1, t, c, c²`
+  (`A4.character_table`); every element is conjugate to one of `1, t, c, c²`
+  (`A4.conj_rep`).
 
 ## What is not proved
 
 The pairing used is `Σ_g χ(g) ψ(g⁻¹)`; its agreement with the Hermitian product
-`Σ_g χ(g) conj ψ(g)` over `ℂ` is not proved. `sum_sq_degrees` takes the complete list of
-irreducibles as a hypothesis; that such a finite list exists is not proved separately. Also not
-formalised: second orthogonality, the count of irreducibles by conjugacy classes, induced
-representations, and worked character tables of `S₃` and `A₄`.
+`Σ_g χ(g) conj ψ(g)` over `ℂ` is not proved. Also not formalised: second orthogonality, the
+count of irreducibles by conjugacy classes, and induced representations. The groups `S3` and
+`A4` are constructed directly as semidirect products; their isomorphisms with the permutation
+group of three letters and the even permutations of four letters are not proved. Every element
+is shown to be conjugate to one of the chosen class representatives (`S3.conj_rep`,
+`A4.conj_rep`); that the representatives are pairwise non-conjugate is not stated as a theorem.
+The characters at every element are given by `S3.character_sign`, `S3.character_std`,
+`A4.character_lin`, `A4.character_three_V` and `A4.character_three_off`.
 -/
