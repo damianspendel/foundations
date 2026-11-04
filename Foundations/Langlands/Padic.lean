@@ -24,6 +24,11 @@ import Foundations.Langlands.Padic.HilbertProduct
 import Foundations.Langlands.Padic.Hilbert2Bilinear
 import Foundations.Langlands.Padic.HilbertLocal
 import Foundations.Langlands.Padic.HilbertReciprocity
+import Foundations.Langlands.Padic.LegendreBasic
+import Foundations.Langlands.Padic.LegendreNec
+import Foundations.Langlands.Padic.LegendreSuff
+import Foundations.Langlands.Padic.Legendre
+import Foundations.Langlands.Padic.HasseConic
 
 /-!
 # Part XV, local side: absolute values on ℚ and the `p`-adic integers
@@ -40,7 +45,8 @@ and the ordinary one are, up to equivalence, the only absolute values on ℚ; Ha
 the first *local–global principle* — a rational quadratic form represents zero over ℚ iff it does
 over ℝ and over every ℚₚ — making the collection of all completions of ℚ a tool for global
 questions. Local fields (ℚₚ, ℝ and their finite extensions) are exactly where local Langlands
-lives. (These historical remarks are context; Hasse's principle is not formalised here.)
+lives. Hasse's principle is formalised here for conics only (`HasseConic`, via Legendre's
+theorem of 1785); Hasse–Minkowski in four or more variables is not.
 
 ## What is proved
 
@@ -129,11 +135,33 @@ lives. (These historical remarks are context; Hasse's principle is not formalise
     `M ≥ N`. Proof: multiplicativity of the formula (`HilbertPF.mul_left`), reduction to the
     generators `−1`, `2`, odd primes (`HilbertPF.of_generators`), and the generator pairs
     (`hilbertPF_gen`), which are quadratic reciprocity and its two supplements.
+26. `LegendreBasic` — squarefree integers, coprimality, `IsSqMod m n` (`m ≡ t² mod n`),
+    Bézout over ℤ, the Chinese remainder theorem for squares (`IsSqMod.mul`, `Squarefree.glue`),
+    integer square roots.
+27. `LegendreNec` — **`legendre_necessary`**: a non-trivial integer point of
+    `a x² + b y² + c z² = 0` (`a, b, c` non-zero, squarefree, pairwise coprime) forces `−bc`,
+    `−ca`, `−ab` to be squares modulo `|a|`, `|b|`, `|c|`; `not_same_sign_of_solution`.
+28. `LegendreSuff` — **`legendre_core`**: sufficiency for `a, b > 0 > c`, by pigeonhole on a box
+    of lattice points (`box_pigeonhole`) and Legendre's identity for the boundary case.
+29. `Legendre` — **Legendre's theorem** `legendre` (1785): for admissible `a, b, c`, a
+    non-trivial integer point exists iff the signs are mixed and the three congruence conditions
+    hold; examples `legendre_example_five` (`x² + y² = 5z²`) and `legendre_example_three`
+    (`x² + y² = 3z²` has no point).
+30. `HasseConic` — points over ℚ, ℝ, ℚₚ; `conicQ_iff_Z`, `conicR_iff` (real points iff mixed
+    signs), `isSqMod_of_Qp` (ℚₚ-points give the congruence at odd `p ∣ a`, via
+    `Qp.hilbertSolvable_unit_pv_iff`), **`local_iff_legendre`** (local solvability everywhere iff
+    Legendre's conditions), **`hasse_conic`**: *Hasse's principle for conics* — solvable over ℚ
+    iff over ℝ and every ℚₚ — and `hasse_conic_hilbert` (iff `(−ab, −bc)_v = 1` at all places);
+    `hasse_example_three` (`x² + y² = 3z²` has real points but none in ℚ₃, so none in ℚ),
+    `hasse_example_five`.
 
 ## Not proved here
 
 The general uniqueness of completions up to isometry (so "ℚₚ is *the* completion" rests on
 density plus completeness, not on a formalised universal property); Hilbert symbols over finite
 extensions of ℚₚ; the converse direction of the product formula (existence of a global
-element with prescribed local symbols); Hasse's local–global principle (local or global part).
+element with prescribed local symbols); the Hasse–Minkowski theorem beyond ternary forms (four or
+more variables), and the reduction of an arbitrary rational ternary form to the admissible
+diagonal form `a x² + b y² + c z²` with squarefree pairwise coprime coefficients assumed in
+`HasseConic`.
 -/
