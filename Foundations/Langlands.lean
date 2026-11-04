@@ -11,7 +11,9 @@ that is formalised here. This part builds the first layers it stands on, from sc
 
 * `Padic` — the local side at a prime `p`: the `p`-adic absolute value and the product formula,
   **Ostrowski's theorem** (every nontrivial absolute value on ℚ is equivalent to the usual one or
-  to exactly one `|·|ₚ`), the `p`-adic integers `ℤₚ` as a complete ring, and **Hensel's lemma**.
+  to exactly one `|·|ₚ`), the `p`-adic integers `ℤₚ` (complete, compact), **Hensel's lemma**, `ℚₚ` as a complete
+  field with `ℚ` dense, the Hilbert symbol at every place, and **Hilbert's product formula**
+  for all nonzero rationals (`hilbert_product_formula`).
 
 * `Rep` — representations of finite groups, the language Langlands is written in: **Maschke's
   theorem**, **Schur's lemma** (with scalars over ℂ, via the fundamental theorem of algebra),
@@ -30,7 +32,7 @@ that is formalised here. This part builds the first layers it stands on, from sc
   `dirichletGaloisN` between Dirichlet characters mod `n` and characters of `Gal(ℚ(ζ_n)/ℚ)`,
   matching at Frobenius and in finite unramified Euler products (`dirichletEuler_eq_artinEuler`).
 
-Not formalised: ℚₚ as a field, Hasse's principle, Kronecker–Weber, Artin reciprocity in general,
+Not formalised: Hasse's principle, Kronecker–Weber, Artin reciprocity in general,
 modular forms, automorphic representations — that is, everything that makes Langlands Langlands.
 Each sub-part's aggregator states exactly what it proves and what it does not.
 -/

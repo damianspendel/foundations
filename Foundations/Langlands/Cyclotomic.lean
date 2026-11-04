@@ -79,8 +79,8 @@ formalises that prototype.
   extension of `ℚ` lies in a cyclotomic field. *Stated here in prose only; not formalised.*
 * **Artin reciprocity** (1927): for an abelian extension, Frobenius elements depend only on the
   prime modulo the conductor, and characters of the Galois group correspond to characters of
-  idèle class groups. In the cyclotomic case this is the fact that `σ_q` depends only on
-  `q mod n`. For prime `p`, a Dirichlet character `χ` mod `p`, transported to `Gal(ℚ(ζ_p)/ℚ)`,
+  idèle class groups. In the cyclotomic case, one ingredient is the (proved) fact that `σ_q` depends
+  only on `q mod n` (`frobN_congr`); Artin reciprocity itself is not formalised. For prime `p`, a Dirichlet character `χ` mod `p`, transported to `Gal(ℚ(ζ_p)/ℚ)`,
   takes the value `χ(q)` at the Frobenius element `σ_q` (`galChar_frobenius`).
 * **The `GL(1)` dictionary for every `n ≥ 1`.** The characters of a commutative group form a
   commutative group (`characterCommGroup`), `Gal(ℚ(ζ_n)/ℚ)` is a finite abelian group of order

@@ -20,7 +20,7 @@ symbols `(a, b)_v` are `1` for all but finitely many places `v`, and
 So the product formula is exactly the law of quadratic reciprocity
 `(q/p)(p/q) = (−1)^(((p−1)/2)((q−1)/2))` (`Algebra.quadratic_reciprocity`). The general case
 (arbitrary non-zero rationals, which needs the full symbol at `2` including the factor `2` and
-the second supplement) is not done here.
+the second supplement) is `hilbert_product_formula` in `HilbertReciprocity`.
 
 The symbol at a natural number `ℓ` is `hilbertAt ℓ a b`, defined as the Hilbert symbol in ℚ_ℓ
 of `a, b ∈ ℚ` when `ℓ` is prime (and `1` otherwise).
