@@ -10,6 +10,7 @@ import Foundations.Langlands.Padic.Field
 import Foundations.Langlands.Padic.QpAbs
 import Foundations.Langlands.Padic.QpComplete
 import Foundations.Langlands.Padic.StrongHensel
+import Foundations.Langlands.Padic.Density
 
 /-!
 # Part XV, local side: absolute values on ℚ and the `p`-adic integers
@@ -66,8 +67,13 @@ lives. (These historical remarks are context; Hasse's principle is not formalise
     `|f(a)|ₚ < |f'(a)|ₚ²`), then `f` has a root `x ∈ ℤₚ` with `x ≡ a mod pᵉ⁺¹`;
     `sqrt_neg_seven_Z2`: `x² = −7` in ℤ₂ with `x ≡ 1 mod 4`.
 
+12. `Density` — **`Qp.dense`**: for every `q ∈ ℚₚ` and `k` there is `r ∈ ℚ` with
+    `|q − r|ₚ ≤ p^(−k)`; `Qp.exists_seq_tendsto`: every `q` is a limit of rationals. With
+    `Qp.complete` and `Qp.abs_ofQ`, ℚₚ is a complete valued field in which ℚ is dense.
+
 ## Not proved here
 
-Density of ℚ in ℚₚ, hence the identification of ℚₚ with *the* `|·|ₚ`-completion of ℚ (explained
-in prose only); compactness of ℤₚ; Hasse's local–global principle (local or global part).
+The general uniqueness of completions up to isometry (so "ℚₚ is *the* completion" rests on
+density plus completeness, not on a formalised universal property); compactness of ℤₚ; the
+Hilbert symbol; Hasse's local–global principle (local or global part).
 -/
