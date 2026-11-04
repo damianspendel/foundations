@@ -244,14 +244,14 @@
 <path fill="#2e7d5b" stroke="black" stroke-width="0" d="M414,-579C414,-579 291,-579 291,-579 285,-579 279,-573 279,-567 279,-567 279,-540 279,-540 279,-534 285,-528 291,-528 291,-528 414,-528 414,-528 420,-528 426,-534 426,-540 426,-540 426,-567 426,-567 426,-573 420,-579 414,-579"/>
 <text text-anchor="start" x="298" y="-560.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="13.00" fill="white">XV · Langlands</text>
 <text text-anchor="start" x="297" y="-550" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">local fields, reciprocity</text>
-<text text-anchor="start" x="311.5" y="-540" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">607 declarations</text>
+<text text-anchor="start" x="311.5" y="-540" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">703 declarations</text>
 </g>
 <!-- Numbers&#45;&gt;Langlands -->
 <g id="edge17" class="edge">
 <title>Numbers&#45;&gt;Langlands</title>
-<g id="a_edge17"><a xlink:title="5049 uses of Numbers in Langlands">
-<path fill="none" stroke="#8a94a3" stroke-width="2.46" d="M652.38,-137.07C496.91,-138.76 192.5,-153.88 192.5,-246.5 192.5,-246.5 192.5,-246.5 192.5,-452.5 192.5,-494.15 231.97,-519.09 271.7,-533.65"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.46" points="271.17,-536.07 278.59,-536.08 272.8,-531.44 271.17,-536.07"/>
+<g id="a_edge17"><a xlink:title="6219 uses of Numbers in Langlands">
+<path fill="none" stroke="#8a94a3" stroke-width="2.64" d="M652.38,-137.07C496.91,-138.76 192.5,-153.88 192.5,-246.5 192.5,-246.5 192.5,-246.5 192.5,-452.5 192.5,-494.15 231.97,-519.09 271.7,-533.65"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.64" points="271.17,-536.07 278.59,-536.08 272.8,-531.44 271.17,-536.07"/>
 </a>
 </g>
 </g>
@@ -321,9 +321,9 @@
 <!-- Algebra&#45;&gt;Langlands -->
 <g id="edge3" class="edge">
 <title>Algebra&#45;&gt;Langlands</title>
-<g id="a_edge3"><a xlink:title="3321 uses of Algebra in Langlands">
-<path fill="none" stroke="#8a94a3" stroke-width="2.14" d="M635.89,-273.27C628.88,-300.28 614.86,-343.81 591.5,-375 541.93,-441.19 460.97,-493.98 407.21,-524.26"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.14" points="405.71,-522.29 400.8,-527.84 408.1,-526.57 405.71,-522.29"/>
+<g id="a_edge3"><a xlink:title="5635 uses of Algebra in Langlands">
+<path fill="none" stroke="#8a94a3" stroke-width="2.55" d="M635.89,-273.27C628.88,-300.28 614.86,-343.81 591.5,-375 541.93,-441.19 460.97,-493.98 407.21,-524.26"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="2.55" points="405.71,-522.29 400.8,-527.84 408.1,-526.57 405.71,-522.29"/>
 </a>
 </g>
 </g>
@@ -375,9 +375,9 @@
 <!-- NumberTheory&#45;&gt;Langlands -->
 <g id="edge12" class="edge">
 <title>NumberTheory&#45;&gt;Langlands</title>
-<g id="a_edge12"><a xlink:title="97 uses of NumberTheory in Langlands">
-<path fill="none" stroke="#8a94a3" stroke-width="1.03" d="M352.5,-477.22C352.5,-490.32 352.5,-506.56 352.5,-520.61"/>
-<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.03" points="350.05,-520.72 352.5,-527.72 354.95,-520.72 350.05,-520.72"/>
+<g id="a_edge12"><a xlink:title="144 uses of NumberTheory in Langlands">
+<path fill="none" stroke="#8a94a3" stroke-width="1.08" d="M352.5,-477.22C352.5,-490.32 352.5,-506.56 352.5,-520.61"/>
+<polygon fill="#8a94a3" stroke="#8a94a3" stroke-width="1.08" points="350.05,-520.72 352.5,-527.72 354.95,-520.72 350.05,-520.72"/>
 </a>
 </g>
 </g>

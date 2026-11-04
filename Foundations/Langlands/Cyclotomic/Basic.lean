@@ -33,7 +33,7 @@ open Foundations.Algebra
 open Foundations.NumberTheory (choose choose_zero_right choose_succ_succ choose_eq_zero_of_lt
   choose_self choose_mul_fact)
 
-universe u
+universe u v
 
 /-! ## Finite sums -/
 
@@ -156,7 +156,7 @@ theorem intCast_rsum (t : Nat → Int) : ∀ n, ((rsum t n : Int) : R) = rsum (f
     rw [Lean.Grind.Ring.intCast_add, intCast_rsum t n]
 
 /-- A ring homomorphism commutes with powers. -/
-theorem RingHom.map_pow' {A : Type u} {B : Type u} [CommRing A] [CommRing B] (φ : RingHom A B)
+theorem RingHom.map_pow' {A : Type u} {B : Type v} [CommRing A] [CommRing B] (φ : RingHom A B)
     (x : A) : ∀ n : Nat, φ.toFun (x ^ n) = φ.toFun x ^ n
   | 0 => φ.map_one
   | n + 1 => by

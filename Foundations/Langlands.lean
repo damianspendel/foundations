@@ -22,8 +22,9 @@ that is formalised here. This part builds the first layers it stands on, from sc
   irreducibility of `Φ_p` (Eisenstein), `Gal(ℚ(ζ_p)/ℚ) ≅ (ℤ/p)ˣ` (`cycloGaloisIso`), Gauss sums
   with `g² = p*`, **quadratic reciprocity re-proved by Frobenius** (`quadratic_reciprocity_gauss`,
   Gauss's sixth proof), and Dirichlet characters read as characters of the Galois group, with
-  `χ(σ_q) = χ(q)` for `σ_q : ζ ↦ ζ^q` (`galChar_frobenius`; its identification with the
-  arithmetic Frobenius is not formalised).
+  `χ(σ_q) = χ(q)` (`galChar_frobenius`), where `σ_q` is shown to be a Frobenius: it reduces
+  to the `q`-th power map on `ℤ[ζ_p]` mod `q` (`reduce_galAut`). Also the degree `p − 1`, the
+  quadratic subfield `ℚ(√p*)` as the fixed field of the squares, and the prime-power case.
 
 Not formalised: ℚₚ as a field, Hasse's principle, Kronecker–Weber, Artin reciprocity in general,
 modular forms, automorphic representations — that is, everything that makes Langlands Langlands.
