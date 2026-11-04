@@ -21,7 +21,10 @@ that is formalised here. This part builds the first layers it stands on, from sc
 * `Rep` — representations of finite groups, the language Langlands is written in: **Maschke's
   theorem**, **Schur's lemma** (with scalars over ℂ, via the fundamental theorem of algebra),
   characters and their **orthogonality**, multiplicities, and the bridge saying that for abelian
-  groups the irreducible characters are exactly the Dirichlet-style characters of `DualGroup`.
+  groups the irreducible characters are exactly the Dirichlet-style characters of `DualGroup`; also complete reducibility, a complete list of irreducibles with
+  Σ dim² = |G|, #irreducibles = #conjugacy classes, second orthogonality, characters determine
+  representations, induced representations and Frobenius reciprocity, and the character tables
+  of S₃ and A₄.
 
 * `Cyclotomic` — reciprocity as Galois theory, the prototype of GL(1) reciprocity:
   irreducibility of `Φ_p` (Eisenstein), `Gal(ℚ(ζ_p)/ℚ) ≅ (ℤ/p)ˣ` (`cycloGaloisIso`), Gauss sums
@@ -43,7 +46,7 @@ that is formalised here. This part builds the first layers it stands on, from sc
   the fundamental domain (every orbit meets it; interior points are inequivalent), generation by
   `S` and `T`, and the weight-`k` transformation law as a predicate (holomorphy is not
   formalised, so these are not yet modular forms); **Eisenstein series** `G_k` as absolutely
-  convergent lattice sums satisfying the weight-`k` law (`G_isModular`), not identically zero.
+  convergent lattice sums satisfying the weight-`k` law (`G_isModular`), not identically zero for even `k ≥ 4` (`G_ne_zero`).
 
 Not formalised: Hasse–Minkowski beyond conics, holomorphic modular forms (holomorphy of `G_k`, q-expansions, Δ, j), Kronecker–Weber, Artin reciprocity in general,
 automorphic representations — that is, everything that makes Langlands Langlands.

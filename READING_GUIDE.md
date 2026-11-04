@@ -1,6 +1,6 @@
 # Reading guide: where to start
 
-About 7,300 checked definitions and theorems is too many to browse, so start here. The list
+About 9,000 checked definitions and theorems is too many to browse, so start here. The list
 comes from an independent project-wide audit. Each entry gives the theorem name, the file, and
 its meaning in plain words. On the site, type the name into the map's search box to see its
 statement, its proof and everything it rests on.

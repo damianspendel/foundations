@@ -92,7 +92,11 @@ internal arithmetic, induction for definable properties, β-coding and concatena
 of sequences of non-standard length — and using completeness, the conditions (D1)–(D3)
 are verified for a Hilbert-style provability formula of PA, which yields Löb's theorem
 and Gödel's second incompleteness theorem for PA unconditionally (for that provability
-formula, not shown PA-provably equivalent to the textbook Con(PA)). Finally, ordinals below ε₀
+formula, not shown PA-provably equivalent to the textbook Con(PA)).
+A second instance uses a derivation predicate `provDP` (`GodelIID3*`), whose modus-ponens and
+numeral-substitution steps are arithmetised by explicit formulas; for it (D3) is derived from
+formalised Σ₁-completeness, giving `godel_second_provDP`. PA proves `provD → provDP`, but the
+converse is not shown. Finally, ordinals below ε₀
 in Cantor normal form are shown to be well-ordered, which yields Goodstein's theorem —
 a true arithmetical statement unprovable in PA (Kirby–Paris; not formalised here).
 The closing files turn to Gentzen's structural proof theory: the sequent calculus LK,
